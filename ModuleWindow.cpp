@@ -127,6 +127,7 @@ bool ModuleWindow::Init()
 
 update_status ModuleWindow::Update(float dt) 
 {
+
 	// Our state
 	bool show_demo_window = true;
 	bool show_another_window = false;
@@ -201,11 +202,7 @@ update_status ModuleWindow::Update(float dt)
 			if (ImGui::Button("Close Me"))
 				show_another_window = false;
 			ImGui::End();
-		}else
-		{
-			return UPDATE_STOP;
 		}
-
 
 		// Rendering
 		ImGui::Render();

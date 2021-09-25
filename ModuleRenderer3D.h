@@ -19,6 +19,8 @@ public:
 
 	void OnResize(int width, int height);
 
+	bool show_demo_window = true;
+	bool show_another_window = false;
 public:
 
 	Light lights[MAX_LIGHTS];
