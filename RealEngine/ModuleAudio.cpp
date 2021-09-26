@@ -2,10 +2,8 @@
 #include "Application.h"
 #include "ModuleAudio.h"
 
-#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
-
-//ModuleAudio::ModuleAudio(Application* app, bool start_enabled) : Module(app, start_enabled), music(NULL)
-//{}
+ModuleAudio::ModuleAudio(Application* app, bool start_enabled) : Module(app, start_enabled)
+{}
 
 // Destructor
 ModuleAudio::~ModuleAudio()
@@ -23,28 +21,7 @@ bool ModuleAudio::Init()
 		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
-	// load support for the OGG format
-	//int flags = MIX_INIT_OGG;
-	//int init = Mix_Init(flags);
-
-	/*
-
-	if((init & flags) != flags)
-	{
-		//LOG("Could not initialize Mixer lib. Mix_Init: %s", Mix_GetError());
-		ret = false;
-	}
-
-	//Initialize SDL_mixer
-	if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-	{
-		LOG("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
-		ret = false;
-	}
-
-	*/
-
+	
 	return ret;
 }
 
