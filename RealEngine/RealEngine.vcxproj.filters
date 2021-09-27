@@ -93,8 +93,6 @@
     <ClInclude Include="imgui\imgui.h">
       <Filter>Sources\Imgui</Filter>
     </ClInclude>
-    <ClInclude Include="p2DynArray.h" />
-    <ClInclude Include="p2Point.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
