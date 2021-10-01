@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "Module.h"
 
+// https://www.badprog.com/c-opengl-checking-the-freeglut-glew-and-opengl-version
+
 Application::Application()
 {
 	window = new ModuleWindow(this);
