@@ -50,14 +50,14 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL\include;C:\Users\magdalenaoj\Documents\glew-2.1.0\include\GL;$(ProjectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)SDL\include;C:\Users\magdalenaoj\Documents\glew-2.1.0\include\GL;$(ProjectDir)imgui;C:\Users\HP Zbook\Documents\GitHub\RealEngine\glew-2.1.0-win32\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WINDOWS_IGNORE_PACKING_MISMATCH</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\magdalenaoj\Documents\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\HP Zbook\Documents\GitHub\RealEngine\glew-2.1.0-win32\lib\Release\x64;C:\Users\magdalenaoj\Documents\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -95,6 +95,7 @@
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="Module.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
