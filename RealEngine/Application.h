@@ -42,6 +42,9 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool Load();
+	bool Save() const;
+
 private:
 
 	void AddModule(Module* mod);

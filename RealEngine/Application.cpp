@@ -130,6 +130,16 @@ bool Application::CleanUp()
 	return ret;
 }
 
+bool Application::Load()
+{
+	return false;
+}
+
+bool Application::Save() const
+{
+	return false;
+}
+
 void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);
