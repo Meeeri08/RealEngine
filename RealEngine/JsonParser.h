@@ -4,13 +4,12 @@
 #define __CONFIG_H__
 
 #include "Globals.h"
-#include "Math.h"
 #include "JSON/parson.h"
-#include "MathGeoLib/src/MathGeoLib.h"
+//#include "Math.h"
+//#include "MathGeoLib/src/MathGeoLib.h"
 
 
-class JsonParser
-{
+class JsonParser{
 
 public:
 
@@ -18,7 +17,7 @@ public:
 	JsonParser(const char* fileName);
 	~JsonParser();
 
-	uint saveToJson() const;
+	uint saveToJson();
 
 private:
 	JSON_Value* valueRoot;
