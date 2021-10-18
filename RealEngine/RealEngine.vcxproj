@@ -50,14 +50,15 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)SDL\include;C:\Users\magdalenaoj\Documents\glew-2.1.0\include\GL;$(ProjectDir)imgui;C:\Users\HP Zbook\Documents\GitHub\RealEngine\glew-2.1.0-win32\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)glew\lib;$(ProjectDir)SDL\include;$(ProjectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WINDOWS_IGNORE_PACKING_MISMATCH</PreprocessorDefinitions>
+      <AdditionalModuleDependencies>%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>C:\Users\HP Zbook\Documents\GitHub\RealEngine\glew-2.1.0-win32\lib\Release\x64;C:\Users\magdalenaoj\Documents\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -82,6 +83,10 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="glew\include\eglew.h" />
+    <ClInclude Include="glew\include\glew.h" />
+    <ClInclude Include="glew\include\glxew.h" />
+    <ClInclude Include="glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -95,6 +100,87 @@
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="JSON\parson.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="MathGeoLib\src\Algorithm\GJK.h" />
+    <ClInclude Include="MathGeoLib\src\Algorithm\GJK2D.h" />
+    <ClInclude Include="MathGeoLib\src\Algorithm\Random\LCG.h" />
+    <ClInclude Include="MathGeoLib\src\Algorithm\SAT.h" />
+    <ClInclude Include="MathGeoLib\src\emscripten\library_system.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\AABB.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\AABB2D.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Capsule.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Circle.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Circle2D.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Frustum.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\GeometryAll.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\GeomType.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\HitInfo.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\KDTree.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Line.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\LineSegment.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\LineSegment2D.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\OBB.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\OBB2D.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\PBVolume.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Plane.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Polygon.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Polygon2DRef.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Polyhedron.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\QuadTree.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Ray.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Sphere.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Triangle.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\Triangle2D.h" />
+    <ClInclude Include="MathGeoLib\src\Geometry\TriangleMesh.h" />
+    <ClInclude Include="MathGeoLib\src\MathBuildConfig.h" />
+    <ClInclude Include="MathGeoLib\src\MathGeoLib.h" />
+    <ClInclude Include="MathGeoLib\src\MathGeoLibFwd.h" />
+    <ClInclude Include="MathGeoLib\src\Math\assume.h" />
+    <ClInclude Include="MathGeoLib\src\Math\BitFuncs.h" />
+    <ClInclude Include="MathGeoLib\src\Math\BitOps.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Callstack.h" />
+    <ClInclude Include="MathGeoLib\src\Math\FixedPoint.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float2.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float3.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float3x3.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float3x4.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4d.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4x4.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4x4_neon.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4x4_sse.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4_neon.h" />
+    <ClInclude Include="MathGeoLib\src\Math\float4_sse.h" />
+    <ClInclude Include="MathGeoLib\src\Math\FloatCmp.h" />
+    <ClInclude Include="MathGeoLib\src\Math\grisu3.h" />
+    <ClInclude Include="MathGeoLib\src\Math\InclWindows.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Interpolate.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathAll.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathConstants.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathFunc.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathLog.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathNamespace.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MathTypes.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MatrixProxy.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MiniFloat.h" />
+    <ClInclude Include="MathGeoLib\src\Math\MultiLineMacro.h" />
+    <ClInclude Include="MathGeoLib\src\Math\myassert.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Polynomial.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Quat.h" />
+    <ClInclude Include="MathGeoLib\src\Math\quat_simd.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Rect.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Reinterpret.h" />
+    <ClInclude Include="MathGeoLib\src\Math\simd.h" />
+    <ClInclude Include="MathGeoLib\src\Math\SSEMath.h" />
+    <ClInclude Include="MathGeoLib\src\Math\sse_mathfun.h" />
+    <ClInclude Include="MathGeoLib\src\Math\Swap.h" />
+    <ClInclude Include="MathGeoLib\src\Math\TransformOps.h" />
+    <ClInclude Include="MathGeoLib\src\Math\vec2d.h" />
+    <ClInclude Include="MathGeoLib\src\Time\Clock.h" />
+    <ClInclude Include="MathGeoLib\tests\JSONReport.h" />
+    <ClInclude Include="MathGeoLib\tests\ObjectGenerators.h" />
+    <ClInclude Include="MathGeoLib\tests\SystemInfo.h" />
+    <ClInclude Include="MathGeoLib\tests\TestData.h" />
+    <ClInclude Include="MathGeoLib\tests\TestRunner.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModulePhysics3D.h" />
@@ -124,6 +210,84 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MathGeoLib\src\Algorithm\GJK.cpp" />
+    <ClCompile Include="MathGeoLib\src\Algorithm\GJK2D.cpp" />
+    <ClCompile Include="MathGeoLib\src\Algorithm\Random\LCG.cpp" />
+    <ClCompile Include="MathGeoLib\src\Algorithm\SAT.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\AABB.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Capsule.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Circle.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Circle2D.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Frustum.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Line.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\LineSegment.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\LineSegment2D.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\OBB.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\PBVolume.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Plane.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Polygon.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Polyhedron.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Ray.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Sphere.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Triangle.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\Triangle2D.cpp" />
+    <ClCompile Include="MathGeoLib\src\Geometry\TriangleMesh.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\BitOps.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\Callstack.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float2.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float3.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float3x3.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float3x4.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float4.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float4d.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\float4x4.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\grisu3.c" />
+    <ClCompile Include="MathGeoLib\src\Math\grisu3_cpp.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\MathFunc.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\MathLog.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\MathOps.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\MiniFloat.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\Polynomial.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\Quat.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\SSEMath.cpp" />
+    <ClCompile Include="MathGeoLib\src\Math\TransformOps.cpp" />
+    <ClCompile Include="MathGeoLib\src\Time\Clock.cpp" />
+    <ClCompile Include="MathGeoLib\tests\AABBTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\CallstackTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\Circle2DTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\ClockTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\ConversionTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\DegenerateTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\EncloseTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\Float4dTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\FrustumTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\GJKTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\KdTreeTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\LCGTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\LineTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\MathFuncTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\MatrixTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\MemcpyTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\NegativeTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\NEONTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\OBBTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\PBVolumeTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\PolygonTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\PolyhedronTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\PositiveTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\QuatTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SAT2DTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SerializationTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SphereTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SSEMathTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SystemInfo.cpp" />
+    <ClCompile Include="MathGeoLib\tests\SystemInfoTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\TestData.cpp" />
+    <ClCompile Include="MathGeoLib\tests\TestRunner.cpp" />
+    <ClCompile Include="MathGeoLib\tests\TransformTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\TriangleMeshTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\TriangleTests.cpp" />
+    <ClCompile Include="MathGeoLib\tests\VectorTests.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
@@ -137,6 +301,16 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MathGeoLib\src\Geometry\KDTree.inl" />
+    <None Include="MathGeoLib\src\Geometry\QuadTree.inl" />
+    <None Include="MathGeoLib\src\Geometry\TriangleMesh_IntersectRay_AVX.inl" />
+    <None Include="MathGeoLib\src\Geometry\TriangleMesh_IntersectRay_CPP.inl" />
+    <None Include="MathGeoLib\src\Geometry\TriangleMesh_IntersectRay_SSE.inl" />
+    <None Include="MathGeoLib\src\Math\float2.inl" />
+    <None Include="MathGeoLib\src\Math\Matrix.inl" />
+    <None Include="MathGeoLib\tests\SystemInfoIos.m" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

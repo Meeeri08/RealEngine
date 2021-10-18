@@ -44,10 +44,12 @@ public:
 
 	bool Load();
 	bool Save() const;
+	void RequestBrowser(const char* link);
 
 private:
 
 	void AddModule(Module* mod);
+
 	update_status PrepareUpdate();
 	update_status FinishUpdate();
 };
