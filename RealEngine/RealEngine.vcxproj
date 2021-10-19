@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="AssimpLoader.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="glew\include\eglew.h" />
     <ClInclude Include="glew\include\glew.h" />
@@ -196,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="AssimpLoader.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />

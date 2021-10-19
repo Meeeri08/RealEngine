@@ -107,14 +107,15 @@ update_status ModuleEditor::Update(float dt)
         if (ImGui::CollapsingHeader("Application"))
         {
 
-          /*  char title[25];
+            char title[25];
             sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
             ImGui::PlotHistogram("##FRAMERATE", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
 
             sprintf_s(title, 25, "Miliseconds %.1f", ms_log[ms_log.size() - 1]);
-            ImGui::PlotHistogram("##MILISECONDS", &ms_log[0], ms_log.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));*/
+            ImGui::PlotHistogram("##MILISECONDS", &ms_log[0], ms_log.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
 
             //Fps
+
 
         }
 
