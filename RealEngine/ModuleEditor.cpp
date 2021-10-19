@@ -175,6 +175,9 @@ update_status ModuleEditor::Update(float dt)
         if (ImGui::Begin("About us", &about_us))
         {
             ImGui::TextWrapped("You are using RealEngine, \n The next generation 3D Game Engine \nBy Magdalena Ostrowska and Maria Garrigolas Ledo");
+            if (ImGui::Button("Press here to go to our github repository")) {
+                App->RequestBrowser("https://github.com/Meeeri08/RealEngine");
+            }
             ImGui::TextWrapped("3rd Party Libraries Used:");
             ImGui::Text("SDL2");
             ImGui::Text("OpenGL");

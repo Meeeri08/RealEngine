@@ -140,6 +140,11 @@ bool Application::Save() const
 	return false;
 }
 
+void Application::RequestBrowser(const char* link)
+{
+	ShellExecuteA(NULL, "open", link, NULL, NULL, SW_SHOWNORMAL);
+}
+
 float Application::GetFps()
 {
 	return 1.0f/dt;
