@@ -9,6 +9,7 @@
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
     fps_log.resize(100);
+    ms_log.resize(100);
 }
 
 ModuleEditor::~ModuleEditor()
@@ -54,6 +55,12 @@ update_status ModuleEditor::Update(float dt)
 
     for (int i = 0; i < fps_log.size()-1; i++) {
         fps_log[i] = fps_log[i+1];
+    }
+
+    ms_log[ms_log.size() - 1] = App->GetMs();
+
+    for (int i = 0; i < ms_log.size()-1; i++) {
+        ms_log[i] = ms_log[i + 1];
     }
 
     //Toolbar

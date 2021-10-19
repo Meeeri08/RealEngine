@@ -145,6 +145,11 @@ float Application::GetFps()
 	return 1.0f/dt;
 }
 
+float Application::GetMs()
+{
+	return dt*1000.0f;
+}
+
 void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);

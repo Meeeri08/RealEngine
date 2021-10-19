@@ -46,6 +46,7 @@ public:
 	bool Save() const;
 	void RequestBrowser(const char* link);
 	float GetFps();
+	float GetMs();
 
 private:
 
