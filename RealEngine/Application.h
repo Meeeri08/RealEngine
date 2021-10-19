@@ -45,6 +45,7 @@ public:
 	bool Load();
 	bool Save() const;
 	void RequestBrowser(const char* link);
+	float GetFps();
 
 private:
 
