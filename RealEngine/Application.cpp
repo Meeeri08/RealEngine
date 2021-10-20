@@ -130,7 +130,33 @@ bool Application::CleanUp()
 	return ret;
 }
 
+bool Application::Load()
+{
+	return false;
+}
+
+bool Application::Save() const
+{
+	return false;
+}
+
+void Application::RequestBrowser(const char* link)
+{
+	ShellExecuteA(NULL, "open", link, NULL, NULL, SW_SHOWNORMAL);
+}
+
+float Application::GetFps()
+{
+	return 1.0f/dt;
+}
+
+float Application::GetMs()
+{
+	return dt*1000.0f;
+}
+
 void Application::AddModule(Module* mod)
 {
 	list_modules.push_back(mod);
 }
+

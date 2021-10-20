@@ -92,3 +92,38 @@ void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
 }
+void ModuleWindow::SetFullScreen(bool fullScreen)
+{
+	SDL_SetWindowFullscreen(window, fullScreen);
+}
+
+void ModuleWindow::SetBrightness(float brightness)
+{
+	SDL_SetWindowBrightness(window, brightness);
+}
+
+float ModuleWindow::GetBrightness()
+{
+	return SDL_GetWindowBrightness(window);
+}
+
+void ModuleWindow::SetSize(int w, int h)
+{
+	SDL_SetWindowSize(window, w, h);
+}
+
+void ModuleWindow::SetFullscreenDesktop(bool fullscreenDesk)
+{
+	SDL_SetWindowFullscreen(window, fullscreenDesk ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
+void ModuleWindow::SetName()
+{
+	name = appName + " - " + orgName;
+	SDL_SetWindowTitle(window, name.c_str());
+}
+
+void ModuleWindow::SetBorder(bool borderless)
+{
+	SDL_SetWindowBordered(window, (SDL_bool)borderless);
+}

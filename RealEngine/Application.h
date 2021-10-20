@@ -42,9 +42,17 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool Load();
+	bool Save() const;
+	void RequestBrowser(const char* link);
+	float GetFps();
+	float GetMs();
+
+	int capFPS = 60;
 private:
 
 	void AddModule(Module* mod);
+
 	update_status PrepareUpdate();
 	update_status FinishUpdate();
 };
