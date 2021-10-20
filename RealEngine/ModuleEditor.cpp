@@ -64,6 +64,7 @@ update_status ModuleEditor::Update(float dt)
 
     fps_log[fps_log.size()-1] = App->GetFps();
 
+
     for (int i = 0; i < fps_log.size()-1; i++) {
         fps_log[i] = fps_log[i+1];
     }
@@ -103,8 +104,8 @@ update_status ModuleEditor::Update(float dt)
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     {
-        static float f = 0.0f;
-        static int counter = 0;
+        //static float f = 0.0f;
+        //static int counter = 0;
 
         //ImGui::Begin("Configuration");                          // Create a window called "Hello, world!" and append into it.
 
@@ -118,7 +119,7 @@ update_status ModuleEditor::Update(float dt)
         //ImGui::Checkbox("Debug Window", &show_debug_window);
         //if (ImGui::Button("Close Engine"))
         //// Buttons return true when clicked (most widgets return true when edited/activated)
-     
+
 
         ///*if (ImGui::Checkbox("FullScreen", &fullscreen))
         //    App->window->SetFullscreen(fullscreen);*/
@@ -128,140 +129,194 @@ update_status ModuleEditor::Update(float dt)
         //ImGui::SameLine();
         //ImGui::Text("counter = %d", counter);
 
-        //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-        ImGui::Text("Options");
-        if (ImGui::CollapsingHeader("Application"))
-        {
-            //App name
-            std::strcpy(appName,App->window->appName.c_str());
-            ImGui::InputText("App name", appName, IM_ARRAYSIZE(appName));
-            if (appName != (std::string)appName)
-            {
-                App->window->appName = appName;
-                App->window->SetName();
-            }
-            //Org title
-            std::strcpy(orgName, App->window->orgName.c_str());
-            ImGui::InputText("Organitzation Name", orgName, IM_ARRAYSIZE(orgName));
-            if (orgName != (std::string)orgName)
-            {
-                App->window->orgName = orgName;
-                App->window->SetName();
-            }
-
-            ImGui::SliderInt("Max FPS", &App->capFPS, 1, 60);
-            std::string str = std::to_string(App->capFPS);
-            ImGui::Text("Fps Limit: ");
-            ImGui::SameLine();
-            ImGui::Text("%d", App->capFPS);
-            
-            capFps();
-           
-
-            char title[25] = "";
-
-            if (fps_log.size() > 0) {
-                
-                sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
-                ImGui::PlotHistogram("##FRAMERATE", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
-
-            }
-
-            if (ms_log.size() > 0) {
-
-                sprintf_s(title, 25, "Miliseconds %.1f", ms_log[ms_log.size() - 1]);
-                ImGui::PlotHistogram("##MILISECONDS", &ms_log[0], ms_log.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
-            }
-        }
-
-        if (ImGui::CollapsingHeader("Window"))
-        {
-            //Screen Config
-       
-            //Brightness
-         
-            if (ImGui::SliderFloat("Brightness", &brightness, 0.0f, 1.0f)) 
-            App->window->SetBrightness(brightness);
-
-            //FullScreen
-            if (ImGui::Checkbox("FullScreen", &fullscreen)) {}
-            App->window->SetFullScreen(fullscreen);
-
-           
-
-
+        //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate)
 
        
 
-        }
-    
-    }
+        ImGui::Begin("Configuration");
+            ImGui::Text("Options");
+            if (ImGui::CollapsingHeader("Application"))
+            {
+                //App name
+                std::strcpy(appName, App->window->appName.c_str());
+                ImGui::InputText("App name", appName, IM_ARRAYSIZE(appName));
+                if (appName != (std::string)appName)
+                {
+                    App->window->appName = appName;
+                    App->window->SetName();
+                }
+                //Org title
+                std::strcpy(orgName, App->window->orgName.c_str());
+                ImGui::InputText("Organitzation", orgName, IM_ARRAYSIZE(orgName));
+                if (orgName != (std::string)orgName)
+                {
+                    App->window->orgName = orgName;
+                    App->window->SetName();
+                }
 
-    // 3. Show another simple window.
-    if (show_another_window)
-    {
-        ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-        ImGui::Text("Hello from another window!");
-        if (ImGui::Button("Close Me"))
-            show_another_window = false;
-        ImGui::End();
-    }
+                //Fps cap
+                ImGui::SliderInt("Max FPS", &App->capFPS, 1, 60);
+                std::string str = std::to_string(App->capFPS);
+                ImGui::Text("Limit Framerate:");
+                ImGui::SameLine();
+                ImGui::Text("%d", App->capFPS);
+                capFps();
 
-    if (about_us)
-    {
-        if (ImGui::Begin("About us", &about_us))
-        {
-            ImGui::TextWrapped("You are using RealEngine, \n The next generation 3D Game Engine \nBy Magdalena Ostrowska and Maria Garrigolas Ledo");
-            if (ImGui::Button("Press here to go to our github repository")) {
-                App->RequestBrowser("https://github.com/Meeeri08/RealEngine");
+                char title[25] = "";
+
+                if (fps_log.size() > 0) {
+
+                    sprintf_s(title, 25, "Framerate %.1f", fps_log[fps_log.size() - 1]);
+                    ImGui::PlotHistogram("##FRAMERATE", &fps_log[0], fps_log.size(), 0, title, 0.0f, 100.0f, ImVec2(310, 100));
+
+                }
+
+                if (ms_log.size() > 0) {
+
+                    sprintf_s(title, 25, "Miliseconds %.1f", ms_log[ms_log.size() - 1]);
+                    ImGui::PlotHistogram("##MILISECONDS", &ms_log[0], ms_log.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
+                }
             }
-            ImGui::TextWrapped("3rd Party Libraries Used:");
-            ImGui::Text("SDL2");
-            ImGui::Text("OpenGL");
-            ImGui::Text("Imgui");
-            ImGui::Text("MathGeoLib");
-            ImGui::Text("GLEW");
 
-            ImGui::TextWrapped("MIT License:\n");
-            ImGui::Text("");
-            ImGui::TextWrapped("Copyright (c) 2021 Meeeri08\n");
-            ImGui::Text("");
+            if (ImGui::CollapsingHeader("Window"))
+            {
+                //Screen Config
+                //Active
+                //TODO
+                if (ImGui::Checkbox("Active", &App->window->active)) {}
 
-            ImGui::Text("Permission is hereby granted, free of charge, to any person obtaining a copy");
-            ImGui::Text("of this softwareand associated documentation files(the \"Software\"), to deal");
-            ImGui::Text("in the Software without restriction, including without limitation the rights");
-            ImGui::Text("to use, copy, modify, merge, publish, distribute, sublicense, and /or sell");
-            ImGui::Text("copies of the Software, and to permit persons to whom the Software is");
-            ImGui::Text("furnished to do so, subject to the following conditions :");
-            ImGui::Text("");
+                ImGui::Text("Icon: *default!*");
+                //Brightness
+                if (ImGui::SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f))
+                    App->window->SetBrightness(App->window->brightness);
 
-            ImGui::Text("The above copyright notice and this permission notice shall be included in all");
-            ImGui::Text("copies or substantial portions of the Software.");
-            ImGui::Text("");
+                //Width and Height
 
-            ImGui::Text("THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR");
-            ImGui::Text("IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,");
-            ImGui::Text("FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE");
-            ImGui::Text("AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER");
-            ImGui::Text("LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,");
-            ImGui::Text("OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE");
-            ImGui::Text("SOFTWARE.");
+                if (!App->window->fullscreen && !App->window->fullscreenDesktop)
+                {
+                    if (ImGui::SliderInt("Width", &App->window->width, 480, 2000))
+                        App->window->SetSize(App->window->width, App->window->height);
+
+                    if (ImGui::SliderInt("Height", &App->window->height, 480, 2048))
+                        App->window->SetSize(App->window->width, App->window->height);
+                }
+
+                //Refresh Rate
+                ImGui::Text("Refresh rate: ");
+                ImGui::SameLine();
+                ImGui::Text("%d", App->capFPS);
+
+                //FullScreen
+                if (ImGui::Checkbox("FullScreen", &App->window->fullscreen)) {}
+                App->window->SetFullScreen(App->window->fullscreen);
+
+                //TODO
+                //Resizable
+                ImGui::SameLine();
+                ImGui::Checkbox("Resizable", &App->window->resizable); 
+                if (ImGui::IsItemHovered())
+                    ImGui::SetTooltip("Restart to apply");
+
+          
+                //Borderless
+
+                if (ImGui::Checkbox("Borderless", &App->window->borderless))
+                {
+                    App->window->SetBorder(!App->window->borderless);
+                }
+
+                //TODO
+                //Full Desktop
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Full Desktop", &App->window->fullscreenDesktop))
+                {
+                    App->window->SetFullscreenDesktop(App->window->fullscreenDesktop);
+                    App->window->fullscreen = false;
+                    SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
+                }
+
+            }
+
+            if (ImGui::CollapsingHeader("File System"))
+            {
+
+            }
+            if (ImGui::CollapsingHeader("Input"))
+            {
+
+            }
+            if (ImGui::CollapsingHeader("Hardware"))
+            {
+
+            }
+        }
+
+        // 3. Show another simple window.
+        if (show_another_window)
+        {
+            ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+            ImGui::Text("Hello from another window!");
+            if (ImGui::Button("Close Me"))
+                show_another_window = false;
+            ImGui::End();
+        }
+
+        if (about_us)
+        {
+            if (ImGui::Begin("About us", &about_us))
+            {
+                ImGui::TextWrapped("You are using RealEngine, \n The next generation 3D Game Engine \nBy Magdalena Ostrowska and Maria Garrigolas Ledo");
+                if (ImGui::Button("Press here to go to our github repository")) {
+                    App->RequestBrowser("https://github.com/Meeeri08/RealEngine");
+                }
+                ImGui::TextWrapped("3rd Party Libraries Used:");
+                ImGui::Text("SDL2");
+                ImGui::Text("OpenGL");
+                ImGui::Text("Imgui");
+                ImGui::Text("MathGeoLib");
+                ImGui::Text("GLEW");
+
+                ImGui::TextWrapped("MIT License:\n");
+                ImGui::Text("");
+                ImGui::TextWrapped("Copyright (c) 2021 Meeeri08\n");
+                ImGui::Text("");
+
+                ImGui::Text("Permission is hereby granted, free of charge, to any person obtaining a copy");
+                ImGui::Text("of this softwareand associated documentation files(the \"Software\"), to deal");
+                ImGui::Text("in the Software without restriction, including without limitation the rights");
+                ImGui::Text("to use, copy, modify, merge, publish, distribute, sublicense, and /or sell");
+                ImGui::Text("copies of the Software, and to permit persons to whom the Software is");
+                ImGui::Text("furnished to do so, subject to the following conditions :");
+                ImGui::Text("");
+
+                ImGui::Text("The above copyright notice and this permission notice shall be included in all");
+                ImGui::Text("copies or substantial portions of the Software.");
+                ImGui::Text("");
+
+                ImGui::Text("THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR");
+                ImGui::Text("IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,");
+                ImGui::Text("FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE");
+                ImGui::Text("AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER");
+                ImGui::Text("LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,");
+                ImGui::Text("OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE");
+                ImGui::Text("SOFTWARE.");
+            }
+            ImGui::End();
         }
         ImGui::End();
-    }
 
-    if (show_about_us)
-    {
-        ImGui::ShowAboutWindow();
-    }
+        if (show_about_us)
+        {
+            ImGui::ShowAboutWindow();
+        }
 
 
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
-    ImGui::Render();
-    glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
-    glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
-    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
-
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        ImGui::Render();
+        glViewport(0, 0, (int)io.DisplaySize.x, (int)io.DisplaySize.y);
+        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+        ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+      
     return UPDATE_CONTINUE;
 }
 

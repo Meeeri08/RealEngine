@@ -97,12 +97,6 @@ void ModuleWindow::SetFullScreen(bool fullScreen)
 	SDL_SetWindowFullscreen(window, fullScreen);
 }
 
-void ModuleWindow::SetResizable(bool resizable)
-{
-	//WIN_RESIZABLE = resizable;
-
-}
-
 void ModuleWindow::SetBrightness(float brightness)
 {
 	SDL_SetWindowBrightness(window, brightness);
@@ -118,8 +112,18 @@ void ModuleWindow::SetSize(int w, int h)
 	SDL_SetWindowSize(window, w, h);
 }
 
+void ModuleWindow::SetFullscreenDesktop(bool fullscreenDesk)
+{
+	SDL_SetWindowFullscreen(window, fullscreenDesk ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+}
+
 void ModuleWindow::SetName()
 {
 	name = appName + " - " + orgName;
 	SDL_SetWindowTitle(window, name.c_str());
+}
+
+void ModuleWindow::SetBorder(bool borderless)
+{
+	SDL_SetWindowBordered(window, (SDL_bool)borderless);
 }

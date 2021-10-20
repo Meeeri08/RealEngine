@@ -18,6 +18,7 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	void capFps();
 
 public:
 
@@ -26,7 +27,7 @@ public:
 	bool show_debug_window = false;
 	bool show_configuration = false;
 	bool show_toolbar = false;
-
+	bool config = false;
 	//Window
 
 	std::vector<float> fps_log;
@@ -36,9 +37,6 @@ public:
 	char appName[64];
 	char orgName[64];
 
-	int max_fps = 60;
-	float brightness = 1.0f;
-	bool fullscreen = false;
 
 	
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);

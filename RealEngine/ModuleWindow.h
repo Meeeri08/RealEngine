@@ -19,14 +19,15 @@ public:
 	bool Init();
 	bool CleanUp();
 
+	//Window functions
 	void SetTitle(const char* title);
 	void SetFullScreen(bool fullscreen);
-	void SetResizable(bool resizable);
 	void SetBrightness(float brightness);
 	void SetSize(int w, int h);
+	void SetFullscreenDesktop(bool fullscreenDesk);
 
 	void SetName();
-
+	void SetBorder(bool borderless);
 
 
 	float GetBrightness();
@@ -40,6 +41,20 @@ public:
 
 	std::string appName = "RealEngine";
 	std::string orgName = "UPC CITM";
+
+	//Screen properties slides
+	int height = 1024;
+	int width = 1280;
+	int max_fps = 60;
+	float brightness = 1.0f;
+
+
+	//screen variables
+	bool fullscreenDesktop = false;
+	bool resizable = false;
+	bool borderless = false;
+	bool fullscreen = false;
+	bool active = false;
 private:
 	std::string name;
 };
