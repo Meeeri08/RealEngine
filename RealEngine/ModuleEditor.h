@@ -20,6 +20,7 @@ public:
 	bool CleanUp();
 	void capFps();
 
+
 public:
 
 	bool show_demo_window = false;
@@ -46,5 +47,7 @@ public:
 	bool show_about_us = false;
 
 	bool configuration = true;
+
+private:
 
 };

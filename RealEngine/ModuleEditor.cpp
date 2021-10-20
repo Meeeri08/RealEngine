@@ -1,7 +1,11 @@
+#include "glew/include/glew.h"
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleEditor.h"
 #include "Primitive.h"
+
+
 #include <Windows.h>
 #include <string>
 #include <iostream>
@@ -50,6 +54,7 @@ void ModuleEditor::capFps()
     if (frameDelay > frameTime)
         SDL_Delay(frameDelay - frameTime);
 }
+
 
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
@@ -247,7 +252,61 @@ update_status ModuleEditor::Update(float dt)
             }
             if (ImGui::CollapsingHeader("Hardware"))
             {
+                ImVec4 values_color(0.0f, 0.31f, 0.56f, 1.0f);
+                //SDL Version
+                SDL_version version;
+                SDL_GetVersion(&version);
+                ImGui::Text("SDL Version:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d.%d.%d", version.major, version.minor, version.patch);
 
+  
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+
+                //Hardware
+                static HardwareSpecs specs = App->GetHardware();
+
+                //CPU
+                ImGui::Text("CPUs:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d (Cache: %dkb)", specs.cpuCount, specs.cpuCache);
+
+                //RAM
+                ImGui::Text("System RAM:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Gb", specs.ram);
+
+                //CAPS
+                ImGui::Text("Caps:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.caps.c_str());
+
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+
+                //GPU
+                ImGui::Text("GPU:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.gpu);
+
+                ImGui::Text("Brand:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.gpuBrand);
+
+                //VRAM
+
+                
+
+       /*         ImGui::Text("VRAM Budget:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", vramBudget * 0.001f);
+
+                ImGui::Text("VRAM Available:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", vramAvailable * 0.001f);*/
             }
         }
 
