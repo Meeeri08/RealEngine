@@ -118,3 +118,8 @@ void ModuleWindow::SetSize(int w, int h)
 	SDL_SetWindowSize(window, w, h);
 }
 
+void ModuleWindow::SetName()
+{
+	name = appName + " - " + orgName;
+	SDL_SetWindowTitle(window, name.c_str());
+}

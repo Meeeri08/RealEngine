@@ -40,6 +40,17 @@ bool ModuleEditor::CleanUp()
     return true;
 }
 
+void ModuleEditor::capFps()
+{
+    //Cap Fps-> 60
+    float frameDelay = 1000 / App->capFPS;
+    Uint32 frameStart = SDL_GetTicks();
+    int frameTime = SDL_GetTicks() - frameStart;
+
+    if (frameDelay > frameTime)
+        SDL_Delay(frameDelay - frameTime);
+}
+
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
 {
@@ -121,6 +132,32 @@ update_status ModuleEditor::Update(float dt)
         ImGui::Text("Options");
         if (ImGui::CollapsingHeader("Application"))
         {
+            //App name
+            std::strcpy(appName,App->window->appName.c_str());
+            ImGui::InputText("App name", appName, IM_ARRAYSIZE(appName));
+            if (appName != (std::string)appName)
+            {
+                App->window->appName = appName;
+                App->window->SetName();
+            }
+            //Org title
+            std::strcpy(orgName, App->window->orgName.c_str());
+            ImGui::InputText("Organitzation Name", orgName, IM_ARRAYSIZE(orgName));
+            if (orgName != (std::string)orgName)
+            {
+                App->window->orgName = orgName;
+                App->window->SetName();
+            }
+
+            ImGui::SliderInt("Max FPS", &App->capFPS, 1, 60);
+            std::string str = std::to_string(App->capFPS);
+            ImGui::Text("Fps Limit: ");
+            ImGui::SameLine();
+            ImGui::Text("%d", App->capFPS);
+            
+            capFps();
+           
+
             char title[25] = "";
 
             if (fps_log.size() > 0) {

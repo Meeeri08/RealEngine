@@ -32,6 +32,10 @@ public:
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
 
+
+	char appName[64];
+	char orgName[64];
+
 	int max_fps = 60;
 	float brightness = 1.0f;
 	bool fullscreen = false;

@@ -48,6 +48,7 @@ public:
 	float GetFps();
 	float GetMs();
 
+	int capFPS = 60;
 private:
 
 	void AddModule(Module* mod);

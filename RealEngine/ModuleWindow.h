@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "SDL/include/SDL.h"
+#include <string>
 
 class Application;
 
@@ -24,6 +25,8 @@ public:
 	void SetBrightness(float brightness);
 	void SetSize(int w, int h);
 
+	void SetName();
+
 
 
 	float GetBrightness();
@@ -34,6 +37,11 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
+
+	std::string appName = "RealEngine";
+	std::string orgName = "UPC CITM";
+private:
+	std::string name;
 };
 
 #endif // __ModuleWindow_H__
