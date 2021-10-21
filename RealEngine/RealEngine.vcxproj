@@ -183,6 +183,7 @@
     <ClInclude Include="MathGeoLib\tests\TestData.h" />
     <ClInclude Include="MathGeoLib\tests\TestRunner.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
@@ -292,6 +293,7 @@
     <ClCompile Include="MathGeoLib\tests\VectorTests.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="ModuleConsole.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />

@@ -387,6 +387,9 @@
       <Filter>Sources\Tools\MathGeoLib\src\Time</Filter>
     </ClInclude>
     <ClInclude Include="AssimpLoader.h" />
+    <ClInclude Include="ModuleConsole.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -697,6 +700,9 @@
       <Filter>Sources\Tools\MathGeoLib\src\Time</Filter>
     </ClCompile>
     <ClCompile Include="AssimpLoader.cpp" />
+    <ClCompile Include="ModuleConsole.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />

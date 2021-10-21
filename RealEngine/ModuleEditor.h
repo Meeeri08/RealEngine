@@ -28,6 +28,7 @@ public:
 	bool show_debug_window = false;
 	bool show_configuration = false;
 	bool show_toolbar = false;
+	bool show_console = false;
 	bool config = false;
 	//Window
 

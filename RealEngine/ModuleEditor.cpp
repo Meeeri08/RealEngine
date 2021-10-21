@@ -91,7 +91,7 @@ update_status ModuleEditor::Update(float dt)
         if (ImGui::BeginMenu("View"))
         {
             ImGui::MenuItem("Configuration", NULL, &show_toolbar);
-
+            ImGui::MenuItem("Console", NULL, &show_console);
             ImGui::EndMenu();
         }
 
@@ -106,6 +106,8 @@ update_status ModuleEditor::Update(float dt)
     // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
     if (show_toolbar)
         ImGui::ShowDemoWindow(&show_demo_window);
+    if(show_console)
+        App->console->DrawConsole("Console", &show_console);
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     {

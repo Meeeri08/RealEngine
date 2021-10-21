@@ -11,13 +11,12 @@
 #include "ModuleCamera3D.h"
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
+#include "ModuleConsole.h"
 
 #include <vector>
 
 struct HardwareSpecs
 {
-
-
 	int cpuCount;
 	int cpuCache;
 	float ram;
@@ -44,8 +43,6 @@ struct HardwareSpecs
 };
 
 
-
-
 class Application
 {
 public:
@@ -57,7 +54,7 @@ public:
 	ModuleCamera3D* camera;
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
-
+	ModuleConsole* console;
 
 private:
 
