@@ -28,7 +28,7 @@ public:
 	bool show_debug_window = false;
 	bool show_configuration = false;
 	bool show_toolbar = false;
-	bool show_console = false;
+	bool show_console = true;
 	bool config = false;
 	//Window
 
@@ -48,7 +48,4 @@ public:
 	bool show_about_us = false;
 
 	bool configuration = true;
-
-private:
-
 };

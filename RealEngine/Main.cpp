@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "Application.h"
 #include "Globals.h"
+#include "ModuleConsole.h"
 
 #include "SDL/include/SDL.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
@@ -15,21 +16,22 @@ enum main_states
 	MAIN_EXIT
 };
 
+Application* App = NULL;
+
 int main(int argc, char ** argv)
 {
 	LOG("Starting game '%s'...", TITLE);
 
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
-	Application* App = NULL;
-
+	
 	while (state != MAIN_EXIT)
 	{
 		switch (state)
 		{
 		case MAIN_CREATION:
-
-			LOG("-------------- Application Creation --------------");
+			if (App != nullptr)
+				LOG("-------------- Application Creation --------------");
 			App = new Application();
 			state = MAIN_START;
 			break;

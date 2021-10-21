@@ -35,9 +35,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
         ImGui::EndPopup();
     }
 
-    ImGui::TextWrapped(
-        "This example implements a console with basic coloring, completion (TAB key) and history (Up/Down keys). A more elaborate "
-        "implementation may want to store entries along with extra data such as timestamp, emitter, etc.");
     ImGui::TextWrapped("Enter 'HELP' for help.");
 
     // TODO: display items starting from the bottom
@@ -132,23 +129,7 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
     ImGui::EndChild();
     ImGui::Separator();
 
-    // Command-line
-    bool reclaim_focus = false;
-    ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
-    if (ImGui::InputText("Input", InputBuf, IM_ARRAYSIZE(InputBuf), input_text_flags, &TextEditCallbackStub, (void*)this))
-    {
-        char* s = InputBuf;
-        Strtrim(s);
-        if (s[0])
-            ExecCommand(s);
-        strcpy(s, "");
-        reclaim_focus = true;
-    }
 
-    // Auto-focus on window apparition
-    ImGui::SetItemDefaultFocus();
-    if (reclaim_focus)
-        ImGui::SetKeyboardFocusHere(-1); // Auto focus previous widget
 
     ImGui::End();
 }

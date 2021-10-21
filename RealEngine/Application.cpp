@@ -54,6 +54,7 @@ bool Application::Init()
 
 	// After all Init calls we call Start() in all modules
 	LOG("Application Start --------------");
+	console->AddLog("Application Start --------------");
 
 	for (int i = 0; i < list_modules.size(); i++) {
 		ret = list_modules[i]->Start();
@@ -70,7 +71,7 @@ update_status Application::PrepareUpdate()
 	ms_timer.Start();
 
 	update_status ret = UPDATE_CONTINUE;
-
+	
 	if (ret == UPDATE_CONTINUE)
 	{
 		for (int i = 0; i < list_modules.size(); i++) {
