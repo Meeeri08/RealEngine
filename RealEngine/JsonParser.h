@@ -18,6 +18,21 @@ public:
 	~JsonParser();
 
 	uint saveToJson();
+	uint saveToJson(char** file);
+
+	int GetInt(const char* name, int default = -1);
+	float GetFloat(const char* name, float default = -1.0f);
+	bool GetBool(const char* name, bool default = false);
+	const char* GetString(const char* name, const char* default);
+	JSON_Array* GetArray(const char* name);
+
+	void AddInt(const char* name, int number);
+
+	void AddFloat(const char* name, float number);
+
+	void AddBool(const char* name, bool boolean);
+
+	void AddString(const char* name, const char* string);
 
 private:
 	JSON_Value* valueRoot;
