@@ -23,6 +23,7 @@ ModuleEditor::~ModuleEditor()
 bool ModuleEditor::Start()
 {
     LOG("Loading Intro assets");
+    App->console->AddLog("Loading Intro assets");
     bool ret = true;
 
 
@@ -40,6 +41,7 @@ bool ModuleEditor::Start()
 bool ModuleEditor::CleanUp()
 {
     LOG("Unloading Intro scene");
+    App->console->AddLog("Unloading Intro scene");
 
     return true;
 }
@@ -54,7 +56,6 @@ void ModuleEditor::capFps()
     if (frameDelay > frameTime)
         SDL_Delay(frameDelay - frameTime);
 }
-
 
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
@@ -138,7 +139,6 @@ update_status ModuleEditor::Update(float dt)
 
         //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate)
 
-       
 
         ImGui::Begin("Configuration");
             ImGui::Text("Options");
@@ -224,7 +224,7 @@ update_status ModuleEditor::Update(float dt)
                 if (ImGui::IsItemHovered())
                     ImGui::SetTooltip("Restart to apply");
 
-          
+        
                 //Borderless
 
                 if (ImGui::Checkbox("Borderless", &App->window->borderless))

@@ -386,10 +386,12 @@
     <ClInclude Include="MathGeoLib\src\Time\Clock.h">
       <Filter>Sources\Tools\MathGeoLib\src\Time</Filter>
     </ClInclude>
-    <ClInclude Include="AssimpLoader.h" />
+    <ClInclude Include="FBXLoader.h" />
     <ClInclude Include="ModuleConsole.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="InspectorWindow.h" />
+    <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -699,10 +701,12 @@
     <ClCompile Include="MathGeoLib\src\Time\Clock.cpp">
       <Filter>Sources\Tools\MathGeoLib\src\Time</Filter>
     </ClCompile>
-    <ClCompile Include="AssimpLoader.cpp" />
+    <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="ModuleConsole.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="InspectorWindow.cpp" />
+    <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />

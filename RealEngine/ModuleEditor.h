@@ -35,14 +35,10 @@ public:
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
 
-
 	char appName[64];
 	char orgName[64];
-
-
 	
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 
 	bool about_us = false;
 	bool show_about_us = false;
