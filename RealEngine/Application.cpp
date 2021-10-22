@@ -53,8 +53,8 @@ bool Application::Init()
 	}
 
 	// After all Init calls we call Start() in all modules
-	LOG("Application Start --------------");
-	console->AddLog("Application Start --------------");
+	LOG("-------------- Application Start --------------");
+	console->AddLog("-------------- Application Start --------------");
 
 	for (int i = 0; i < list_modules.size(); i++) {
 		ret = list_modules[i]->Start();
