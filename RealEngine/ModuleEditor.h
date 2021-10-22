@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <list>
 
+class InspectorWindow;
+
 class ModuleEditor : public Module
 {
 public:
@@ -27,24 +29,22 @@ public:
 	bool show_debug_window = false;
 	bool show_configuration = false;
 	bool show_toolbar = false;
+	bool show_console = true;
+	bool show_inspector = true;
 	bool config = false;
-	//Window
 
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
 
-
 	char appName[64];
 	char orgName[64];
-
-
 	
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 
 	bool about_us = false;
 	bool show_about_us = false;
 
 	bool configuration = true;
 
+	InspectorWindow* inspectorWindow;
 };

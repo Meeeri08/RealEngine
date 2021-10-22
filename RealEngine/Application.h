@@ -11,8 +11,37 @@
 #include "ModuleCamera3D.h"
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
+#include "ModuleConsole.h"
 
 #include <vector>
+
+struct HardwareSpecs
+{
+	int cpuCount;
+	int cpuCache;
+	float ram;
+	bool RDTSC = false;
+	bool MMX = false;
+	bool SSE = false;
+	bool SSE2 = false;
+	bool SSE3 = false;
+	bool SSE41 = false;
+	bool SSE42 = false;
+	bool AVX = false;
+	bool AVX2 = false;
+	bool AltiVec = false;
+	bool Has3DNow = false;
+
+	const char* gpu;
+	const char* gpuBrand;
+	float vramBudget;
+	float vramUsage;
+	float vramAvailable;
+	float vramReserved;
+
+	std::string caps;
+};
+
 
 class Application
 {
@@ -25,7 +54,7 @@ public:
 	ModuleCamera3D* camera;
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
-
+	ModuleConsole* console;
 
 private:
 
@@ -47,8 +76,13 @@ public:
 	void RequestBrowser(const char* link);
 	float GetFps();
 	float GetMs();
-
+	HardwareSpecs GetHardware();
+	//Configuration
 	int capFPS = 60;
+	//Hardware
+	SDL_version SDL_version;
+	
+
 private:
 
 	void AddModule(Module* mod);

@@ -82,7 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="AssimpLoader.h" />
+    <ClInclude Include="FBXLoader.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="glew\include\eglew.h" />
     <ClInclude Include="glew\include\glew.h" />
@@ -98,6 +98,7 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="InspectorWindow.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="JSON\parson.h" />
     <ClInclude Include="Light.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="MathGeoLib\tests\TestData.h" />
     <ClInclude Include="MathGeoLib\tests\TestRunner.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
@@ -194,10 +196,11 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="AssimpLoader.cpp" />
+    <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -207,6 +210,7 @@
     <ClCompile Include="imgui\imgui_impl_sdl.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="InspectorWindow.cpp" />
     <ClCompile Include="JsonParser.cpp" />
     <ClCompile Include="JSON\parson.c" />
     <ClCompile Include="Light.cpp" />
@@ -292,6 +296,7 @@
     <ClCompile Include="MathGeoLib\tests\VectorTests.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="ModuleConsole.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />
@@ -300,6 +305,7 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />

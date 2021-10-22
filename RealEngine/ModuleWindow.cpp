@@ -127,3 +127,7 @@ void ModuleWindow::SetBorder(bool borderless)
 {
 	SDL_SetWindowBordered(window, (SDL_bool)borderless);
 }
+
+
+
+

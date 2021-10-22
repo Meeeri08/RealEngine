@@ -1,15 +1,22 @@
+#include "glew/include/glew.h"
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleEditor.h"
 #include "Primitive.h"
+#include "InspectorWindow.h"
+
 #include <Windows.h>
 #include <string>
 #include <iostream>
+
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
     fps_log.resize(100);
     ms_log.resize(100);
+
+    inspectorWindow = new InspectorWindow();
 }
 
 ModuleEditor::~ModuleEditor()
@@ -19,6 +26,7 @@ ModuleEditor::~ModuleEditor()
 bool ModuleEditor::Start()
 {
     LOG("Loading Intro assets");
+    App->console->AddLog("Loading Intro assets");
     bool ret = true;
 
 
@@ -36,6 +44,7 @@ bool ModuleEditor::Start()
 bool ModuleEditor::CleanUp()
 {
     LOG("Unloading Intro scene");
+    App->console->AddLog("Unloading Intro scene");
 
     return true;
 }
@@ -86,7 +95,8 @@ update_status ModuleEditor::Update(float dt)
         if (ImGui::BeginMenu("View"))
         {
             ImGui::MenuItem("Configuration", NULL, &show_toolbar);
-
+            ImGui::MenuItem("Console", NULL, &show_console);
+            ImGui::MenuItem("Inspector", NULL, &show_inspector);
             ImGui::EndMenu();
         }
 
@@ -101,6 +111,10 @@ update_status ModuleEditor::Update(float dt)
     // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
     if (show_toolbar)
         ImGui::ShowDemoWindow(&show_demo_window);
+    if(show_console)
+        App->console->DrawConsole("Console", &show_console);
+    if (show_inspector)
+        inspectorWindow->Draw();
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     {
@@ -131,7 +145,6 @@ update_status ModuleEditor::Update(float dt)
 
         //ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate)
 
-       
 
         ImGui::Begin("Configuration");
             ImGui::Text("Options");
@@ -217,7 +230,7 @@ update_status ModuleEditor::Update(float dt)
                 if (ImGui::IsItemHovered())
                     ImGui::SetTooltip("Restart to apply");
 
-          
+        
                 //Borderless
 
                 if (ImGui::Checkbox("Borderless", &App->window->borderless))
@@ -247,7 +260,61 @@ update_status ModuleEditor::Update(float dt)
             }
             if (ImGui::CollapsingHeader("Hardware"))
             {
+                ImVec4 values_color(0.0f, 0.31f, 0.56f, 1.0f);
+                //SDL Version
+                SDL_version version;
+                SDL_GetVersion(&version);
+                ImGui::Text("SDL Version:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d.%d.%d", version.major, version.minor, version.patch);
 
+  
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+
+                //Hardware
+                static HardwareSpecs specs = App->GetHardware();
+
+                //CPU
+                ImGui::Text("CPUs:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d (Cache: %dkb)", specs.cpuCount, specs.cpuCache);
+
+                //RAM
+                ImGui::Text("System RAM:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Gb", specs.ram);
+
+                //CAPS
+                ImGui::Text("Caps:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.caps.c_str());
+
+                ImGui::Spacing();
+                ImGui::Separator();
+                ImGui::Spacing();
+
+                //GPU
+                ImGui::Text("GPU:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.gpu);
+
+                ImGui::Text("Brand:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", specs.gpuBrand);
+
+                //VRAM
+
+                
+
+       /*         ImGui::Text("VRAM Budget:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", vramBudget * 0.001f);
+
+                ImGui::Text("VRAM Available:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", vramAvailable * 0.001f);*/
             }
         }
 

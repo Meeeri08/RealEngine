@@ -30,6 +30,7 @@ public:
 	void SetBorder(bool borderless);
 
 
+
 	float GetBrightness();
 
 public:
@@ -57,6 +58,7 @@ public:
 	bool active = false;
 private:
 	std::string name;
+
 };
 
 #endif // __ModuleWindow_H__
