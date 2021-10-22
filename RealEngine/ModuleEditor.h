@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <list>
 
+class InspectorWindow;
+
 class ModuleEditor : public Module
 {
 public:
@@ -20,7 +22,6 @@ public:
 	bool CleanUp();
 	void capFps();
 
-
 public:
 
 	bool show_demo_window = false;
@@ -29,8 +30,8 @@ public:
 	bool show_configuration = false;
 	bool show_toolbar = false;
 	bool show_console = true;
+	bool show_inspector = true;
 	bool config = false;
-	//Window
 
 	std::vector<float> fps_log;
 	std::vector<float> ms_log;
@@ -44,4 +45,6 @@ public:
 	bool show_about_us = false;
 
 	bool configuration = true;
+
+	InspectorWindow* inspectorWindow;
 };

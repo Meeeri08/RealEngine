@@ -2,23 +2,28 @@
 
 InspectorWindow::InspectorWindow()
 {
+    isActive = true;
 }
 
 InspectorWindow::~InspectorWindow()
 {
+    isActive = false;
 }
 
-bool InspectorWindow::Start()
+void InspectorWindow::Draw()
 {
-    return false;
+    ImGui::Begin("Inspector", &isActive, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_NoFocusOnAppearing);
+    ImGui::End();
+
 }
 
-update_status InspectorWindow::Update(float dt)
+void InspectorWindow::SetShowWindow()
 {
-    return update_status();
+    showWindow = !showWindow;
 }
 
-bool InspectorWindow::CleanUp()
+bool InspectorWindow::GetShowWindow()
 {
-    return false;
+    return showWindow;
 }
+

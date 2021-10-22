@@ -11,7 +11,7 @@ public:
 
 	virtual void Draw() { ; };
 
-	virtual void SetShowWindow(bool new_value);
+	virtual void SetShowWindow(bool value);
 	virtual void SetShowWindow();
 	virtual bool GetShowWindow(); 
 
