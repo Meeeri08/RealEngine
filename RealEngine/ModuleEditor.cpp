@@ -106,6 +106,16 @@ update_status ModuleEditor::Update(float dt)
             ImGui::MenuItem("About ImGui", NULL, &show_about_us);
             ImGui::EndMenu();
         }
+
+        if (ImGui::BeginMenu("Exit"))
+        {
+            if (ImGui::MenuItem("Close App"))
+            {
+                exit(0);
+            }
+            ImGui::EndMenu();
+        }
+
         ImGui::EndMainMenuBar();
     }
     // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).

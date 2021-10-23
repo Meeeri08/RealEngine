@@ -97,7 +97,7 @@ int main(int argc, char ** argv)
 	}
 
 	delete App;
-	LOG("Exiting game '%s'...\n", TITLE);
-	App->console->AddLog("Exiting game '%s'...\n", TITLE);
+	LOG("Exiting engine '%s'...\n", TITLE);
+	App->console->AddLog("Exiting engine '%s'...\n", TITLE);
 	return main_return;
 }
