@@ -5,9 +5,9 @@
 #include "Module.h"
 #include "MathGeoLib/src/MathGeoLib.h"
 
-#include "assimp/include/assimp/cimport.h"
-#include "assimp/include/assimp/postprocess.h"
-#include "assimp/include/assimp/scene.h"
+#include "Assimp/include/cimport.h"
+#include "Assimp/include/postprocess.h"
+#include "Assimp/include/scene.h"
 
 struct Vertex;
 
