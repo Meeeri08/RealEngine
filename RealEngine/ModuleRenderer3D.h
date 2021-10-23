@@ -21,6 +21,11 @@ public:
 
 	bool show_demo_window = true;
 	bool show_another_window = false;
+
+	bool vsync = false;
+
+	void capFps();
+
 public:
 
 	Light lights[MAX_LIGHTS];

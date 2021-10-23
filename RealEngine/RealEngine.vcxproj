@@ -196,6 +196,7 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +306,7 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>

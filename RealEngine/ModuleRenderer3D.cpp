@@ -22,6 +22,8 @@ bool ModuleRenderer3D::Init()
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
 
+	SDL_GL_SetSwapInterval(1);
+
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
 	if (context == NULL)
@@ -105,6 +107,7 @@ bool ModuleRenderer3D::Init()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
+	capFps();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -116,6 +119,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
+
 
 	return UPDATE_CONTINUE;
 }
@@ -149,4 +153,15 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::capFps()
+{
+	//Cap Fps-> 60
+	float frameDelay = 1000 / App->capFPS;
+	Uint32 frameStart = SDL_GetTicks();
+	int frameTime = SDL_GetTicks() - frameStart;
+
+	if (frameDelay > frameTime)
+		SDL_Delay(frameDelay - frameTime);
 }

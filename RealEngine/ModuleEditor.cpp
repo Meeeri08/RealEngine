@@ -5,6 +5,7 @@
 #include "ModuleEditor.h"
 #include "Primitive.h"
 #include "InspectorWindow.h"
+#include "VidMemViaDDraw.h"
 
 #include <Windows.h>
 #include <string>
@@ -47,17 +48,6 @@ bool ModuleEditor::CleanUp()
     App->console->AddLog("Unloading Intro scene");
 
     return true;
-}
-
-void ModuleEditor::capFps()
-{
-    //Cap Fps-> 60
-    float frameDelay = 1000 / App->capFPS;
-    Uint32 frameStart = SDL_GetTicks();
-    int frameTime = SDL_GetTicks() - frameStart;
-
-    if (frameDelay > frameTime)
-        SDL_Delay(frameDelay - frameTime);
 }
 
 // Update: draw background
@@ -183,7 +173,6 @@ update_status ModuleEditor::Update(float dt)
                 ImGui::Text("Limit Framerate:");
                 ImGui::SameLine();
                 ImGui::Text("%d", App->capFPS);
-                capFps();
 
                 char title[25] = "";
 
@@ -260,11 +249,24 @@ update_status ModuleEditor::Update(float dt)
 
             }
 
-            if (ImGui::CollapsingHeader("File System"))
+            if (ImGui::CollapsingHeader("Renderer"))
             {
+
+                ImGui::Checkbox("VSync", &App->renderer3D->vsync);
+                if (ImGui::IsItemHovered())
+                    ImGui::SetTooltip("Restart to apply");
 
             }
             if (ImGui::CollapsingHeader("Input"))
+            {
+                ImGui::Text("Mouse Position: ");
+
+            }
+            if (ImGui::CollapsingHeader("Audio"))
+            {
+
+            }
+            if (ImGui::CollapsingHeader("Camera"))
             {
 
             }
@@ -316,15 +318,22 @@ update_status ModuleEditor::Update(float dt)
 
                 //VRAM
 
-                
-
-       /*         ImGui::Text("VRAM Budget:");
+           ImGui::Text("VRAM Budget:");
                 ImGui::SameLine();
-                ImGui::TextColored(values_color, "%.1f Mb", vramBudget * 0.001f);
+                ImGui::TextColored(values_color, "%.1f Mb", vramBudget());
+
+                ImGui::Text("VRAM Usage:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", vramBudget() - vramAvailable());
 
                 ImGui::Text("VRAM Available:");
                 ImGui::SameLine();
-                ImGui::TextColored(values_color, "%.1f Mb", vramAvailable * 0.001f);*/
+                ImGui::TextColored(values_color, "%.1f Mb", vramAvailable());
+
+                ImGui::Text("VRAM Reserved:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%.1f Mb", 0 ());
+
             }
         }
 

@@ -392,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="InspectorWindow.h" />
     <ClInclude Include="WindowConfiguration.h" />
+    <ClInclude Include="VidMemViaDDraw.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -707,6 +710,9 @@
     </ClCompile>
     <ClCompile Include="InspectorWindow.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
+    <ClCompile Include="VidMemViaDDraw.cpp">
+      <Filter>Sources\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />
