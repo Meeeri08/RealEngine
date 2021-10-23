@@ -68,7 +68,7 @@
       <UniqueIdentifier>{58f779f1-92d9-499e-a545-808680e099ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\JSON">
-      <UniqueIdentifier>{646f8972-3d90-49a6-b0f2-39a4b0599e35}</UniqueIdentifier>
+      <UniqueIdentifier>{8dbf9895-1f96-42c9-bd48-5f7e52907082}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="ModuleEditor.h">
       <Filter>Sources\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="JSON\parson.h">
-      <Filter>Sources\Containers</Filter>
     </ClInclude>
     <ClInclude Include="glew\include\eglew.h">
       <Filter>Libraries\glew</Filter>
@@ -418,7 +415,8 @@
     <ClInclude Include="resource.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\TurboX-Engine\TurboX-Engine\Source_Code\Libraries\JSON\parson.h">
+    <ClInclude Include="VidMemViaDDraw.h" />
+    <ClInclude Include="JSON\parson.h">
       <Filter>Libraries\JSON</Filter>
     </ClInclude>
   </ItemGroup>
@@ -491,9 +489,6 @@
     </ClCompile>
     <ClCompile Include="ModuleEditor.cpp">
       <Filter>Sources\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="JSON\parson.c">
-      <Filter>Sources\Containers</Filter>
     </ClCompile>
     <ClCompile Include="MathGeoLib\tests\AABBTests.cpp">
       <Filter>Libraries\MathGeoLib\tests</Filter>
@@ -742,7 +737,8 @@
     <ClCompile Include="JsonParser.cpp">
       <Filter>Sources\FileManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\TurboX-Engine\TurboX-Engine\Source_Code\Libraries\JSON\parson.c">
+    <ClCompile Include="VidMemViaDDraw.cpp" />
+    <ClCompile Include="JSON\parson.c">
       <Filter>Libraries\JSON</Filter>
     </ClCompile>
   </ItemGroup>
