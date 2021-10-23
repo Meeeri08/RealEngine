@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\TurboX-Engine\TurboX-Engine\Source_Code\Libraries\JSON\parson.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="FBXLoader.h" />
     <ClInclude Include="Color.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\TurboX-Engine\TurboX-Engine\Source_Code\Libraries\JSON\parson.c" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="Color.cpp" />
