@@ -415,9 +415,11 @@
     <ClInclude Include="resource.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
-    <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="JSON\parson.h">
       <Filter>Libraries\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="VidMemViaDDraw.h">
+      <Filter>Sources\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -737,9 +739,11 @@
     <ClCompile Include="JsonParser.cpp">
       <Filter>Sources\FileManager</Filter>
     </ClCompile>
-    <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="JSON\parson.c">
       <Filter>Libraries\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="VidMemViaDDraw.cpp">
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

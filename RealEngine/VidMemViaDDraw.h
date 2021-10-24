@@ -43,6 +43,7 @@ BOOL WINAPI DDEnumCallbackEx(GUID FAR* lpGUID, LPSTR lpDriverDescription, LPSTR 
 HRESULT GetVideoMemoryViaDirectDraw(HMONITOR hMonitor, DWORD* pdwAvailableVidMem); //Returns the avaliable memory dedicated to video
 
 float vramBudget();
+float vramUsage();
 float vramAvailable();
 float vramReserved();
 

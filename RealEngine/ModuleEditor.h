@@ -46,4 +46,5 @@ public:
 	bool configuration = true;
 
 	InspectorWindow* inspectorWindow;
+
 };

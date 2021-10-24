@@ -25,9 +25,13 @@ public:
 	void SetBrightness(float brightness);
 	void SetSize(int w, int h);
 	void SetFullscreenDesktop(bool fullscreenDesk);
+	bool IsFullscreenDesktop() const { return fullscreenDesktop; }
 
 	void SetName();
 	void SetBorder(bool borderless);
+
+	void SetResizable(bool resizable);
+
 
 
 

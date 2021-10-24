@@ -81,21 +81,30 @@ float vramBudget()
 {
     GLint total_mem_kb = 0;
     glGetIntegerv(0x9048, &total_mem_kb);
-    return total_mem_kb / (1000); // KB to MB
+    return total_mem_kb / (1024); // KB to MB
     
 }
+float vramUsage()
+{
+    GLint avaliable_mem_kb = 0;
+    glGetIntegerv(0x9047, &avaliable_mem_kb);
+    return avaliable_mem_kb / (1024); // KB to MB
 
+}
 float vramAvailable()
 {
     GLint avaliable_mem_kb = 0;
     glGetIntegerv(0x9049, &avaliable_mem_kb);
-    return avaliable_mem_kb / (1000); // KB to MB
+    return avaliable_mem_kb / (1024); // KB to MB
   
 }
 
 float vramReserved()
 {
-    return 0.0f;
+    GLint reserved_mem_kb = 0;
+    glGetIntegerv(0x904B, &reserved_mem_kb);
+    return reserved_mem_kb / (1024); // KB to MB
+   
 }
 
 

@@ -214,21 +214,23 @@ update_status ModuleEditor::Update(float dt)
                 }
 
                 //Refresh Rate
-                ImGui::Text("Refresh rate: ");
-                ImGui::SameLine();
-                ImGui::Text("%d", App->capFPS);
+                ImGui::Text("Refresh Rate %i", (int)ImGui::GetIO().Framerate);
+
 
                 //FullScreen
                 if (ImGui::Checkbox("FullScreen", &App->window->fullscreen)) {}
                 App->window->SetFullScreen(App->window->fullscreen);
+                App->window->fullscreenDesktop = false;
 
                 //TODO
                 //Resizable
                 ImGui::SameLine();
                 ImGui::Checkbox("Resizable", &App->window->resizable); 
-                if (ImGui::IsItemHovered())
-                    ImGui::SetTooltip("Restart to apply");
-
+                {
+                    App->window->SetResizable(App->window->resizable);
+                    if (ImGui::IsItemHovered())
+                        ImGui::SetTooltip("Restart to apply");
+                }
         
                 //Borderless
 
@@ -237,15 +239,15 @@ update_status ModuleEditor::Update(float dt)
                     App->window->SetBorder(!App->window->borderless);
                 }
 
-                //TODO
-                //Full Desktop
-                ImGui::SameLine();
-                if (ImGui::Checkbox("Full Desktop", &App->window->fullscreenDesktop))
-                {
-                    App->window->SetFullscreenDesktop(App->window->fullscreenDesktop);
-                    App->window->fullscreen = false;
-                    SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
-                }
+                ////TODO
+                ////Full Desktop
+                //ImGui::SameLine();
+                //if (ImGui::Checkbox("Full Desktop", &App->window->fullscreenDesktop))
+                //{
+                //    App->window->SetFullscreenDesktop(App->window->fullscreenDesktop);
+                //    App->window->fullscreen = false;
+                //    SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
+                //}
 
             }
 
@@ -259,7 +261,23 @@ update_status ModuleEditor::Update(float dt)
             }
             if (ImGui::CollapsingHeader("Input"))
             {
-                ImGui::Text("Mouse Position: ");
+                ImVec4 values_color(0.0f, 0.31f, 0.56f, 1.0f);
+
+                //Mouse Pos
+                POINT mousePos;
+                if (GetCursorPos(&mousePos)) {
+                    ImGui::Text("Mouse Position: "); ImGui::SameLine();
+                    ImGui::TextColored(values_color, "%i, %i", mousePos.x, mousePos.y);
+                }
+
+                //Mouse Motion
+                ImGui::Text("Mouse Motion: "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "%i, %i", App->input->GetMouseXMotion(), App->input->GetMouseYMotion());
+
+                //Mouse Wheel
+                ImGui::Text("Mouse Wheel: "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "%i", App->input->GetMouseZ());
+                ImGui::Separator();
 
             }
             if (ImGui::CollapsingHeader("Audio"))
@@ -332,7 +350,9 @@ update_status ModuleEditor::Update(float dt)
 
                 ImGui::Text("VRAM Reserved:");
                 ImGui::SameLine();
-                ImGui::TextColored(values_color, "%.1f Mb", 0 ());
+                ImGui::TextColored(values_color, "%.1f Mb", vramReserved ());
+
+        
 
             }
         }
@@ -351,16 +371,74 @@ update_status ModuleEditor::Update(float dt)
         {
             if (ImGui::Begin("About us", &about_us))
             {
-                ImGui::TextWrapped("You are using RealEngine, \n The next generation 3D Game Engine \nBy Magdalena Ostrowska and Maria Garrigolas Ledo");
+                ImGui::Text("RealEngine 0.2");
+                ImGui::Text("The next generation 3D Game Engine");
+                ImGui::Text("Made by: ");
+                if (ImGui::SmallButton("Magdalena Ostrowska"))
+                    ShellExecuteA(NULL, "open", "https://github.com/magdaostrowska", NULL, NULL, SW_SHOWNORMAL);
+                if (ImGui::SmallButton("Maria Garrigolas Ledo"))
+                    ShellExecuteA(NULL, "open", "https://github.com/Meeeri08", NULL, NULL, SW_SHOWNORMAL);
+              
+                ImGui::Separator();
+
                 if (ImGui::Button("Press here to go to our github repository")) {
                     App->RequestBrowser("https://github.com/Meeeri08/RealEngine");
                 }
-                ImGui::TextWrapped("3rd Party Libraries Used:");
-                ImGui::Text("SDL2");
-                ImGui::Text("OpenGL");
-                ImGui::Text("Imgui");
-                ImGui::Text("MathGeoLib");
-                ImGui::Text("GLEW");
+                ImGui::Separator();
+
+                ImGui::Text("3rd Party Libraries used:");
+                ImVec4 values_color(0.0f, 0.31f, 0.56f, 1.0f);
+                //SDL Version
+                SDL_version sdl_version;
+                SDL_GetVersion(&sdl_version);
+                ImGui::BulletText("SDL Version:");
+                ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch); ImGui::SameLine();
+                if (ImGui::SmallButton("Open SDL Website"))
+                    ShellExecuteA(NULL, "open", "https://libsdl.org/", NULL, NULL, SW_SHOWNORMAL);
+
+                //OpenGL
+                int major = 0;
+                int minor = 0;
+                glGetIntegerv(GL_MAJOR_VERSION, &major);
+                glGetIntegerv(GL_MINOR_VERSION, &minor);
+
+                ImGui::BulletText("OpenGL ", major, minor); ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch); ImGui::SameLine();
+                if (ImGui::SmallButton("Open OpenGL Website"))
+                    ShellExecuteA(NULL, "open", "https://www.opengl.org/", NULL, NULL, SW_SHOWNORMAL);
+
+                //ImGui Version
+                ImGui::BulletText("ImGui "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "%s", ImGui::GetVersion()); ImGui::SameLine();
+                if (ImGui::SmallButton("Open ImGui Website"))
+                    ShellExecuteA(NULL, "open", "https://github.com/ocornut/imgui", NULL, NULL, SW_SHOWNORMAL);
+
+                ////MathGeoLib
+                ImGui::BulletText("MathGeoLib "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "1.5"); ImGui::SameLine();
+                if (ImGui::SmallButton("Open MathGeoLib Website"))
+                    ShellExecuteA(NULL, "open", "https://github.com/juj/MathGeoLib", NULL, NULL, SW_SHOWNORMAL);
+
+                //Glew
+                ImGui::BulletText("Glew "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "%d.%d.%d", GLEW_VERSION_MAJOR, GLEW_VERSION_MINOR, GLEW_VERSION_MICRO); ImGui::SameLine();
+                if (ImGui::SmallButton("Open Glew Website"))
+                    ShellExecuteA(NULL, "open", "https://github.com/nigels-com/glew", NULL, NULL, SW_SHOWNORMAL);
+
+                //DevIL
+                ImGui::BulletText("DevIL "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "1.8.0"); ImGui::SameLine();
+                if (ImGui::SmallButton("Open DevIL Website"))
+                    ShellExecuteA(NULL, "open", "http://openil.sourceforge.net/", NULL, NULL, SW_SHOWNORMAL);
+
+                //Assimp
+                ImGui::BulletText("Assimp "); ImGui::SameLine();
+                ImGui::TextColored(values_color, "3.1.1"); ImGui::SameLine();
+                if (ImGui::SmallButton("Open Assimp Website"))
+                    ShellExecuteA(NULL, "open", "http://openil.sourceforge.net/", NULL, NULL, SW_SHOWNORMAL);
+
+                ImGui::Separator();
 
                 ImGui::TextWrapped("MIT License:\n");
                 ImGui::Text("");
