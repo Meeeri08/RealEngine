@@ -216,15 +216,21 @@ update_status ModuleEditor::Update(float dt)
                 //Refresh Rate
                 ImGui::Text("Refresh Rate %i", (int)ImGui::GetIO().Framerate);
 
+                ImGui::Separator();
 
                 //FullScreen
-                if (ImGui::Checkbox("FullScreen", &App->window->fullscreen)) {}
-                App->window->SetFullScreen(App->window->fullscreen);
-                App->window->fullscreenDesktop = false;
-
+                if (!App->window->fullscreenDesktop)
+                {
+                    if (ImGui::Checkbox("FullScreen", &App->window->fullscreen)) 
+                    {
+                        App->window->SetFullScreen(App->window->fullscreen);
+                    }
+                    ImGui::SameLine();
+                }
+              
                 //TODO
                 //Resizable
-                ImGui::SameLine();
+             
                 ImGui::Checkbox("Resizable", &App->window->resizable); 
                 {
                     App->window->SetResizable(App->window->resizable);
@@ -239,17 +245,23 @@ update_status ModuleEditor::Update(float dt)
                     App->window->SetBorder(!App->window->borderless);
                 }
 
-                ////TODO
-                ////Full Desktop
-                //ImGui::SameLine();
-                //if (ImGui::Checkbox("Full Desktop", &App->window->fullscreenDesktop))
-                //{
-                //    App->window->SetFullscreenDesktop(App->window->fullscreenDesktop);
-                //    App->window->fullscreen = false;
-                //    SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
-                //}
-
+                //TODO
+                //Full Desktop
+          
+                if ( !App->window->fullscreen )
+                {
+                    ImGui::SameLine();
+                    if (ImGui::Checkbox("Full Desktop", &App->window->fullscreenDesktop))
+                    {
+                        App->window->SetFullscreenDesktop(App->window->fullscreenDesktop);
+                        SDL_GetWindowSize(App->window->window, &App->window->width, &App->window->height);
+                    }
+                }
+              
+                ImGui::Separator();
             }
+   
+
 
             if (ImGui::CollapsingHeader("Renderer"))
             {
