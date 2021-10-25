@@ -85,6 +85,36 @@ JSON_Array* JsonParser::GetArray(const char* name)
 	}
 }
 
+uint JsonParser::GetNumElementsInArray(const char* field) const
+{
+	JSON_Array* array = json_object_get_array(root, field);
+	if (array == nullptr) {
+		return -1;
+	}
+	int num = json_array_get_count(array);
+	return num;
+}
+
+uint JsonParser::GetUInt(const char* field, uint default, int index) const
+{
+	JSON_Value* value;
+
+	if (index < 0) {
+		value = json_object_get_value(root, field);
+	}
+
+	JSON_Array* array = json_object_get_array(root, field);
+	if (array != nullptr) {
+		value = json_array_get_value(array, index);
+	}
+
+	if (value && json_value_get_type(value) == JSONNumber) {
+		return (uint)json_value_get_number(value);
+	}
+
+	return default;
+}
+
 void JsonParser::AddInt(const char* name, int number)
 {
 	json_object_set_number(root, name, number);
@@ -103,4 +133,20 @@ void JsonParser::AddBool(const char* name, bool boolean)
 void JsonParser::AddString(const char* name, const char* string)
 {
 	json_object_set_string(root, name, string);
+}
+
+bool JsonParser::AddArray(const char* array_name)
+{
+	JSON_Value* val = json_value_init_array();
+	json_array = json_value_get_array(val);
+
+	return json_object_set_value(root, array_name, val) == JSONSuccess;
+}
+
+bool JsonParser::AddArrayChild(const JsonParser& parser)
+{
+	if (json_array != nullptr) {
+		return json_array_append_value(json_array, json_value_deep_copy(parser.valueRoot)) == JSONSuccess;
+	}
+	return false;
 }
