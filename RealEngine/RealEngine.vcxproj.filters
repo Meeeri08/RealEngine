@@ -430,6 +430,9 @@
     <ClInclude Include="GameObject.h">
       <Filter>Sources\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="HierarchyWindow.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -759,6 +762,9 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Sources\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="HierarchyWindow.cpp">
+      <Filter>Sources\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
