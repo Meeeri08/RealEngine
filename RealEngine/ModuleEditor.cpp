@@ -192,12 +192,12 @@ update_status ModuleEditor::Update(float dt)
 
             if (ImGui::CollapsingHeader("Window"))
             {
-                //Screen Config
-                //Active
-                //TODO
-                if (ImGui::Checkbox("Active", &App->window->active)) {}
+                ////Screen Config
+                ////Active
+                ////TODO
+                //if (ImGui::Checkbox("Active", &App->window->active)) {}
 
-                ImGui::Text("Icon: *default!*");
+                //ImGui::Text("Icon: *default!*");
                 //Brightness
                 if (ImGui::SliderFloat("Brightness", &App->window->brightness, 0.0f, 1.0f))
                     App->window->SetBrightness(App->window->brightness);
@@ -367,6 +367,54 @@ update_status ModuleEditor::Update(float dt)
         
 
             }
+
+            if (ImGui::CollapsingHeader("OpenGL"))
+
+                //TODO: ADD 2 MORE GL_
+            {
+                
+                if (ImGui::Checkbox("Depth Test", &App->renderer3D->depth_test))
+                {
+                    if (App->renderer3D->depth_test) glEnable(GL_DEPTH_TEST);
+                    else glDisable(GL_DEPTH_TEST);
+                }
+
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Cull Face", &App->renderer3D->cull_face))
+                {
+                    if (App->renderer3D->cull_face) glEnable(GL_CULL_FACE);
+                    else glDisable(GL_CULL_FACE);
+                }
+
+                if (ImGui::Checkbox("Texture 2D", &App->renderer3D->texture_2D))
+                {
+                    if (App->renderer3D->texture_2D) glEnable(GL_TEXTURE_2D);
+                    else glDisable(GL_TEXTURE_2D);
+                }
+
+                ImGui::SameLine();
+                if (ImGui::Checkbox("Lighting", &App->renderer3D->lighting))
+                {
+                    if (App->renderer3D->lighting) glEnable(GL_LIGHTING);
+                    else glDisable(GL_LIGHTING);
+                }
+
+
+                if (ImGui::Checkbox("Color Material", &App->renderer3D->color_material))
+                {
+                    if (App->renderer3D->color_material) glEnable(GL_COLOR_MATERIAL);
+                    else glDisable(GL_COLOR_MATERIAL);
+                }
+
+
+                if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe))
+                {
+                    App->renderer3D->SetWireframeMode(App->renderer3D->wireframe);
+                }
+
+
+                
+            }
         }
 
         // 3. Show another simple window.
@@ -383,7 +431,7 @@ update_status ModuleEditor::Update(float dt)
         {
             if (ImGui::Begin("About us", &about_us))
             {
-                ImGui::Text("RealEngine 0.2");
+                ImGui::Text("RealEngine v0.1");
                 ImGui::Text("The next generation 3D Game Engine");
                 ImGui::Text("Made by: ");
                 if (ImGui::SmallButton("Magdalena Ostrowska"))

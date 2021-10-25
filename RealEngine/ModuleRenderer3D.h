@@ -26,10 +26,20 @@ public:
 
 	void capFps();
 
+	void SetWireframeMode(bool active);
+
 public:
 
 	Light lights[MAX_LIGHTS];
 	SDL_GLContext context;
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+
+	//OpenGL Options
+	bool depth_test = true;
+	bool cull_face = true;
+	bool lighting = true;
+	bool color_material = true;
+	bool texture_2D = true;
+	bool wireframe = false;
 };
