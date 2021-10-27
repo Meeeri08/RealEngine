@@ -90,6 +90,19 @@ bool ModulePhysics3D::CleanUp()
 	return true;
 }
 
+bool ModulePhysics3D::LoadSettings(JsonParser* data)
+{
+	debug = data->GetBool("debug", true);
+	return true;
+}
+
+bool ModulePhysics3D::SaveSettings(JsonParser* data) const
+{
+	data->AddBool("debug", debug);
+
+	return true;
+}
+
 // =============================================
 //TODO 4: Uncomment the definition of the Debug Drawer
 /*

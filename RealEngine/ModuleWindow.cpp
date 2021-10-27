@@ -88,6 +88,22 @@ bool ModuleWindow::CleanUp()
 	return true;
 }
 
+bool ModuleWindow::LoadSettings(JsonParser* data)
+{
+	return true;
+}
+
+bool ModuleWindow::SaveSettings(JsonParser* data) const
+{
+	data->AddFloat("Brightness", brightness);
+	data->AddBool("Fullscreen", fullscreen);
+	data->AddBool("Resizable", resizable);
+	data->AddBool("Borderless", borderless);
+	data->AddBool("Fullscreen Desktop", fullscreenDesktop);
+
+	return true;
+}
+
 void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);

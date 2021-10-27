@@ -141,6 +141,30 @@ bool ModuleRenderer3D::CleanUp()
 	return true;
 }
 
+bool ModuleRenderer3D::LoadSettings(JsonParser* data)
+{
+	depth_test = data->GetBool("depth_test", true);
+	color_material = data->GetBool("color_material", true);
+	cull_face = data->GetBool("cull_face", true);
+	lighting = data->GetBool("lighting", true);
+	wireframe = data->GetBool("wireframe", true);
+	texture_2D = data->GetBool("texture", true);
+
+	return true;
+}
+
+bool ModuleRenderer3D::SaveSettings(JsonParser* data) const
+{
+	data->AddBool("depth_test", depth_test);
+	data->AddBool("cull_face", cull_face);
+	data->AddBool("lighting", lighting);
+	data->AddBool("color_material", color_material);
+	data->AddBool("texture", texture_2D);
+	data->AddBool("wireframe", wireframe);
+
+	return true;
+}
+
 
 void ModuleRenderer3D::OnResize(int width, int height)
 {

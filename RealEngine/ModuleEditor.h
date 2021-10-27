@@ -21,6 +21,8 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
 
 public:
 

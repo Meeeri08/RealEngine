@@ -51,4 +51,13 @@ public:
 	{ 
 		return true; 
 	}
+
+	virtual bool LoadSettings(JsonParser* data)
+	{
+		return true;
+	}
+	virtual bool SaveSettings(JsonParser* data) const
+	{
+		return true;
+	}
 };

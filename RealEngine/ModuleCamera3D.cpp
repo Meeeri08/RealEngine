@@ -34,6 +34,16 @@ bool ModuleCamera3D::CleanUp()
 	return true;
 }
 
+bool ModuleCamera3D::LoadSettings(JsonParser* data)
+{
+	return true;
+}
+
+bool ModuleCamera3D::SaveSettings(JsonParser* data) const
+{
+	return true;
+}
+
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update(float dt)
 {
@@ -62,18 +72,11 @@ update_status ModuleCamera3D::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT)
 	{
-
 		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)
 		{
-
 			Orbit();
-
 		}
-
 	}
-
-
-	
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
@@ -111,7 +114,6 @@ void ModuleCamera3D::LookAt( const vec3 &Spot)
 
 	CalculateViewMatrix();
 }
-
 
 // -----------------------------------------------------------------
 void ModuleCamera3D::Move(const vec3 &Movement)
@@ -157,8 +159,6 @@ void ModuleCamera3D::Orbit()
 		}
 
 		Position = Reference + Z * length(Position);
-	
-
 }
 
 // -----------------------------------------------------------------

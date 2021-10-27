@@ -534,5 +534,20 @@ update_status ModuleEditor::Update(float dt)
     return UPDATE_CONTINUE;
 }
 
+bool ModuleEditor::LoadSettings(JsonParser* data)
+{
+    //showDemoWindow = data->GetBool("show_Demo_Window", false);
+    //showConsoleWindow = data->GetBool("show_Console_Window", false);
+    return true;
+}
+
+bool ModuleEditor::SaveSettings(JsonParser* data) const
+{
+    //data->AddBool("show_Demo_Window", showDemoWindow);
+    //data->AddBool("show_Console_Window", showConsoleWindow);
+
+    return true;
+}
+
 
 

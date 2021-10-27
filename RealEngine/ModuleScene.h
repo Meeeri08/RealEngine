@@ -32,6 +32,13 @@ public:
 
 	void CreateEmptyGameObject();
 
+	bool LoadGameObjects(GameObject* gameObject);
+	bool LoadScene(const char* file);
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
+
+	uint GetRandomUUID();
+
 	void PlayScene(GameObject* gameObject, GameObject* root);
 	void StopScene(GameObject* gameObject, GameObject* root);
 
@@ -41,7 +48,7 @@ private:
 
 public:
 	GameObject* root;
-	GameObject* selected_GO;
+	GameObject* selectedGameObject;
 
 	bool inGame;
 
