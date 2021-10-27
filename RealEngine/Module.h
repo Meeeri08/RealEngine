@@ -1,5 +1,10 @@
 #pragma once
 
+#include "JSON/parson.h"
+#include "JsonParser.h"
+
+#include <string>
+
 class Application;
 
 class Module
@@ -9,6 +14,7 @@ private:
 
 public:
 	Application* App;
+	std::string name;
 
 	Module(Application* parent, bool start_enabled = true) : App(parent)
 	{}

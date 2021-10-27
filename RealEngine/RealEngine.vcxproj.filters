@@ -433,6 +433,10 @@
     <ClInclude Include="HierarchyWindow.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleScene.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -766,6 +770,10 @@
     <ClCompile Include="HierarchyWindow.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleScene.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />

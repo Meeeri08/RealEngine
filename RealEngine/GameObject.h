@@ -17,7 +17,6 @@ public:
 	void Draw();
 	Component* GetComponent(Component::ComponentType type);
 	void GetComponents(Component::ComponentType type, std::vector<Component*>& comp);
-	
 
 	void SetParent(GameObject* parent);
 	void setSelected(bool selected);

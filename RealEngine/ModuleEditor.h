@@ -10,6 +10,7 @@
 #include <list>
 
 class InspectorWindow;
+class HierarchyWindow;
 
 class ModuleEditor : public Module
 {
@@ -30,6 +31,7 @@ public:
 	bool show_toolbar = false;
 	bool show_console = true;
 	bool show_inspector = true;
+	bool show_hierarchy = true;
 	bool config = false;
 
 	std::vector<float> fps_log;
@@ -46,5 +48,6 @@ public:
 	bool configuration = true;
 
 	InspectorWindow* inspectorWindow;
+	HierarchyWindow* hierarchyWindow;
 
 };

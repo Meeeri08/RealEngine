@@ -5,6 +5,7 @@
 #include "ModuleEditor.h"
 #include "Primitive.h"
 #include "InspectorWindow.h"
+#include "HierarchyWindow.h"
 #include "VidMemViaDDraw.h"
 
 #include <Windows.h>
@@ -18,6 +19,7 @@ ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, s
     ms_log.resize(100);
 
     inspectorWindow = new InspectorWindow();
+    hierarchyWindow = new HierarchyWindow();
 }
 
 ModuleEditor::~ModuleEditor()
@@ -87,6 +89,7 @@ update_status ModuleEditor::Update(float dt)
             ImGui::MenuItem("Configuration", NULL, &show_toolbar);
             ImGui::MenuItem("Console", NULL, &show_console);
             ImGui::MenuItem("Inspector", NULL, &show_inspector);
+            ImGui::MenuItem("Hierarchy", NULL, &show_hierarchy);
             ImGui::EndMenu();
         }
 
@@ -94,6 +97,15 @@ update_status ModuleEditor::Update(float dt)
         {
             ImGui::MenuItem("About", NULL, &about_us);
             ImGui::MenuItem("About ImGui", NULL, &show_about_us);
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Assets"))
+        {
+            if (ImGui::MenuItem(""))
+            {
+                
+            }
             ImGui::EndMenu();
         }
 
@@ -105,6 +117,7 @@ update_status ModuleEditor::Update(float dt)
             }
             ImGui::EndMenu();
         }
+       
 
         ImGui::EndMainMenuBar();
     }
@@ -115,12 +128,11 @@ update_status ModuleEditor::Update(float dt)
         App->console->DrawConsole("Console", &show_console);
     if (show_inspector)
         inspectorWindow->Draw();
+    if (show_hierarchy)
+        hierarchyWindow->Draw();
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     {
-       
-
-
         ImGui::Begin("Configuration");
             ImGui::Text("Options");
             if (ImGui::CollapsingHeader("Application"))
