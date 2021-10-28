@@ -55,6 +55,7 @@ bool ModuleEditor::CleanUp()
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
 {
+
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
@@ -93,19 +94,28 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::EndMenu();
 		}
 
+		
+
+		if (ImGui::BeginMenu("GameObject"))
+		{
+			if (ImGui::MenuItem("Create"))
+			{
+				if (ImGui::MenuItem("Cube"))
+				{
+					if (ImGui::MenuItem("Cube"))
+					{
+						
+						
+					}
+				}
+			}
+			ImGui::EndMenu();
+		}
+
 		if (ImGui::BeginMenu("Help"))
 		{
 			ImGui::MenuItem("About", NULL, &about_us);
 			ImGui::MenuItem("About ImGui", NULL, &show_about_us);
-			ImGui::EndMenu();
-		}
-
-		if (ImGui::BeginMenu("Assets"))
-		{
-			if (ImGui::MenuItem(""))
-			{
-
-			}
 			ImGui::EndMenu();
 		}
 
