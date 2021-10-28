@@ -29,7 +29,7 @@ public:
 	bool show_demo_window = false;
 	bool show_another_window = false;
 	bool show_debug_window = false;
-	bool show_configuration = false;
+	bool show_configuration = true;
 	bool show_toolbar = false;
 	bool show_console = true;
 	bool show_inspector = true;
@@ -48,6 +48,9 @@ public:
 	bool show_about_us = false;
 
 	bool configuration = true;
+
+
+
 
 	InspectorWindow* inspectorWindow;
 	HierarchyWindow* hierarchyWindow;
