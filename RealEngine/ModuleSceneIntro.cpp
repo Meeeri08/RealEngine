@@ -36,6 +36,17 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	// checking drawing 
+	/*glLineWidth(5.0f);
+	glBegin(GL_LINES);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(0.f, 10.f, 0.f);
+	glEnd();
+	glLineWidth(5.0f);*/
+
+	//Direct mode drawing
+	
+
 	return UPDATE_CONTINUE;
 }
 

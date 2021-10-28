@@ -194,4 +194,6 @@ void ModuleRenderer3D::SetWireframeMode(bool active)
 {
 	if (active)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+
 }
