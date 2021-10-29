@@ -12,8 +12,6 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
-#include "ModuleScene.h"
-#include "ModuleFile.h"
 
 #include <vector>
 
@@ -57,8 +55,6 @@ public:
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
 	ModuleConsole* console;
-	ModuleScene* scene;
-	ModuleFile* file;
 
 private:
 

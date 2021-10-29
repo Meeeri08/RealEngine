@@ -33,9 +33,6 @@ Component* GameObject::CreateComponent(Component::ComponentType type)
 	case Component::ComponentType::Camera:
 
 		break;
-	case Component::ComponentType::Transformation:
-
-		break;
 	default:
 		break;
 	}

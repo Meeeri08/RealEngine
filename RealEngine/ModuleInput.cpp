@@ -19,14 +19,13 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
-	//LOG("Init SDL input event system");
-	App->console->AddLog("Init SDL input event system");
+	LOG("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
-		App->console->AddLog("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
@@ -106,33 +105,11 @@ update_status ModuleInput::PreUpdate(float dt)
 			quit = true;
 			break;
 
-			case (SDL_DROPFILE):
-			{
-				// In case if dropped file
-				dropped_file = e.drop.file;
-
-				FileType fileType = GetFileType(dropped_file);
-
-				switch (fileType)
-				{
-				case FileType::FBX:
-					App->scene_loader->LoadFBXScene(dropped_file);
-					break;
-				case FileType::UNDEFINED:
-					break;
-				default:
-					break;
-				}
-
-				break;
-			}
-
 			case SDL_WINDOWEVENT:
 			{
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
 					App->renderer3D->OnResize(e.window.data1, e.window.data2);
 			}
-			
 		}
 	}
 
@@ -148,26 +125,4 @@ bool ModuleInput::CleanUp()
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
-}
-
-FileType ModuleInput::GetFileType(std::string file)
-{
-	std::string dFile = file;
-	if (dFile.length() > 4) {
-		std::string formatStr = dFile.substr(dFile.length() - 4);
-		if (formatStr == FBX_FORMAT || formatStr == FBX_FORMAT_CAP)
-			return FileType::FBX;
-		else if (formatStr == PNG_FORMAT || formatStr == PNG_FORMAT_CAP)
-			return FileType::PNG;
-		else if (formatStr == JPG_FORMAT || formatStr == JPG_FORMAT_CAP || formatStr == JPEG_FORMAT || formatStr == JPEG_FORMAT_CAP)
-			return FileType::JPG;
-		else if (formatStr == DDS_FORMAT || formatStr == DDS_FORMAT_CAP)
-			return FileType::DDS;
-		else if (formatStr == TGA_FORMAT || formatStr == TGA_FORMAT_CAP)
-			return FileType::TGA;
-	}
-	else
-		LOG("Cannot load %s file.  Format not recognized", file)
-		return FileType::UNDEFINED;
-
 }
