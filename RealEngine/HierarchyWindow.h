@@ -1,7 +1,6 @@
 #pragma once
 
 #include "WindowConfiguration.h"
-#include "Application.h"
 #include "GameObject.h"
 
 #include <vector>
@@ -12,7 +11,7 @@ public:
 	HierarchyWindow();
 	~HierarchyWindow();
 
-	void Draw() override;
+	void Draw(Application* app);
 	void DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags default_flags, GameObject* root);
 	void SetShowWindow() override;
 	bool GetShowWindow() override;

@@ -1,4 +1,6 @@
 #include "HierarchyWindow.h"
+#include "ModuleScene.h"
+#include "Application.h"
 
 HierarchyWindow::HierarchyWindow()
 {
@@ -9,12 +11,12 @@ HierarchyWindow::~HierarchyWindow()
 {
 }
 
-void HierarchyWindow::Draw()
+void HierarchyWindow::Draw(Application* app)
 {
 	ImGui::Begin("Hierarchy");
 
 	ImGuiTreeNodeFlags default_flags = ImGuiTreeNodeFlags_NoTreePushOnOpen;
-	//DrawGameObject(App->scene->GetRoot(), default_flags, App->scene->GetRoot());
+	DrawGameObject(app->scene->root, default_flags, app->scene->root);
 
 	ImGui::End();
 }

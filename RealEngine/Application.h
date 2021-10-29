@@ -95,3 +95,5 @@ private:
 	update_status PrepareUpdate();
 	update_status FinishUpdate();
 };
+
+extern Application* App;
