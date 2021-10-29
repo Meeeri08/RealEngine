@@ -3,9 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
-
+Copyright (c) 2006-2016, assimp team
 
 All rights reserved.
 
@@ -40,18 +38,15 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
-#pragma once
-#ifndef AI_ASSERT_H_INC
-#define AI_ASSERT_H_INC
+#ifndef AI_DEBUG_H_INC
+#define AI_DEBUG_H_INC
 
 #ifdef ASSIMP_BUILD_DEBUG
 #   include <assert.h>
-#   define ai_assert(expression) assert( expression )
-#   define ai_assert_entry()     assert( false )
+#   define  ai_assert(expression) assert(expression)
 #else
 #   define  ai_assert(expression)
-#   define  ai_assert_entry() 
-#endif // ASSIMP_BUILD_DEBUG
+#endif
 
-#endif // AI_ASSERT_H_INC
 
+#endif

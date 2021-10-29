@@ -37,3 +37,6 @@ enum update_status
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "3D RealEngine"
+
+#define FBX_FORMAT ".fbx"
+#define FBX_FORMAT_CAP ".FBX"

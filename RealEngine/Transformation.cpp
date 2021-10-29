@@ -54,9 +54,9 @@ void Transformation::SetRotation(float3 rotation)
 	RecalculateMatrix();
 }
 
-void Transformation::SetQuaternionRotation(Quat quatRot)
+void Transformation::SetQuaternionRotation(Quat quatRotation)
 {
-	rotation = quatRot;
+	rotation = quatRotation;
 	rotationVector = rotation.ToEulerXYZ() * RADTODEG;
 	RecalculateMatrix();
 }

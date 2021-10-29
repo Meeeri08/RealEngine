@@ -7,7 +7,6 @@
 
 class Transformation : public Component
 {
-
 public:
 
 	Transformation(Component::ComponentType type, GameObject* owner);

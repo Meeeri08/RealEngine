@@ -45,6 +45,7 @@ public:
 	bool isStatic;
 	bool wantToDelete;
 	bool selectedChild;
+
 	Application* App;
 	
 	std::string name;
