@@ -13,9 +13,9 @@ public:
 	~Transformation();
 
 public:
-	
+
 	Component::ComponentType GetComponentType() override;
-	
+
 	float3 GetPosition();
 	float3 GetScale();
 	float3 GetEulerRotation();

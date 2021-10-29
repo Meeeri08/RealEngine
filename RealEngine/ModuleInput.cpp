@@ -105,29 +105,6 @@ update_status ModuleInput::PreUpdate(float dt)
 			quit = true;
 			break;
 
-			case (SDL_DROPFILE):
-			{
-				// In case if dropped file
-				droppedFile = e.drop.file;
-
-				FileType fileType = GetFileType(droppedFile);
-
-				switch (fileType)
-				{
-				case FileType::FBX:
-					App->fbx_loader->LoadFBX(droppedFile);
-					break;
-				
-				case FileType::UNDEFINED:
-					break;
-
-				default:
-					break;
-				}
-
-				break;
-			}
-
 			case SDL_WINDOWEVENT:
 			{
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
@@ -148,17 +125,4 @@ bool ModuleInput::CleanUp()
 	LOG("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
-}
-
-FileType ModuleInput::GetFileType(std::string file)
-{
-	std::string dFile = file;
-	if (dFile.length() > 4) {
-		std::string formatStr = dFile.substr(dFile.length() - 4);
-		if (formatStr == FBX_FORMAT || formatStr == FBX_FORMAT_CAP)
-			return FileType::FBX;
-	}
-	else
-		App->console->AddLog("Cannot load %s file. Format cannot be recognized", file);
-		return FileType::UNDEFINED;
 }

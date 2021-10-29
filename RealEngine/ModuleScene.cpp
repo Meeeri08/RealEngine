@@ -27,7 +27,7 @@ update_status ModuleScene::PreUpdate(float dt)
 
 update_status ModuleScene::Update(float dt)
 {
-	if (selected_GO != nullptr)
+	if (App->scene->selected_GO != nullptr)
 	{
 		if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_IDLE)
 		{
@@ -74,7 +74,7 @@ GameObject* ModuleScene::CreateGameObject(std::string name, float3 position, Qua
 	newGameObject->ChangeName(name);
 
 	if (newGameObject != nullptr)
-		AddChild(newGameObject, parent);
+		App->scene->AddChild(newGameObject, parent);
 
 	//newGameObject->transform->SetPosition(position);
 	//newGameObject->transform->SetQuaternionRotation(rotation);

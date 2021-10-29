@@ -1,9 +1,11 @@
-#include "Globals.h"
-#include "Application.h"
-#include "ModuleRenderer3D.h"
+#include "glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include "Globals.h"
+#include "Application.h"
+#include "ModuleRenderer3D.h"
+
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
@@ -22,7 +24,13 @@ bool ModuleRenderer3D::Init()
 	LOG("Creating 3D Renderer context");
 	bool ret = true;
 
-	SDL_GL_SetSwapInterval(1);
+	//OpenGL initialitzation
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
 	//Create context
 	context = SDL_GL_CreateContext(App->window->window);
@@ -32,6 +40,36 @@ bool ModuleRenderer3D::Init()
 		ret = false;
 	}
 
+
+	//Init the GLEW library
+	GLenum err = glewInit();
+	// … check for errors
+	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	// Should be 2.0
+
+	//detect our current hardware and driver
+	LOG("Vendor: %s", glGetString(GL_VENDOR));
+	LOG("Renderer: %s", glGetString(GL_RENDERER));
+	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
+	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+	//Reset projection and modelview matrices
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	//OpenGL options
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+	glClearDepth(1.0f);
+	glClearColor(0.f, 0.f, 0.f, 1.f);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_TEXTURE_2D);
+
+	App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
+
 	if (ret == true)
 	{
 		//Use Vsync
@@ -39,6 +77,7 @@ bool ModuleRenderer3D::Init()
 			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
+
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
@@ -120,6 +159,11 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+
+	for (int i = 0; i < vertex.size(); ++i)
+	{
+		vertex[i].LoadMesh();
+	}
 
 	return UPDATE_CONTINUE;
 }

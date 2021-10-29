@@ -45,9 +45,8 @@ public:
 	bool isStatic;
 	bool wantToDelete;
 	bool selectedChild;
-
 	Application* App;
-	
+
 	std::string name;
 	std::vector<Component*> components;
 	std::vector<GameObject*> children;

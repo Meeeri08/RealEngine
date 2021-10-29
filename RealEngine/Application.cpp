@@ -1,6 +1,5 @@
 #include "Application.h"
 #include "Module.h"
-#include "ModuleScene.h"
 
 Application::Application()
 {
@@ -13,8 +12,7 @@ Application::Application()
 	physics = new ModulePhysics3D(this);
 	editor = new ModuleEditor(this);
 	console = new ModuleConsole();
-	fbx_loader = new FBXLoader(this);
-	scene = new ModuleScene(this, true);
+	fbxLoader = new ModuleLoader(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -27,14 +25,14 @@ Application::Application()
 	AddModule(audio);
 	AddModule(physics);
 	AddModule(editor);
-	AddModule(scene);
-	AddModule(fbx_loader);
 
 	// Scenes
 	AddModule(scene_intro);
 
 	// Renderer last!
 	AddModule(renderer3D);
+	AddModule(fbxLoader);
+
 }
 
 Application::~Application()
@@ -58,7 +56,7 @@ bool Application::Init()
 	}
 
 	// After all Init calls we call Start() in all modules
-	//LOG("-------------- Application Start --------------");
+	LOG("-------------- Application Start --------------");
 	console->AddLog("-------------- Application Start --------------");
 
 	for (int i = 0; i < list_modules.size(); i++) {

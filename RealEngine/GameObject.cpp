@@ -9,7 +9,7 @@ GameObject::GameObject()
 	selectedChild = false;
 
 	parentUUID = 0;
-	UUID = GenerateUUID();	
+	UUID = GenerateUUID();
 }
 
 GameObject::~GameObject()
@@ -88,7 +88,6 @@ void GameObject::setChildSelected(bool selected)
 
 void GameObject::AddChildren(GameObject* child)
 {
-	children.push_back(child);
 }
 
 void GameObject::DestroyChildren(GameObject* toDestroy)
@@ -99,11 +98,11 @@ bool GameObject::Update()
 {
 	bool ret = true;
 
-	for (size_t i = 0; i < components.size(); i++){
+	for (size_t i = 0; i < components.size(); i++) {
 		components[i]->Update();
 	}
 
-	for (size_t i = 0; i < children.size(); i++){
+	for (size_t i = 0; i < children.size(); i++) {
 		if (children[i]->isActive) {
 			children[i]->Update();
 		}
@@ -160,7 +159,7 @@ bool GameObject::Load(JsonParser* data)
 		SetParent(App->scene->GetRoot());
 		*/
 
-	//Load components
+		//Load components
 	int component_num = data->GetNumElementsInArray("Components");
 	if (component_num == -1) {
 		App->console->AddLog("Warning. No components detected for this gameObject");
@@ -182,7 +181,7 @@ bool GameObject::Load(JsonParser* data)
 	//Load childs
 
 	int childs_num = data->GetNumElementsInArray("Childs");
-	if (childs_num == -1){
+	if (childs_num == -1) {
 		App->console->AddLog("Warning. No components detected for this gameObject");
 	}
 

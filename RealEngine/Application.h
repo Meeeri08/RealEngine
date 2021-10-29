@@ -1,8 +1,9 @@
 #pragma once
-
 #include "Globals.h"
 #include "Timer.h"
 #include "Module.h"
+#include "ModuleLoader.h"
+
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
@@ -12,10 +13,9 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
-#include "FBXLoader.h"
-class ModuleScene;
 
-#include <vector>
+
+
 
 struct HardwareSpecs
 {
@@ -45,6 +45,8 @@ struct HardwareSpecs
 };
 
 class Module;
+class ModuleScene;
+
 
 class Application
 {
@@ -59,7 +61,7 @@ public:
 	ModuleEditor* editor;
 	ModuleConsole* console;
 	ModuleScene* scene;
-	FBXLoader* fbx_loader;
+	ModuleLoader* fbxLoader;
 
 private:
 
@@ -95,5 +97,3 @@ private:
 	update_status PrepareUpdate();
 	update_status FinishUpdate();
 };
-
-extern Application* App;

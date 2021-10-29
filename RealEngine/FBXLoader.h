@@ -15,7 +15,7 @@
 
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 
-class FBXLoader : public Module{
+class FBXLoader : public Module {
 
 public:
 

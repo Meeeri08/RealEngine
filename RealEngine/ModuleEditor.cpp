@@ -138,7 +138,7 @@ update_status ModuleEditor::Update(float dt)
 	if (show_inspector)
 		inspectorWindow->Draw();
 	if (show_hierarchy)
-		hierarchyWindow->Draw(App);
+		hierarchyWindow->Draw();
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
 
