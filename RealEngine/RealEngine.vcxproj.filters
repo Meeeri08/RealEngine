@@ -442,7 +442,6 @@
     <ClInclude Include="ModuleScene.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="Mesh.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
@@ -667,6 +666,12 @@
     </ClInclude>
     <ClInclude Include="ImGuizmo\ImSequencer.h">
       <Filter>Libraries\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWindow.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Transformation.h">
+      <Filter>Sources\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1004,7 +1009,6 @@
     <ClCompile Include="ModuleScene.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Mesh.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
@@ -1013,6 +1017,12 @@
     </ClCompile>
     <ClCompile Include="ImGuizmo\ImSequencer.cpp">
       <Filter>Libraries\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWindow.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformation.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

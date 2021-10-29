@@ -276,6 +276,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transformation.h" />
     <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
@@ -394,6 +395,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transformation.cpp" />
     <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
