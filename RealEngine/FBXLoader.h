@@ -27,5 +27,6 @@ public:
 	bool CleanUp()override;
 
 	void LoadFBX(const char* FBXpath);
+	std::string GenerateNameFromPath(std::string path);
 };
 

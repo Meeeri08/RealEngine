@@ -35,7 +35,7 @@ void FBXLoader::LoadFBX(const char* FBXpath)
 	std::string fullFBXPath;// = MODELS_PATH;
 	fullFBXPath += FBXpath;
 
-	std::string modelName = "TestingFBX";
+	std::string modelName = GenerateNameFromPath(fullFBXPath);
 
 	const aiScene* scene = aiImportFile(fullFBXPath.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
 
@@ -47,7 +47,7 @@ void FBXLoader::LoadFBX(const char* FBXpath)
 	}
 	else {
 		GameObject* GO = new GameObject();
-		GO->name = name;
+		GO->name = modelName;
 		GO->parent = App->scene->root;
 		App->scene->root->AddChildren(GO);
 		//GO = App->scene->CreateGameObject(modelName.c_str());
@@ -59,6 +59,28 @@ void FBXLoader::LoadFBX(const char* FBXpath)
 		//GO = nullptr;
 		aiReleaseImport(scene);
 	}
+}
+
+std::string FBXLoader::GenerateNameFromPath(std::string path)
+{
+	std::string name = "";
+	std::string normalizedPath = path;
+
+	//Normalize path
+	for (int i = 0; i < path.length(); i++)
+	{
+		if (normalizedPath[i] == '\\')
+			normalizedPath[i] = '/';
+	}
+
+	size_t posSlash = normalizedPath.find_last_of("\\/");
+	size_t posDot = normalizedPath.find_last_of(".");
+
+	for (int i = posSlash + 1; i < posDot; i++) {
+		name += normalizedPath[i];
+	}
+
+	return name;
 }
 
 
