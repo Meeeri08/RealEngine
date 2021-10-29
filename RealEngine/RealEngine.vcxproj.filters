@@ -76,6 +76,9 @@
     <Filter Include="Libraries\assimp">
       <UniqueIdentifier>{7bca9bee-f00c-436f-a3c6-5ce60b12eed3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\ImGuizmo">
+      <UniqueIdentifier>{26e88d7b-a1da-44bb-a5a2-9f52820d0002}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -659,6 +662,12 @@
     <ClInclude Include="assimp\include\ZipArchiveIOSystem.h">
       <Filter>Libraries\assimp</Filter>
     </ClInclude>
+    <ClInclude Include="ImGuizmo\ImGuizmo.h">
+      <Filter>Libraries\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuizmo\ImSequencer.h">
+      <Filter>Libraries\ImGuizmo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -998,6 +1007,12 @@
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Mesh.cpp">
       <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuizmo\ImGuizmo.cpp">
+      <Filter>Libraries\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuizmo\ImSequencer.cpp">
+      <Filter>Libraries\ImGuizmo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

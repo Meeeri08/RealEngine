@@ -194,6 +194,11 @@ bool GameObject::Load(JsonParser* data)
 	return ret;
 }
 
+void GameObject::ChangeName(std::string name)
+{
+	this->name = name;
+}
+
 bool GameObject::GetIsSelected()
 {
 	return isSelected;

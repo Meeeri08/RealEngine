@@ -42,6 +42,9 @@ struct HardwareSpecs
 	std::string caps;
 };
 
+class Module;
+class ModuleScene;
+
 
 class Application
 {
@@ -55,6 +58,7 @@ public:
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
 	ModuleConsole* console;
+	ModuleScene* scene;
 
 private:
 

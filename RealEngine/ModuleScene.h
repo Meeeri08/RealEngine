@@ -1,7 +1,10 @@
 #pragma once
-//#include "Module.h"
+#include "Globals.h"
+#include "Module.h"
 #include "GameObject.h"
+
 #include "MathGeoLib/src/MathGeoLib.h"
+#include "ImGuizmo/ImGuizmo.h"
 #include <vector>
 
 class ModuleScene : public Module
@@ -21,7 +24,6 @@ public:
 	void AddChild(GameObject* child, GameObject* parent = nullptr);
 
 	void DrawGameObjects(GameObject* gameObject, GameObject* root);
-	void FrustumCulling(GameObject* gameObject, GameObject* root);
 
 	GameObject* GetRoot();
 	GameObject* GetGameObjectByUUID(uint UUID) const;
@@ -49,9 +51,10 @@ private:
 public:
 	GameObject* root;
 	GameObject* selectedGameObject;
+	GameObject* selected_GO;
+
+	ImGuizmo::OPERATION guizmoOperation;
 
 	bool inGame;
-
-
 };
 

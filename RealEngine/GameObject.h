@@ -28,6 +28,8 @@ public:
 	bool Save(JsonParser* data);
 	bool Load(JsonParser* data);
 
+	void ChangeName(std::string name);
+
 	bool GetIsSelected();
 	void Select();
 	void Unselect();
