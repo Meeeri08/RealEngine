@@ -88,6 +88,7 @@ void GameObject::setChildSelected(bool selected)
 
 void GameObject::AddChildren(GameObject* child)
 {
+	children.push_back(child);
 }
 
 void GameObject::DestroyChildren(GameObject* toDestroy)

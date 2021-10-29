@@ -12,6 +12,8 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
+#include "FBXLoader.h"
+class ModuleScene;
 
 #include <vector>
 
@@ -43,8 +45,6 @@ struct HardwareSpecs
 };
 
 class Module;
-class ModuleScene;
-
 
 class Application
 {
@@ -59,6 +59,7 @@ public:
 	ModuleEditor* editor;
 	ModuleConsole* console;
 	ModuleScene* scene;
+	FBXLoader* fbx_loader;
 
 private:
 

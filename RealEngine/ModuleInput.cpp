@@ -115,7 +115,7 @@ update_status ModuleInput::PreUpdate(float dt)
 				switch (fileType)
 				{
 				case FileType::FBX:
-					
+					App->fbx_loader->LoadFBX(droppedFile);
 					break;
 				
 				case FileType::UNDEFINED:

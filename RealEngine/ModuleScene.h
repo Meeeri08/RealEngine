@@ -1,11 +1,11 @@
 #pragma once
-#include "Globals.h"
+//#include "Globals.h"
 #include "Module.h"
 #include "GameObject.h"
 
 #include "MathGeoLib/src/MathGeoLib.h"
 #include "ImGuizmo/ImGuizmo.h"
-#include <vector>
+//#include <vector>
 
 class ModuleScene : public Module
 {
@@ -13,7 +13,7 @@ public:
 	ModuleScene(Application* app, bool start_enabled = true);
 	~ModuleScene();
 
-	bool Start();
+	bool Start()override;
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
