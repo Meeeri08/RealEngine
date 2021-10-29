@@ -37,3 +37,25 @@ enum update_status
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "3D RealEngine"
+//#define CONFIG_FILE
+#define FBX_FORMAT ".fbx"
+#define FBX_FORMAT_CAP ".FBX"
+#define PNG_FORMAT ".png"
+#define PNG_FORMAT_CAP ".PNG"
+#define DDS_FORMAT ".dds"
+#define DDS_FORMAT_CAP ".DDS"
+#define JPG_FORMAT ".jpg"
+#define JPG_FORMAT_CAP ".JPG"
+#define JPEG_FORMAT ".jpeg"
+#define JPEG_FORMAT_CAP ".JPEG"
+#define TGA_FORMAT ".tga"
+#define TGA_FORMAT_CAP ".TGA"
+
+#define RELEASE( x )\
+{\
+    if( x != NULL )\
+	{\
+      delete x;\
+	  x = NULL;\
+	}\
+}

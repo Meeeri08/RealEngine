@@ -3,9 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
-
+Copyright (c) 2006-2016, assimp team
 
 All rights reserved.
 
@@ -45,9 +43,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @brief Functions to query the version of the Assimp runtime, check
  *    compile flags, ...
  */
-#pragma once
-#ifndef AI_VERSION_H_INC
-#define AI_VERSION_H_INC
+#ifndef INCLUDED_AI_VERSION_H
+#define INCLUDED_AI_VERSION_H
 
 #include "defs.h"
 
@@ -83,12 +80,6 @@ ASSIMP_API unsigned int aiGetVersionMajor (void);
  */
 ASSIMP_API unsigned int aiGetVersionRevision (void);
 
-// ---------------------------------------------------------------------------
-/** @brief Returns the branchname of the Assimp runtime.
- *  @return The current branch name.
- */
-ASSIMP_API const char *aiGetBranchName();
-
 //! Assimp was compiled as a shared object (Windows: DLL)
 #define ASSIMP_CFLAGS_SHARED  0x1
 //! Assimp was compiled against STLport
@@ -111,5 +102,4 @@ ASSIMP_API unsigned int aiGetCompileFlags (void);
 } // end extern "C"
 #endif
 
-#endif // !! #ifndef AI_VERSION_H_INC
-
+#endif // !! #ifndef INCLUDED_AI_VERSION_H

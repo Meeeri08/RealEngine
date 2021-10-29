@@ -3,9 +3,7 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2019, assimp team
-
-
+Copyright (c) 2006-2016, assimp team
 
 All rights reserved.
 
@@ -44,9 +42,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /** @file importerdesc.h
  *  @brief #aiImporterFlags, aiImporterDesc implementation.
  */
-#pragma once
-#ifndef AI_IMPORTER_DESC_H_INC
-#define AI_IMPORTER_DESC_H_INC
+#ifndef INCLUDED_AI_IMPORTER_DESC_H
+#define INCLUDED_AI_IMPORTER_DESC_H
 
 
 /** Mixed set of flags for #aiImporterDesc, indicating some features
@@ -143,4 +140,4 @@ Will return a NULL-pointer if no assigned importer desc. was found for the given
 */
 ASSIMP_API const C_STRUCT aiImporterDesc* aiGetImporterDesc( const char *extension );
 
-#endif // AI_IMPORTER_DESC_H_INC
+#endif

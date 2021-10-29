@@ -2,6 +2,8 @@
 #include "Component.h"
 #include "JsonParser.h"
 #include "Application.h"
+#include "Mesh.h"
+#include "Transformation.h"
 
 #include <vector>
 #include <string>
@@ -49,6 +51,10 @@ public:
 	std::vector<Component*> components;
 	std::vector<GameObject*> children;
 	GameObject* parent;
+
+	Mesh* mesh;
+	Transformation* transformation;
+	
 
 private:
 	uint parentUUID;

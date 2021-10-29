@@ -262,6 +262,7 @@
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
+    <ClInclude Include="ModuleFile.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="Module.h" />
@@ -274,6 +275,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transformation.h" />
     <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
@@ -381,6 +383,7 @@
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleConsole.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
+    <ClCompile Include="ModuleFile.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
@@ -390,6 +393,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transformation.cpp" />
     <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
