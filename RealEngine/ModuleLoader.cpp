@@ -29,8 +29,21 @@ ModuleLoader::~ModuleLoader()
 // Called before render is available
 bool ModuleLoader::Init()
 {
-    App->console->AddLog("Creating 3D Renderer context");
+    App->console->AddLog("Loading Module Loader");
     bool ret = true;
+
+     //checker texture
+    GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
+    for (int i = 0; i < CHECKERS_HEIGHT; i++) {
+        for (int j = 0; j < CHECKERS_WIDTH; j++) {
+            int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
+            checkerImage[i][j][0] = (GLubyte)c;
+            checkerImage[i][j][1] = (GLubyte)c;
+            checkerImage[i][j][2] = (GLubyte)c;
+            checkerImage[i][j][3] = (GLubyte)255;
+        }
+    }
+
     return ret;
 }
 
@@ -69,22 +82,12 @@ bool ModuleLoader::CleanUp()
     return true;
 }
 
-void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
+void ModuleLoader::Load(char* FBXpath, std::vector<Vertex>& vertex)
 {
     std::string fullFBXPath = FBXpath;
     std::string modelName = GenerateNameFromPath(fullFBXPath);
 
-    //checker texture
-    GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
-    for (int i = 0; i < CHECKERS_HEIGHT; i++) {
-        for (int j = 0; j < CHECKERS_WIDTH; j++) {
-            int c = ((((i & 0x8) == 0) ^ (((j & 0x8)) == 0))) * 255;
-            checkerImage[i][j][0] = (GLubyte)c;
-            checkerImage[i][j][1] = (GLubyte)c;
-            checkerImage[i][j][2] = (GLubyte)c;
-            checkerImage[i][j][3] = (GLubyte)255;
-        }
-    }
+   
 
     const aiScene* scene = aiImportFile(fullFBXPath.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
     if (scene != nullptr && scene->HasMeshes())
@@ -125,6 +128,8 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
                     }
                 }
             }
+
+
             ourMesh.GenerateBuffer();
         }
         aiReleaseImport(scene);

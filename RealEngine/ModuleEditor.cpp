@@ -200,7 +200,7 @@ update_status ModuleEditor::Update(float dt)
 
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
+			//App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
 
 
 		}
