@@ -88,7 +88,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
     if (scene != nullptr && scene->HasMeshes())
     {
         GameObject* GO = new GameObject();
-        GO->name = name;
+        GO->name = modelName;
         GO->parent = App->scene_intro->GetRoot();
         App->scene_intro->GetRoot()->AddChildren(GO);
 
