@@ -34,6 +34,7 @@ public:
 	bool show_console = true;
 	bool show_inspector = true;
 	bool show_hierarchy = true;
+	bool show_primitives = false;
 	bool config = false;
 
 	std::vector<float> fps_log;
@@ -48,7 +49,6 @@ public:
 	bool show_about_us = false;
 
 	bool configuration = true;
-
 
 
 

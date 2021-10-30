@@ -4,6 +4,8 @@
 #include <gl/GLU.h>
 
 #include "ModuleLoader.h"
+
+
 #include "Globals.h"
 #include "Application.h"
 #include "GameObject.h"
@@ -27,7 +29,7 @@ ModuleLoader::~ModuleLoader()
 // Called before render is available
 bool ModuleLoader::Init()
 {
-    LOG("Creating 3D Renderer context");
+    App->console->AddLog("Creating 3D Renderer context");
     bool ret = true;
     return ret;
 }
@@ -59,7 +61,7 @@ update_status ModuleLoader::PostUpdate(float dt)
 
 bool ModuleLoader::CleanUp()
 {
-    LOG("Destroying 3D Renderer");
+    App->console->AddLog("Destroying 3D Renderer");
 
     // detach log stream
     aiDetachAllLogStreams();
@@ -105,7 +107,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
             ourMesh.num_vertex = sceneM->mNumVertices;
             ourMesh.vertex = new float[ourMesh.num_vertex * 3];
             memcpy(ourMesh.vertex, sceneM->mVertices, sizeof(float) * ourMesh.num_vertex * 3);
-            LOG("New mesh with %d vertices", ourMesh.num_vertex);
+           App->console->AddLog("New mesh with %d vertices", ourMesh.num_vertex);
 
             // copy faces
             if (sceneM->HasFaces())
@@ -116,7 +118,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
                 {
                     if (sceneM->mFaces[i].mNumIndices != 3)
                     {
-                        LOG("WARNING, geometry face with != 3 indices!");
+                       App->console->AddLog("WARNING, geometry face with != 3 indices!");
                     }
                     else
                     {
@@ -130,7 +132,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
         aiReleaseImport(scene);
     }
     else
-        LOG("Error loading scene %s", FBXpath);
+        App->console->AddLog("Error loading scene %s", FBXpath);
 }
 
 std::string ModuleLoader::GenerateNameFromPath(std::string path)
@@ -205,6 +207,7 @@ void Vertex::LoadMesh()
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
 }
 
 

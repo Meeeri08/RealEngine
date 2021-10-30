@@ -47,12 +47,6 @@ bool ModuleRenderer3D::Init()
 	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
 
-	//detect our current hardware and driver
-	LOG("Vendor: %s", glGetString(GL_VENDOR));
-	LOG("Renderer: %s", glGetString(GL_RENDERER));
-	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
-	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-
 	//Reset projection and modelview matrices
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -68,7 +62,7 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 
-	App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
+	//App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
 
 	if (ret == true)
 	{

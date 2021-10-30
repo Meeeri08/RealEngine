@@ -20,6 +20,7 @@ ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, s
 
 	inspectorWindow = new InspectorWindow();
 	hierarchyWindow = new HierarchyWindow();
+
 }
 
 ModuleEditor::~ModuleEditor()
@@ -93,22 +94,9 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::MenuItem("Hierarchy", NULL, &show_hierarchy);
 			ImGui::EndMenu();
 		}
-
-		
-
 		if (ImGui::BeginMenu("GameObject"))
 		{
-			if (ImGui::MenuItem("Create"))
-			{
-				if (ImGui::MenuItem("Cube"))
-				{
-					if (ImGui::MenuItem("Cube"))
-					{
-						
-						
-					}
-				}
-			}
+			ImGui::MenuItem("Primitives", NULL, &show_primitives);
 			ImGui::EndMenu();
 		}
 
@@ -126,9 +114,10 @@ update_status ModuleEditor::Update(float dt)
 				exit(0);
 			}
 			ImGui::EndMenu();
+
 		}
 
-
+		
 		ImGui::EndMainMenuBar();
 	}
 	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
@@ -139,8 +128,62 @@ update_status ModuleEditor::Update(float dt)
 		inspectorWindow->Draw();
 	if (show_hierarchy)
 		hierarchyWindow->Draw(App);
+	
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
+	if (show_primitives)
+	{
+		ImGui::Begin("Primitives", &show_primitives, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_NoFocusOnAppearing);
+
+		if (ImGui::MenuItem("Cube"))
+		{
+			App->fbxLoader->Load("Assets/cube.fbx", App->renderer3D->vertex);
+			
+
+		}
+		if (ImGui::MenuItem("Sphere"))
+		{
+			App->fbxLoader->Load("Assets/sphere.fbx", App->renderer3D->vertex);
+
+
+		}
+		if (ImGui::MenuItem("Cylinder"))
+		{
+			App->fbxLoader->Load("Assets/cylinder.fbx", App->renderer3D->vertex);
+
+
+		}
+		if (ImGui::MenuItem("Plane"))
+		{
+			App->fbxLoader->Load("Assets/plane.fbx", App->renderer3D->vertex);
+
+
+		}
+
+		if (ImGui::MenuItem("Pyramid"))
+		{
+			App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
+
+
+		}
+		if (ImGui::MenuItem("Torus"))
+		{
+			App->fbxLoader->Load("Assets/torus.fbx", App->renderer3D->vertex);
+
+
+		}
+		if (ImGui::MenuItem("Disc"))
+		{
+			App->fbxLoader->Load("Assets/disc.fbx", App->renderer3D->vertex);
+
+
+		}
+		
+
+		ImGui::End();
+
+	}
+
 
 	if (show_configuration)
 	{
