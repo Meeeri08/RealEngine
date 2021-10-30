@@ -32,13 +32,13 @@ public:
 	bool Load(JsonParser* data) override;
 
 public:
-	float3 position = { 0.0f,0.0f,0.0f };
-	float3 rotationVector = { 0.0f,0.0f,0.0f };
-	float3 scale = { 1.0f,1.0f,1.0f };
-	Quat rotation = { 0.0f,0.0f,0.0f,1.0f };
+	float3 position;
+	float3 rotationVector;
+	float3 scale;
+	Quat rotation;
 
-	float4x4 localMatrix = float4x4::identity;
-	float4x4 globalMatrix = float4x4::identity;
+	float4x4 localMatrix;
+	float4x4 globalMatrix;
 
 	bool isChanged;
 };

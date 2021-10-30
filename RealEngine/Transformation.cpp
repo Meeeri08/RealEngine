@@ -3,10 +3,11 @@
 Transformation::Transformation(Component::ComponentType type, GameObject* owner) :Component(type, owner)
 {
 	this->owner = owner;
-	position = float3{ 0,0,0 };
-	scale = float3{ 1,1,1 };
-	rotationVector = float3{ 0,0,0 }; // user-friendly
-	rotation = Quat{ 0.0f,0.0f,0.0f,1.0f }; // used for calculations
+	position = { 0.0f,0.0f,0.0f };
+	rotationVector = { 0.0f,0.0f,0.0f }; // user-friendly
+	scale = { 1.0f,1.0f,1.0f };
+	rotation = { 0.0f,0.0f,0.0f,1.0f }; // used for calculations
+
 	localMatrix = float4x4::identity;
 	globalMatrix = float4x4::identity;
 }

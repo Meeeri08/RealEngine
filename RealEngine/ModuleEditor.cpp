@@ -148,7 +148,7 @@ update_status ModuleEditor::Update(float dt)
 		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x), 20));
 		ImGui::SetNextWindowSize(windowSize);
 
-		inspectorWindow->Draw();
+		inspectorWindow->Draw(App);
 	}
 
 	if (show_hierarchy)
@@ -161,7 +161,6 @@ update_status ModuleEditor::Update(float dt)
 		hierarchyWindow->Draw(App);
 	}
 
-
 	if (show_primitives)
 	{
 		const static char* primitivesWindowTitle = "Primitives";
@@ -172,56 +171,38 @@ update_status ModuleEditor::Update(float dt)
 
 		ImGui::Begin(primitivesWindowTitle, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
-
 		if (ImGui::MenuItem("Cube"))
 		{
 			App->fbxLoader->Load("Assets/cube.fbx", App->renderer3D->vertex);
-
-
 		}
 		if (ImGui::MenuItem("Sphere"))
 		{
 			App->fbxLoader->Load("Assets/sphere.fbx", App->renderer3D->vertex);
 
-
 		}
 		if (ImGui::MenuItem("Cylinder"))
 		{
 			App->fbxLoader->Load("Assets/cylinder.fbx", App->renderer3D->vertex);
-
-
 		}
 		if (ImGui::MenuItem("Plane"))
 		{
 			App->fbxLoader->Load("Assets/plane.fbx", App->renderer3D->vertex);
-
-
 		}
 
 		if (ImGui::MenuItem("Pyramid"))
 		{
 			App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
-
-
 		}
 		if (ImGui::MenuItem("Torus"))
 		{
 			App->fbxLoader->Load("Assets/torus.fbx", App->renderer3D->vertex);
-
-
 		}
 		if (ImGui::MenuItem("Disc"))
 		{
 			App->fbxLoader->Load("Assets/disc.fbx", App->renderer3D->vertex);
-
-
 		}
-
-
 		ImGui::End();
-
 	}
-
 
 	if (show_configuration)
 	{
@@ -401,7 +382,6 @@ update_status ModuleEditor::Update(float dt)
 				ImGui::Text("SDL Version:");
 				ImGui::SameLine();
 				ImGui::TextColored(values_color, "%d.%d.%d", version.major, version.minor, version.patch);
-
 
 				ImGui::Spacing();
 				ImGui::Separator();

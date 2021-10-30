@@ -76,7 +76,7 @@ update_status ModuleSceneIntro::Update(float dt)
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
 	//DrawGameObjects(GetRoot(), GetRoot());
-	UpdateGameObjects(GetRoot());
+	UpdateGameObject(GetRoot());
 	return UPDATE_CONTINUE;
 }
 
@@ -98,6 +98,16 @@ void ModuleSceneIntro::AddChild(GameObject* child, GameObject* parent)
 	child->parent = parent;
 }
 
+void ModuleSceneIntro::selectGameObject(GameObject* gameObject)
+{
+	if (selectedGameObject != nullptr)
+		selectedGameObject->setSelected(false);
+
+	selectedGameObject = gameObject;
+	if (gameObject != nullptr)
+		gameObject->setSelected(true);
+}
+
 GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position, Quat rotation, float3 scale, GameObject* parent, char* mesh_path, char* texture_path)
 {
 	GameObject* newGameObject = nullptr;
@@ -107,10 +117,10 @@ GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position
 	if (newGameObject != nullptr)
 		AddChild(newGameObject, parent);
 
-	//newGameObject->transformation->SetPosition(position);
-	//newGameObject->transformation->SetQuaternionRotation(rotation);
-	//newGameObject->transformation->SetScale(scale);
-	//newGameObject->transformation->changed = true;
+	newGameObject->transformation->SetPosition(position);
+	newGameObject->transformation->SetQuaternionRotation(rotation);
+	newGameObject->transformation->SetScale(scale);
+	newGameObject->transformation->isChanged = true;
 
 	return newGameObject;
 }
@@ -133,12 +143,63 @@ void ModuleSceneIntro::DrawGameObjects(GameObject* gameObject, GameObject* root)
 	}
 }
 
-void ModuleSceneIntro::UpdateGameObjects(GameObject* gameObject)
+void ModuleSceneIntro::UpdateGameObject(GameObject* gameObject)
 {
 	gameObject->Update();
 }
 
+void ModuleSceneIntro::DestroyGameObject(GameObject* selectedGameObject)
+{
+	selectedGameObject->components.clear();
+
+	for (int i = 0; i < root->children.size(); i++)
+	{
+		if (root->children[i]->children.empty() == false)
+		{
+			for (size_t j = 0; j < root->children[i]->children.size(); j++)
+			{
+				if (root->children[i]->children[j] == selectedGameObject)
+				{
+					root->children[i]->children.erase(root->children[i]->children.begin() + j);
+				}
+			}
+		}
+		if (root->children[i] == selectedGameObject)
+		{
+			root->children.erase(root->children.begin() + i);
+		}
+	}
+
+	if (this->selectedGameObject == selectedGameObject)
+		this->selectedGameObject = nullptr;
+}
+
+
 GameObject* ModuleSceneIntro::GetRoot()
 {
 	return root;
+}
+
+GameObject* ModuleSceneIntro::GetGameObjectByUUID(uint UUID) const
+{
+	GameObject* ret = nullptr;
+	ret = GetGameObjectUUIDRecursive(UUID, root);
+	return ret;
+}
+
+GameObject* ModuleSceneIntro::GetGameObjectUUIDRecursive(uint UUID, GameObject* object) const
+{
+	GameObject* ret = object;
+	if (ret->GetUUID() == UUID) {
+		return ret;
+	}
+
+	for (int i = 0; i < object->children.size(); i++) {
+		ret = object->children[i];
+		ret = GetGameObjectUUIDRecursive(UUID, ret);
+		if (ret) {
+			return ret;
+		}
+	}
+	return nullptr;
 }

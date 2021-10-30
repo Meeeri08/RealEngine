@@ -10,6 +10,8 @@ GameObject::GameObject()
 
 	parentUUID = 0;
 	UUID = GenerateUUID();
+
+	transformation = new Transformation(Component::ComponentType::Transformation, this);
 }
 
 GameObject::~GameObject()
@@ -24,15 +26,10 @@ Component* GameObject::CreateComponent(Component::ComponentType type)
 	{
 	case Component::ComponentType::None:
 		break;
-	case Component::ComponentType::Mesh:
+	case Component::ComponentType::Transformation:
 
 		break;
-	case Component::ComponentType::Material:
 
-		break;
-	case Component::ComponentType::Camera:
-
-		break;
 	default:
 		break;
 	}

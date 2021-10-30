@@ -2,6 +2,7 @@
 #include "Component.h"
 #include "JsonParser.h"
 #include "Application.h"
+#include "Transformation.h"
 
 #include <vector>
 #include <string>
@@ -45,7 +46,9 @@ public:
 	bool isStatic;
 	bool wantToDelete;
 	bool selectedChild;
+
 	Application* App;
+	Transformation* transformation;
 
 	std::string name;
 	std::vector<Component*> components;

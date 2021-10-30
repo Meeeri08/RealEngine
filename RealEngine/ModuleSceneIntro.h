@@ -20,18 +20,23 @@ public:
 
 	void AddChild(GameObject* child, GameObject* parent = nullptr);
 
+	void selectGameObject(GameObject* gameObject);
+
 	GameObject* CreateGameObject(std::string name, float3 position = { 0,0,0 }, Quat rotation = { 0,0,0,1 }, float3 scale = { 1,1,1 }, GameObject* parent = nullptr, char* mesh_path = nullptr, char* texture_path = nullptr);
 	void DrawGameObjects(GameObject* gameObject, GameObject* root);
-	void UpdateGameObjects(GameObject* gameObject);
+	void UpdateGameObject(GameObject* gameObject);
+	void DestroyGameObject(GameObject* selectedGameObject);
 
 	GameObject* GetRoot();
+	GameObject* GetGameObjectByUUID(uint UUID) const;
+
+	GameObject* GetGameObjectUUIDRecursive(uint UUID, GameObject* go) const;
 
 public:
 
 	ImGuizmo::OPERATION guizmoOperation;
 	bool inGame;
 
-private:
 	GameObject* root;
 	GameObject* selectedGameObject;
 };

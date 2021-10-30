@@ -10,10 +10,6 @@ class Component
 public:
 	enum ComponentType {
 		None = 0,
-		Mesh,
-		Material,
-		Camera,
-		Light,
 		Transformation,
 	};
 
@@ -35,7 +31,5 @@ public:
 
 	GameObject* owner;
 	bool isActive = true;
-
-
 };
 
