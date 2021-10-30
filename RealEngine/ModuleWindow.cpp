@@ -131,20 +131,8 @@ void ModuleWindow::SetSize(int w, int h)
 
 void ModuleWindow::SetFullscreenDesktop(bool fullscreenDesk)
 {
-	fullscreenDesk = fullscreenDesk;
-	SDL_DisplayMode dMode;
-	SDL_GetDesktopDisplayMode(0, &dMode);
+	SDL_SetWindowFullscreen(window, fullscreenDesk ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 
-	if (fullscreenDesk)
-	{
-		SDL_SetWindowSize(window, dMode.w, dMode.h);
-		SDL_SetWindowPosition(window, 0, 0);
-	}
-	else
-	{
-		SDL_SetWindowSize(window, dMode.w / 2, dMode.h / 2);
-		SDL_SetWindowPosition(window, dMode.w / 4, dMode.h / 4);
-	}
 }
 
 void ModuleWindow::SetName()

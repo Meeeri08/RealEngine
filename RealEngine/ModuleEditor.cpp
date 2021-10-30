@@ -123,17 +123,28 @@ update_status ModuleEditor::Update(float dt)
 	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 	
 	if (show_console)
+		ImGui::SetNextWindowSize({ 230.0f, 600.0f });
+		ImGui::SetNextWindowPos({ 230.0f, 470.0f });
 		App->console->DrawConsole("Console", &show_console);
 	if (show_inspector)
+		ImGui::SetNextWindowSize({ 300.0f, 330.0f });
+		ImGui::SetNextWindowPos({ 900.0f, 20.0f });
 		inspectorWindow->Draw();
 	if (show_hierarchy)
+		ImGui::SetNextWindowSize({ 230.0f, 450.0f });
+		ImGui::SetNextWindowPos({ 0.0f, 20.0f });
 		hierarchyWindow->Draw(App);
 	
 
 	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
+	
 	if (show_primitives)
 	{
-		ImGui::Begin("Primitives", &show_primitives, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_NoFocusOnAppearing);
+		ImGui::SetNextWindowSize({ 230.0f, 250.0f });
+		ImGui::SetNextWindowPos({ 0.0f, 470.0f });
+
+		ImGui::Begin("Primitives", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+
 
 		if (ImGui::MenuItem("Cube"))
 		{
@@ -186,9 +197,11 @@ update_status ModuleEditor::Update(float dt)
 
 
 	if (show_configuration)
-	{
+	{http://www.megastar.fm/
+		ImGui::SetNextWindowSize({ 300.0f, 400.0f });
+		ImGui::SetNextWindowPos({ 900.0f, 320.0f });
 
-		if (ImGui::Begin("Configuration", &show_configuration))
+		if (ImGui::Begin("Configuration", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
 		{
 			ImGui::Text("Options");
 			if (ImGui::CollapsingHeader("Application"))

@@ -130,6 +130,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
             ourMesh.GenerateBuffer();
         }
         aiReleaseImport(scene);
+        //scene->mNumMeshes++;
     }
     else
         App->console->AddLog("Error loading scene %s", FBXpath);

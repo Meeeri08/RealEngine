@@ -12,7 +12,7 @@ InspectorWindow::~InspectorWindow()
 
 void InspectorWindow::Draw()
 {
-    ImGui::Begin("Inspector", &isActive, ImGuiWindowFlags_AlwaysVerticalScrollbar | ImGuiWindowFlags_NoFocusOnAppearing);
+    ImGui::Begin("Inspector", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
     ImGui::End();
 
 }
