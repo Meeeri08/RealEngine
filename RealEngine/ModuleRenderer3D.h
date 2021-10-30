@@ -28,7 +28,7 @@ public:
 
 	void capFps();
 
-	void SetWireframeMode(bool active);
+	void SetWireframeMode();
 
 public:
 

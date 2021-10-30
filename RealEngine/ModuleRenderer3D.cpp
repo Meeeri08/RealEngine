@@ -62,7 +62,7 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 
-	//App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
+	App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
 
 	if (ret == true)
 	{
@@ -129,6 +129,7 @@ bool ModuleRenderer3D::Init()
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
+
 	}
 
 	// Projection matrix for
@@ -228,10 +229,12 @@ void ModuleRenderer3D::capFps()
 		SDL_Delay(frameDelay - frameTime);
 }
 
-void ModuleRenderer3D::SetWireframeMode(bool active)
+void ModuleRenderer3D::SetWireframeMode()
 {
-	if (active)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (!wireframe) 
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	else
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
 }

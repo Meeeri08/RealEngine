@@ -3,7 +3,7 @@
 #include "ModuleSceneIntro.h"
 #include "GameObject.h"
 #include "Primitive.h"
-
+#include "ModuleRenderer3D.h"
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	name = "SceneIntro";
@@ -33,7 +33,9 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	Plane p(0, 1, 0, 0);
 	p.axis = true;
+
 	p.Render();
+
 
 	// checking drawing 
 	/*glLineWidth(5.0f);
@@ -68,6 +70,9 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 	
+	//Wireframe
+	App->renderer3D->SetWireframeMode();
+
 
 	return UPDATE_CONTINUE;
 }

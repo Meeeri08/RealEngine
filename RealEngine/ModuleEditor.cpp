@@ -454,11 +454,11 @@ update_status ModuleEditor::Update(float dt)
 					else glDisable(GL_COLOR_MATERIAL);
 				}
 
+				ImGui::Spacing();
+				ImGui::Separator();
+				ImGui::Spacing();
 
-				if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe))
-				{
-					App->renderer3D->SetWireframeMode(App->renderer3D->wireframe);
-				}
+				ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe);
 
 
 			}
