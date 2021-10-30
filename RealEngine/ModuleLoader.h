@@ -4,7 +4,12 @@
 #include "glmath.h"
 #include "Light.h"
 
+#include "cimport.h"
+#include "scene.h"
+#include "postprocess.h"
+
 #include <vector>
+
 struct Vertex
 {
 	// Index
@@ -39,16 +44,15 @@ public:
 	~ModuleLoader();
 
 	bool Init() override;
-
 	update_status PreUpdate(float dt) override;
 	update_status Update(float dt) override;
 	update_status PostUpdate(float dt) override;
-
 	bool CleanUp() override;
 
-	void Load(const char* path, std::vector<Vertex>& vertex
-	);
+	void Load(const char* FBXpath, std::vector<Vertex>& vertex);
 
-private:
+	std::string GenerateNameFromPath(std::string path);
+
+
 
 };

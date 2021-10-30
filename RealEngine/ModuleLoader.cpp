@@ -3,23 +3,21 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include "ModuleLoader.h"
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleLoader.h"
+#include "GameObject.h"
+#include "ModuleSceneIntro.h"
 #include <cmath>
-
-#include "cimport.h"
-#include "scene.h"
-#include "postprocess.h"
 
 
 #define CHECKERS_HEIGHT 64
 #define CHECKERS_WIDTH  64
 
 
-
 ModuleLoader::ModuleLoader(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+    name = "scene_loader";
 }
 
 // Destructor
@@ -31,9 +29,6 @@ bool ModuleLoader::Init()
 {
     LOG("Creating 3D Renderer context");
     bool ret = true;
-
-
-
     return ret;
 }
 
@@ -51,17 +46,13 @@ update_status ModuleLoader::PreUpdate(float dt)
 
 update_status ModuleLoader::Update(float dt)
 {
-
-
     return UPDATE_CONTINUE;
-
 }
 
 
 // PostUpdate present buffer to screen
 update_status ModuleLoader::PostUpdate(float dt)
 {
-
     return UPDATE_CONTINUE;
 }
 
@@ -76,10 +67,10 @@ bool ModuleLoader::CleanUp()
     return true;
 }
 
-
-
-void ModuleLoader::Load(const char* path, std::vector<Vertex>& vertex)
+void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
 {
+    std::string fullFBXPath = FBXpath;
+    std::string modelName = GenerateNameFromPath(fullFBXPath);
 
     //checker texture
     GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
@@ -93,11 +84,14 @@ void ModuleLoader::Load(const char* path, std::vector<Vertex>& vertex)
         }
     }
 
-
-
-    const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
+    const aiScene* scene = aiImportFile(fullFBXPath.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
     if (scene != nullptr && scene->HasMeshes())
     {
+        GameObject* GO = new GameObject();
+        GO->name = name;
+        GO->parent = App->scene_intro->GetRoot();
+        App->scene_intro->GetRoot()->AddChildren(GO);
+
         // Use scene->mNumMeshes to iterate on scene->mMeshes array
 
         vertex.resize(scene->mNumMeshes);
@@ -131,14 +125,34 @@ void ModuleLoader::Load(const char* path, std::vector<Vertex>& vertex)
                 }
             }
 
-
             ourMesh.GenerateBuffer();
         }
         aiReleaseImport(scene);
     }
     else
-        LOG("Error loading scene %s", path);
+        LOG("Error loading scene %s", FBXpath);
+}
 
+std::string ModuleLoader::GenerateNameFromPath(std::string path)
+{
+    std::string name = "";
+    std::string normalizedPath = path;
+
+    //Normalize path
+    for (int i = 0; i < path.length(); i++)
+    {
+        if (normalizedPath[i] == '\\')
+            normalizedPath[i] = '/';
+    }
+
+    size_t posSlash = normalizedPath.find_last_of("\\/");
+    size_t posDot = normalizedPath.find_last_of(".");
+
+    for (int i = posSlash + 1; i < posDot; i++) {
+        name += normalizedPath[i];
+    }
+
+    return name;
 }
 
 void Vertex::GenerateBuffer()

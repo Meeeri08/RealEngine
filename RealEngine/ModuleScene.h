@@ -13,7 +13,7 @@ public:
 	ModuleScene(Application* app, bool start_enabled = true);
 	~ModuleScene();
 
-	bool Start();
+	bool Start() override;
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
@@ -40,9 +40,6 @@ public:
 	bool SaveSettings(JsonParser* data)const override;
 
 	uint GetRandomUUID();
-
-	void PlayScene(GameObject* gameObject, GameObject* root);
-	void StopScene(GameObject* gameObject, GameObject* root);
 
 private:
 	GameObject* GetGameObjectUUIDRecursive(uint UUID, GameObject* go) const;

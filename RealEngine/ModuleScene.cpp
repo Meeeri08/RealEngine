@@ -55,7 +55,7 @@ update_status ModuleScene::Update(float dt)
 
 update_status ModuleScene::PostUpdate(float dt)
 {
-	DrawGameObjects(GetRoot(), GetRoot());
+	//DrawGameObjects(GetRoot(), GetRoot());
 	UpdateGameObjects(GetRoot());
 	return UPDATE_CONTINUE;
 }
@@ -253,21 +253,7 @@ uint ModuleScene::GetRandomUUID()
 	return LCG().Int();
 }
 
-void ModuleScene::PlayScene(GameObject* gameObject, GameObject* root)
-{
-	for (uint i = 0; i < gameObject->children.size(); i++)
-	{
-		PlayScene(gameObject->children[i], root);
-	}
-}
 
-void ModuleScene::StopScene(GameObject* gameObject, GameObject* root)
-{
-	for (uint i = 0; i < gameObject->children.size(); i++)
-	{
-		StopScene(gameObject->children[i], root);
-	}
-}
 
 GameObject* ModuleScene::GetGameObjectUUIDRecursive(uint UUID, GameObject* go) const
 {

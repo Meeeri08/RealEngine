@@ -14,8 +14,7 @@
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
 
-
-
+class ModuleScene;
 
 struct HardwareSpecs
 {
@@ -45,8 +44,6 @@ struct HardwareSpecs
 };
 
 class Module;
-class ModuleScene;
-
 
 class Application
 {

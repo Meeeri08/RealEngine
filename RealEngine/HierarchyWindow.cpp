@@ -9,12 +9,12 @@ HierarchyWindow::~HierarchyWindow()
 {
 }
 
-void HierarchyWindow::Draw()
+void HierarchyWindow::Draw(Application* App)
 {
 	ImGui::Begin("Hierarchy");
 
 	ImGuiTreeNodeFlags default_flags = ImGuiTreeNodeFlags_NoTreePushOnOpen;
-	//DrawGameObject(App->scene->GetRoot(), default_flags, App->scene->GetRoot());
+	DrawGameObject(App->scene_intro->GetRoot(), default_flags, App->scene_intro->GetRoot());
 
 	ImGui::End();
 }
