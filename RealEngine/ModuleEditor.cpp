@@ -195,7 +195,7 @@ update_status ModuleEditor::Update(float dt)
 
 
 	if (show_configuration)
-	{http://www.megastar.fm/
+	{
 		ImGui::SetNextWindowSize({ 300.0f, 400.0f });
 		ImGui::SetNextWindowPos({ 900.0f, 320.0f });
 
