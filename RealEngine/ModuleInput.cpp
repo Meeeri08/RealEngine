@@ -115,8 +115,7 @@ update_status ModuleInput::PreUpdate(float dt)
 				switch (fileType)
 				{
 				case FileType::FBX: {
-					std::vector<Vertex> vertex;
-					App->fbxLoader->Load(droppedFile, vertex);
+					App->fbxLoader->Load(droppedFile, App->renderer3D->vertex);
 					break;
 				}
 				case FileType::UNDEFINED:
