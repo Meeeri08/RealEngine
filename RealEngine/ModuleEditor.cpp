@@ -115,39 +115,68 @@ update_status ModuleEditor::Update(float dt)
 
 		}
 
-		
+
 		ImGui::EndMainMenuBar();
 	}
-	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-	
-	if (show_console)
-		ImGui::SetNextWindowSize({ 230.0f, 600.0f });
-		ImGui::SetNextWindowPos({ 230.0f, 470.0f });
-		App->console->DrawConsole("Console", &show_console);
-	if (show_inspector)
-		ImGui::SetNextWindowSize({ 300.0f, 330.0f });
-		ImGui::SetNextWindowPos({ 900.0f, 20.0f });
-		inspectorWindow->Draw();
-	if (show_hierarchy)
-		ImGui::SetNextWindowSize({ 230.0f, 450.0f });
-		ImGui::SetNextWindowPos({ 0.0f, 20.0f });
-		hierarchyWindow->Draw(App);
-	
 
-	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
-	
+	const ImGuiIO& guiIO = ImGui::GetIO();
+	float screenX = guiIO.DisplaySize.x;
+	float screenY = guiIO.DisplaySize.y;
+
+	float small_col_size = (screenX * 20) / 100;
+	float big_col_size = (screenX * 60) / 100;
+
+	float big_row_size = (screenY * 60) / 100;
+	float small_row_size = (screenY * 40) / 100;
+
+
+	if (show_console)
+	{
+		const static char* consoleWindowTitle = "Console";
+		ImVec2 textSize = ImGui::CalcTextSize(consoleWindowTitle);
+		ImVec2 windowSize = ImVec2(big_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x) * 0.5f, (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
+
+		App->console->DrawConsole(consoleWindowTitle, &show_console);
+	}
+	if (show_inspector)
+	{
+		const static char* inspectorWindowTitle = "Inspector";
+		ImVec2 textSize = ImGui::CalcTextSize(inspectorWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, big_row_size);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x), 20));
+		ImGui::SetNextWindowSize(windowSize);
+
+		inspectorWindow->Draw();
+	}
+
+	if (show_hierarchy)
+	{
+		const static char* hierarchyWindowTitle = "Hierarchy";
+		ImVec2 textSize = ImGui::CalcTextSize(hierarchyWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, big_row_size);
+		ImGui::SetNextWindowPos(ImVec2(0, 20));
+		ImGui::SetNextWindowSize(windowSize);
+		hierarchyWindow->Draw(App);
+	}
+
+
 	if (show_primitives)
 	{
-		ImGui::SetNextWindowSize({ 230.0f, 250.0f });
-		ImGui::SetNextWindowPos({ 0.0f, 470.0f });
+		const static char* primitivesWindowTitle = "Primitives";
+		ImVec2 textSize = ImGui::CalcTextSize(primitivesWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2(0, (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
 
-		ImGui::Begin("Primitives", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+		ImGui::Begin(primitivesWindowTitle, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 
 		if (ImGui::MenuItem("Cube"))
 		{
 			App->fbxLoader->Load("Assets/cube.fbx", App->renderer3D->vertex);
-			
+
 
 		}
 		if (ImGui::MenuItem("Sphere"))
@@ -171,7 +200,7 @@ update_status ModuleEditor::Update(float dt)
 
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			//App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
 
 
 		}
@@ -187,7 +216,7 @@ update_status ModuleEditor::Update(float dt)
 
 
 		}
-		
+
 
 		ImGui::End();
 
@@ -196,10 +225,13 @@ update_status ModuleEditor::Update(float dt)
 
 	if (show_configuration)
 	{
-		ImGui::SetNextWindowSize({ 300.0f, 400.0f });
-		ImGui::SetNextWindowPos({ 900.0f, 320.0f });
+		const static char* configWindowTitle = "Configuration";
+		ImVec2 textSize = ImGui::CalcTextSize(configWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x), (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
 
-		if (ImGui::Begin("Configuration", NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
+		if (ImGui::Begin(configWindowTitle, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
 		{
 			ImGui::Text("Options");
 			if (ImGui::CollapsingHeader("Application"))

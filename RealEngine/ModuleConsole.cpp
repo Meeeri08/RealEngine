@@ -18,8 +18,7 @@ void ModuleConsole::ClearLog()
 
 void ModuleConsole::DrawConsole(const char* title, bool* p_open)
 {
-    ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
-    if (!ImGui::Begin(title, p_open))
+    if (!ImGui::Begin(title, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
     {
         ImGui::End();
         return;
