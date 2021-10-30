@@ -107,8 +107,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
             ourMesh.num_vertex = sceneM->mNumVertices;
             ourMesh.vertex = new float[ourMesh.num_vertex * 3];
             memcpy(ourMesh.vertex, sceneM->mVertices, sizeof(float) * ourMesh.num_vertex * 3);
-           App->console->AddLog("New mesh with %d vertices", ourMesh.num_vertex);
-
+            App->console->AddLog("New mesh with %d vertices", ourMesh.num_vertex);
             // copy faces
             if (sceneM->HasFaces())
             {
@@ -118,7 +117,7 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
                 {
                     if (sceneM->mFaces[i].mNumIndices != 3)
                     {
-                       App->console->AddLog("WARNING, geometry face with != 3 indices!");
+                        App->console->AddLog("WARNING, geometry face with != 3 indices!");
                     }
                     else
                     {
@@ -126,7 +125,6 @@ void ModuleLoader::Load(const char* FBXpath, std::vector<Vertex>& vertex)
                     }
                 }
             }
-
             ourMesh.GenerateBuffer();
         }
         aiReleaseImport(scene);
@@ -179,7 +177,6 @@ void Vertex::GenerateBuffer()
 
 void Vertex::LoadMesh()
 {
-
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -192,7 +189,6 @@ void Vertex::LoadMesh()
 
     glBindTexture(GL_TEXTURE_2D, texture_id);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_index);
-
 
     //Draw Mesh
     glDrawElements(GL_TRIANGLES, num_index, GL_UNSIGNED_INT, NULL);

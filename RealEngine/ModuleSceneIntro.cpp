@@ -4,12 +4,13 @@
 #include "GameObject.h"
 #include "Primitive.h"
 #include "ModuleRenderer3D.h"
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	name = "SceneIntro";
 	root = new GameObject();
 	root->name = "root";
-	selected_GO = nullptr;
+	selectedGameObject = nullptr;
 	inGame = false;
 }
 
@@ -19,7 +20,7 @@ ModuleSceneIntro::~ModuleSceneIntro()
 // Load assets
 bool ModuleSceneIntro::Start()
 {
-	LOG("Loading Intro assets");
+	App->console->AddLog("Loading Intro assets");
 	ImGuizmo::Enable(false);
 	bool ret = true;
 
@@ -31,11 +32,9 @@ bool ModuleSceneIntro::Start()
 // Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
-	Plane p(0, 1, 0, 0);
+	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
-
 	p.Render();
-
 
 	// checking drawing 
 	/*glLineWidth(5.0f);
@@ -47,7 +46,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	//Direct mode drawing
 
-	if (App->scene_intro->selected_GO != nullptr)
+	if (App->scene_intro->selectedGameObject != nullptr)
 	{
 		if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_IDLE)
 		{
@@ -68,12 +67,9 @@ update_status ModuleSceneIntro::Update(float dt)
 				guizmoOperation = ImGuizmo::SCALE;
 			}
 		}
-	}
-	
+	}	
 	//Wireframe
 	App->renderer3D->SetWireframeMode();
-
-
 	return UPDATE_CONTINUE;
 }
 
@@ -88,9 +84,35 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 // Load assets
 bool ModuleSceneIntro::CleanUp()
 {
-	LOG("Unloading Intro scene");
+	App->console->AddLog("Unloading Intro scene");
 
 	return true;
+}
+
+void ModuleSceneIntro::AddChild(GameObject* child, GameObject* parent)
+{
+	if (parent == nullptr)
+		parent = root;
+
+	parent->children.push_back(child);
+	child->parent = parent;
+}
+
+GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position, Quat rotation, float3 scale, GameObject* parent, char* mesh_path, char* texture_path)
+{
+	GameObject* newGameObject = nullptr;
+	newGameObject = new GameObject();
+	newGameObject->ChangeName(name);
+
+	if (newGameObject != nullptr)
+		AddChild(newGameObject, parent);
+
+	//newGameObject->transformation->SetPosition(position);
+	//newGameObject->transformation->SetQuaternionRotation(rotation);
+	//newGameObject->transformation->SetScale(scale);
+	//newGameObject->transformation->changed = true;
+
+	return newGameObject;
 }
 
 void ModuleSceneIntro::DrawGameObjects(GameObject* gameObject, GameObject* root)
@@ -120,4 +142,3 @@ GameObject* ModuleSceneIntro::GetRoot()
 {
 	return root;
 }
-

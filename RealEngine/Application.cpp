@@ -1,6 +1,5 @@
 #include "Application.h"
 #include "Module.h"
-#include "ModuleScene.h"
 
 Application::Application()
 {
@@ -14,7 +13,6 @@ Application::Application()
 	editor = new ModuleEditor(this);
 	console = new ModuleConsole();
 	fbxLoader = new ModuleLoader(this);
-	scene = new ModuleScene(this, true);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -27,7 +25,6 @@ Application::Application()
 	AddModule(audio);
 	AddModule(physics);
 	AddModule(editor);
-	AddModule(scene);
 
 	// Scenes
 	AddModule(scene_intro);

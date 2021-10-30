@@ -29,7 +29,6 @@ ModuleEditor::~ModuleEditor()
 // Load assets
 bool ModuleEditor::Start()
 {
-	LOG("Loading Intro assets");
 	App->console->AddLog("Loading Intro assets");
 	bool ret = true;
 
@@ -47,7 +46,6 @@ bool ModuleEditor::Start()
 // Load assets
 bool ModuleEditor::CleanUp()
 {
-	LOG("Unloading Intro scene");
 	App->console->AddLog("Unloading Intro scene");
 
 	return true;
@@ -57,7 +55,7 @@ bool ModuleEditor::CleanUp()
 update_status ModuleEditor::Update(float dt)
 {
 
-	Plane p(0, 1, 0, 0);
+	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
 

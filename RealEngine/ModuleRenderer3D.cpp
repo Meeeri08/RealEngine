@@ -21,7 +21,7 @@ ModuleRenderer3D::~ModuleRenderer3D()
 // Called before render is available
 bool ModuleRenderer3D::Init()
 {
-	LOG("Creating 3D Renderer context");
+	App->console->AddLog("Creating 3D Renderer context");
 	bool ret = true;
 
 	//OpenGL initialitzation
@@ -36,7 +36,7 @@ bool ModuleRenderer3D::Init()
 	context = SDL_GL_CreateContext(App->window->window);
 	if (context == NULL)
 	{
-		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddLog("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
@@ -44,8 +44,14 @@ bool ModuleRenderer3D::Init()
 	//Init the GLEW library
 	GLenum err = glewInit();
 	// … check for errors
-	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	App->console->AddLog("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
+
+	//detect our current hardware and driver
+	App->console->AddLog("Vendor: %s", glGetString(GL_VENDOR));
+	App->console->AddLog("Renderer: %s", glGetString(GL_RENDERER));
+	App->console->AddLog("OpenGL version supported %s", glGetString(GL_VERSION));
+	App->console->AddLog("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	//Reset projection and modelview matrices
 	glMatrixMode(GL_PROJECTION);
@@ -68,7 +74,7 @@ bool ModuleRenderer3D::Init()
 	{
 		//Use Vsync
 		if (VSYNC && SDL_GL_SetSwapInterval(1) < 0)
-			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+			App->console->AddLog("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
 
@@ -79,7 +85,7 @@ bool ModuleRenderer3D::Init()
 		GLenum error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -91,7 +97,7 @@ bool ModuleRenderer3D::Init()
 		error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -105,7 +111,7 @@ bool ModuleRenderer3D::Init()
 		error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -129,7 +135,6 @@ bool ModuleRenderer3D::Init()
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
-
 	}
 
 	// Projection matrix for
@@ -173,7 +178,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 // Called before quitting
 bool ModuleRenderer3D::CleanUp()
 {
-	LOG("Destroying 3D Renderer");
+	App->console->AddLog("Destroying 3D Renderer");
 
 	SDL_GL_DeleteContext(context);
 
