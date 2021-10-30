@@ -51,7 +51,7 @@ public:
 	update_status PostUpdate(float dt) override;
 	bool CleanUp() override;
 
-	void Load(const char* FBXpath, std::vector<Vertex>& vertex);
+	void Load(char* FBXpath, std::vector<Vertex>& vertex);
 
 	std::string GenerateNameFromPath(std::string path);
 
