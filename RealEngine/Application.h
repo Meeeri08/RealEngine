@@ -1,8 +1,9 @@
 #pragma once
-
 #include "Globals.h"
 #include "Timer.h"
 #include "Module.h"
+#include "ModuleLoader.h"
+
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleAudio.h"
@@ -13,7 +14,7 @@
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
 
-#include <vector>
+class ModuleScene;
 
 struct HardwareSpecs
 {
@@ -42,6 +43,7 @@ struct HardwareSpecs
 	std::string caps;
 };
 
+class Module;
 
 class Application
 {
@@ -55,6 +57,8 @@ public:
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
 	ModuleConsole* console;
+	ModuleScene* scene;
+	ModuleLoader* fbxLoader;
 
 private:
 

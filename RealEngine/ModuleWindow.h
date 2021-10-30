@@ -18,6 +18,8 @@ public:
 
 	bool Init();
 	bool CleanUp();
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
 
 	//Window functions
 	void SetTitle(const char* title);
@@ -25,11 +27,10 @@ public:
 	void SetBrightness(float brightness);
 	void SetSize(int w, int h);
 	void SetFullscreenDesktop(bool fullscreenDesk);
-
+	bool IsFullscreenDesktop() const { return fullscreenDesktop; }
 	void SetName();
 	void SetBorder(bool borderless);
-
-
+	void SetResizable(bool resizable);
 
 	float GetBrightness();
 

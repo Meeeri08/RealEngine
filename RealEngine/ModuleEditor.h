@@ -10,6 +10,7 @@
 #include <list>
 
 class InspectorWindow;
+class HierarchyWindow;
 
 class ModuleEditor : public Module
 {
@@ -20,17 +21,19 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-	void capFps();
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
 
 public:
 
 	bool show_demo_window = false;
 	bool show_another_window = false;
 	bool show_debug_window = false;
-	bool show_configuration = false;
+	bool show_configuration = true;
 	bool show_toolbar = false;
 	bool show_console = true;
 	bool show_inspector = true;
+	bool show_hierarchy = true;
 	bool config = false;
 
 	std::vector<float> fps_log;
@@ -46,5 +49,10 @@ public:
 
 	bool configuration = true;
 
+
+
+
 	InspectorWindow* inspectorWindow;
+	HierarchyWindow* hierarchyWindow;
+
 };

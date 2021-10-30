@@ -1218,7 +1218,13 @@ GLAPI void GLAPIENTRY glViewport (GLint x, GLint y, GLsizei width, GLsizei heigh
 #  else
 #    include <GL/glu.h>
 #  endif
+#include <SDL_opengl.h>
 #endif
+#include <SDL_opengl_glext.h>
+#include <SDL_opengl_glext.h>
+#include <SDL_opengl.h>
+#include <SDL_opengl.h>
+#include <SDL_opengl_glext.h>
 
 /* ----------------------------- GL_VERSION_1_2 ---------------------------- */
 

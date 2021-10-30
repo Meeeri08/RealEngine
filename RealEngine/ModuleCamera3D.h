@@ -12,10 +12,13 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
 
 	void Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference = false);
 	void LookAt(const vec3 &Spot);
 	void Move(const vec3 &Movement);
+	void Orbit();
 	float* GetViewMatrix();
 
 private:
@@ -26,7 +29,6 @@ public:
 	
 	vec3 X, Y, Z, Position, Reference;
 
-private:
-
+private: 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };

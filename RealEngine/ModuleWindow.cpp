@@ -88,13 +88,29 @@ bool ModuleWindow::CleanUp()
 	return true;
 }
 
+bool ModuleWindow::LoadSettings(JsonParser* data)
+{
+	return true;
+}
+
+bool ModuleWindow::SaveSettings(JsonParser* data) const
+{
+	data->AddFloat("Brightness", brightness);
+	data->AddBool("Fullscreen", fullscreen);
+	data->AddBool("Resizable", resizable);
+	data->AddBool("Borderless", borderless);
+	data->AddBool("Fullscreen Desktop", fullscreenDesktop);
+
+	return true;
+}
+
 void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
 }
 void ModuleWindow::SetFullScreen(bool fullScreen)
 {
-	SDL_SetWindowFullscreen(window, fullScreen);
+	SDL_SetWindowFullscreen(window, fullScreen ? SDL_WINDOW_FULLSCREEN : 0);
 }
 
 void ModuleWindow::SetBrightness(float brightness)
@@ -110,11 +126,25 @@ float ModuleWindow::GetBrightness()
 void ModuleWindow::SetSize(int w, int h)
 {
 	SDL_SetWindowSize(window, w, h);
+
 }
 
 void ModuleWindow::SetFullscreenDesktop(bool fullscreenDesk)
 {
-	SDL_SetWindowFullscreen(window, fullscreenDesk ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+	fullscreenDesk = fullscreenDesk;
+	SDL_DisplayMode dMode;
+	SDL_GetDesktopDisplayMode(0, &dMode);
+
+	if (fullscreenDesk)
+	{
+		SDL_SetWindowSize(window, dMode.w, dMode.h);
+		SDL_SetWindowPosition(window, 0, 0);
+	}
+	else
+	{
+		SDL_SetWindowSize(window, dMode.w / 2, dMode.h / 2);
+		SDL_SetWindowPosition(window, dMode.w / 4, dMode.h / 4);
+	}
 }
 
 void ModuleWindow::SetName()
@@ -128,6 +158,9 @@ void ModuleWindow::SetBorder(bool borderless)
 	SDL_SetWindowBordered(window, (SDL_bool)borderless);
 }
 
+void ModuleWindow::SetResizable(bool resizable)
+{
+	SDL_SetWindowResizable(window, (SDL_bool)resizable);
 
-
+}
 

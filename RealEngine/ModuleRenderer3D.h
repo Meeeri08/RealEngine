@@ -16,15 +16,33 @@ public:
 	update_status PreUpdate(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
+	bool LoadSettings(JsonParser* data)override;
+	bool SaveSettings(JsonParser* data)const override;
 
 	void OnResize(int width, int height);
 
 	bool show_demo_window = true;
 	bool show_another_window = false;
+
+	bool vsync = false;
+
+	void capFps();
+
+	void SetWireframeMode(bool active);
+
 public:
 
 	Light lights[MAX_LIGHTS];
 	SDL_GLContext context;
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+	std::vector<Vertex> vertex;
+
+	//OpenGL Options
+	bool depth_test = true;
+	bool cull_face = true;
+	bool lighting = true;
+	bool color_material = true;
+	bool texture_2D = true;
+	bool wireframe = false;
 };

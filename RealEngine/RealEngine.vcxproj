@@ -50,7 +50,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)glew\lib;$(ProjectDir)SDL\include;$(ProjectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)assimp\include;$(ProjectDir)glew\lib;$(ProjectDir)SDL\include;$(ProjectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WINDOWS_IGNORE_PACKING_MISMATCH</PreprocessorDefinitions>
       <AdditionalModuleDependencies>%(AdditionalModuleDependencies)</AdditionalModuleDependencies>
     </ClCompile>
@@ -58,8 +58,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)assimp\lib;$(ProjectDir)glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc142-mt.lib;opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,14 +82,89 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="FBXLoader.h" />
+    <ClInclude Include="assimp\include\aabb.h" />
+    <ClInclude Include="assimp\include\ai_assert.h" />
+    <ClInclude Include="assimp\include\anim.h" />
+    <ClInclude Include="assimp\include\BaseImporter.h" />
+    <ClInclude Include="assimp\include\Bitmap.h" />
+    <ClInclude Include="assimp\include\BlobIOSystem.h" />
+    <ClInclude Include="assimp\include\ByteSwapper.h" />
+    <ClInclude Include="assimp\include\camera.h" />
+    <ClInclude Include="assimp\include\cexport.h" />
+    <ClInclude Include="assimp\include\cfileio.h" />
+    <ClInclude Include="assimp\include\cimport.h" />
+    <ClInclude Include="assimp\include\color4.h" />
+    <ClInclude Include="assimp\include\CreateAnimMesh.h" />
+    <ClInclude Include="assimp\include\DefaultIOStream.h" />
+    <ClInclude Include="assimp\include\DefaultIOSystem.h" />
+    <ClInclude Include="assimp\include\DefaultLogger.hpp" />
+    <ClInclude Include="assimp\include\Defines.h" />
+    <ClInclude Include="assimp\include\defs.h" />
+    <ClInclude Include="assimp\include\Exceptional.h" />
+    <ClInclude Include="assimp\include\Exporter.hpp" />
+    <ClInclude Include="assimp\include\fast_atof.h" />
+    <ClInclude Include="assimp\include\GenericProperty.h" />
+    <ClInclude Include="assimp\include\Hash.h" />
+    <ClInclude Include="assimp\include\Importer.hpp" />
+    <ClInclude Include="assimp\include\importerdesc.h" />
+    <ClInclude Include="assimp\include\IOStream.hpp" />
+    <ClInclude Include="assimp\include\IOStreamBuffer.h" />
+    <ClInclude Include="assimp\include\IOSystem.hpp" />
+    <ClInclude Include="assimp\include\irrXMLWrapper.h" />
+    <ClInclude Include="assimp\include\light.h" />
+    <ClInclude Include="assimp\include\LineSplitter.h" />
+    <ClInclude Include="assimp\include\LogAux.h" />
+    <ClInclude Include="assimp\include\Logger.hpp" />
+    <ClInclude Include="assimp\include\LogStream.hpp" />
+    <ClInclude Include="assimp\include\Macros.h" />
+    <ClInclude Include="assimp\include\material.h" />
+    <ClInclude Include="assimp\include\MathFunctions.h" />
+    <ClInclude Include="assimp\include\matrix3x3.h" />
+    <ClInclude Include="assimp\include\matrix4x4.h" />
+    <ClInclude Include="assimp\include\MemoryIOWrapper.h" />
+    <ClInclude Include="assimp\include\mesh.h" />
+    <ClInclude Include="assimp\include\metadata.h" />
+    <ClInclude Include="assimp\include\NullLogger.hpp" />
+    <ClInclude Include="assimp\include\ParsingUtils.h" />
+    <ClInclude Include="assimp\include\pbrmaterial.h" />
+    <ClInclude Include="assimp\include\postprocess.h" />
+    <ClInclude Include="assimp\include\Profiler.h" />
+    <ClInclude Include="assimp\include\ProgressHandler.hpp" />
+    <ClInclude Include="assimp\include\qnan.h" />
+    <ClInclude Include="assimp\include\quaternion.h" />
+    <ClInclude Include="assimp\include\RemoveComments.h" />
+    <ClInclude Include="assimp\include\scene.h" />
+    <ClInclude Include="assimp\include\SceneCombiner.h" />
+    <ClInclude Include="assimp\include\SGSpatialSort.h" />
+    <ClInclude Include="assimp\include\SkeletonMeshBuilder.h" />
+    <ClInclude Include="assimp\include\SmoothingGroups.h" />
+    <ClInclude Include="assimp\include\SpatialSort.h" />
+    <ClInclude Include="assimp\include\StandardShapes.h" />
+    <ClInclude Include="assimp\include\StreamReader.h" />
+    <ClInclude Include="assimp\include\StreamWriter.h" />
+    <ClInclude Include="assimp\include\StringComparison.h" />
+    <ClInclude Include="assimp\include\StringUtils.h" />
+    <ClInclude Include="assimp\include\Subdivision.h" />
+    <ClInclude Include="assimp\include\texture.h" />
+    <ClInclude Include="assimp\include\TinyFormatter.h" />
+    <ClInclude Include="assimp\include\types.h" />
+    <ClInclude Include="assimp\include\vector2.h" />
+    <ClInclude Include="assimp\include\vector3.h" />
+    <ClInclude Include="assimp\include\version.h" />
+    <ClInclude Include="assimp\include\Vertex.h" />
+    <ClInclude Include="assimp\include\XMLTools.h" />
+    <ClInclude Include="assimp\include\ZipArchiveIOSystem.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="glew\include\eglew.h" />
     <ClInclude Include="glew\include\glew.h" />
     <ClInclude Include="glew\include\glxew.h" />
     <ClInclude Include="glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="HierarchyWindow.h" />
+    <ClInclude Include="ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="ImGuizmo\ImSequencer.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_opengl2.h" />
@@ -186,23 +261,30 @@
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
+    <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="ModulePhysics3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleInput.h" />
+    <ClInclude Include="ModuleScene.h" />
     <ClInclude Include="ModuleSceneIntro.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="FBXLoader.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="HierarchyWindow.cpp" />
+    <ClCompile Include="ImGuizmo\ImGuizmo.cpp" />
+    <ClCompile Include="ImGuizmo\ImSequencer.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -299,18 +381,32 @@
     <ClCompile Include="ModuleConsole.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleLoader.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
+    <ClCompile Include="ModuleScene.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assimp\include\.editorconfig" />
+    <None Include="assimp\include\color4.inl" />
+    <None Include="assimp\include\config.h.in" />
+    <None Include="assimp\include\material.inl" />
+    <None Include="assimp\include\matrix3x3.inl" />
+    <None Include="assimp\include\matrix4x4.inl" />
+    <None Include="assimp\include\quaternion.inl" />
+    <None Include="assimp\include\SmoothingGroups.inl" />
+    <None Include="assimp\include\vector2.inl" />
+    <None Include="assimp\include\vector3.inl" />
     <None Include="MathGeoLib\src\Geometry\KDTree.inl" />
     <None Include="MathGeoLib\src\Geometry\QuadTree.inl" />
     <None Include="MathGeoLib\src\Geometry\TriangleMesh_IntersectRay_AVX.inl" />
