@@ -282,6 +282,11 @@ update_status ModuleEditor::Update(float dt)
 						App->window->SetSize(App->window->width, App->window->height);
 				}
 
+				 if (ImGui::Button("Reset changes", ImVec2(100, 25)))
+				{
+					resetWindow();
+				}
+
 				//Refresh Rate
 				ImGui::Text("Refresh Rate %i", (int)ImGui::GetIO().Framerate);
 
@@ -626,5 +631,11 @@ bool ModuleEditor::SaveSettings(JsonParser* data) const
 	return true;
 }
 
+void ModuleEditor::resetWindow()
+{
+	App->window->SetSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	App->window->SetBrightness(1.0f);
+
+}
 
 

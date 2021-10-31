@@ -24,6 +24,8 @@ public:
 	bool LoadSettings(JsonParser* data)override;
 	bool SaveSettings(JsonParser* data)const override;
 
+	void resetWindow();
+
 public:
 
 	bool show_demo_window = false;

@@ -199,3 +199,38 @@ void Application::AddModule(Module* mod)
 	list_modules.push_back(mod);
 }
 
+
+//Vram memory
+float vramBudget()
+{
+	GLint total_memory = 0;
+	glGetIntegerv(0x9048, &total_memory);
+	// KB to MB
+	return total_memory / (1024);
+
+}
+float vramUsage()
+{
+	GLint used_memory = 0;
+	glGetIntegerv(0x9047, &used_memory);
+	// KB to MB
+	return used_memory / (1024);
+
+}
+float vramAvailable()
+{
+	GLint available_memory = 0;
+	glGetIntegerv(0x9049, &available_memory);
+	// KB to MB
+	return available_memory / (1024);
+
+}
+
+float vramReserved()
+{
+	GLint reserved_memory = 0;
+	glGetIntegerv(0x904B, &reserved_memory);
+	// KB to MB
+	return reserved_memory / (1024);
+
+}

@@ -45,8 +45,8 @@ public:
 	std::string orgName = "UPC CITM";
 
 	//Screen properties slides
-	int height = 1024;
-	int width = 1280;
+	int height = 720;
+	int width = 1200;
 	int max_fps = 60;
 	float brightness = 1.0f;
 
