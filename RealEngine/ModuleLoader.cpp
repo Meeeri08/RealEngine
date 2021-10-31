@@ -55,9 +55,9 @@ update_status ModuleLoader::PreUpdate(float dt)
     aiAttachLogStream(&stream);
 
 
-    for (int i = 0; i < vertex.size(); ++i)
+    for (int i = 0; i < meshes.size(); ++i)
     {
-        vertex[i]->LoadMesh();
+        meshes[i]->Render();
     }
 
 
@@ -88,7 +88,6 @@ bool ModuleLoader::CleanUp()
 
 void ModuleLoader::Load(char* FBXpath)
 {
-    Vertex* ourMesh = new Vertex();
     std::string fullFBXPath = FBXpath;
     std::string modelName = GenerateNameFromPath(fullFBXPath);
 
@@ -100,42 +99,20 @@ void ModuleLoader::Load(char* FBXpath)
         GO->parent = App->scene_intro->GetRoot();
         App->scene_intro->GetRoot()->AddChildren(GO);
 
-        // Use scene->mNumMeshes to iterate on scene->mMeshes array
-
         for (int i = 0; i < scene->mNumMeshes; ++i)
         {
-            //
-            aiMesh* sceneM = scene->mMeshes[i];
+            aiMesh* mesh = scene->mMeshes[i];
+            Mesh* mM = new Mesh(mesh);
+            int vertex= mM->Init(); 
+            App->console->AddLog("New mesh with %d vertices", vertex);
 
-            // copy vertices
-            ourMesh->num_vertex = sceneM->mNumVertices;
-            ourMesh->vertex = new float[ourMesh->num_vertex * 3];
-            memcpy(ourMesh->vertex, sceneM->mVertices, sizeof(float) * ourMesh->num_vertex * 3);
-            App->console->AddLog("New mesh with %d vertices", ourMesh->num_vertex);
-            // copy faces
-            if (sceneM->HasFaces())
-            {
-                ourMesh->num_index = sceneM->mNumFaces * 3;
-                ourMesh->index = new uint[ourMesh->num_index]; // assume each face is a triangle
-                for (uint i = 0; i < sceneM->mNumFaces; ++i)
-                {
-                    if (sceneM->mFaces[i].mNumIndices != 3)
-                    {
-                        App->console->AddLog("WARNING, geometry face with != 3 indices!");
-                    }
-                    else
-                    {
-                        memcpy(&ourMesh->index[i * 3], sceneM->mFaces[i].mIndices, 3 * sizeof(uint));
-                    }
-                }
-            }
-            ourMesh->GenerateBuffer();
+            meshes.push_back(mM);
         }
-        aiReleaseImport(scene);
-        vertex.push_back(ourMesh);
-    }   
+    }
     else
         App->console->AddLog("Error loading scene %s", FBXpath);
+
+  
 }
 
 std::string ModuleLoader::GenerateNameFromPath(std::string path)
@@ -158,52 +135,4 @@ std::string ModuleLoader::GenerateNameFromPath(std::string path)
     }
     return name;
 }
-
-void Vertex::GenerateBuffer()
-{
-    // Initialization
-     //Vertex
-    glGenBuffers(1, &id_vertex);
-    glBindBuffer(GL_ARRAY_BUFFER, id_vertex);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * num_vertex * 3, vertex, GL_STATIC_DRAW);
-
-    //Index
-    glGenBuffers(1, &id_index);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_index);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * num_index, index, GL_STATIC_DRAW);
-
-    // Textures
-    glGenBuffers(1, &id_tex);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_tex);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * num_index, tex, GL_STATIC_DRAW);
-}
-
-void Vertex::LoadMesh()
-{
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-    glBindBuffer(GL_ARRAY_BUFFER, id_vertex);
-    glVertexPointer(3, GL_FLOAT, 0, NULL);
-
-    glBindBuffer(GL_ARRAY_BUFFER, texture_id);
-    glTexCoordPointer(2, GL_FLOAT, 0, NULL);
-
-    glBindTexture(GL_TEXTURE_2D, texture_id);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_index);
-
-    //Draw Mesh
-    glDrawElements(GL_TRIANGLES, num_index, GL_UNSIGNED_INT, NULL);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
-    glBindTexture(GL_TEXTURE_2D, 0);
-
-    //Disables States
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_NORMAL_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-}
-
 

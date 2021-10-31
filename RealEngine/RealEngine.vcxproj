@@ -266,6 +266,7 @@
     <ClInclude Include="MathGeoLib\tests\SystemInfo.h" />
     <ClInclude Include="MathGeoLib\tests\TestData.h" />
     <ClInclude Include="MathGeoLib\tests\TestRunner.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
@@ -385,6 +386,7 @@
     <ClCompile Include="MathGeoLib\tests\TriangleMeshTests.cpp" />
     <ClCompile Include="MathGeoLib\tests\TriangleTests.cpp" />
     <ClCompile Include="MathGeoLib\tests\VectorTests.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleConsole.cpp" />

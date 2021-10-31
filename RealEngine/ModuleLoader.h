@@ -1,4 +1,5 @@
 #pragma once
+#include "Mesh.h"
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
@@ -11,40 +12,6 @@
 
 #include <vector>
 
-struct Vertex
-{
-	// Index
-	uint id_index = 0; // index in VRAM
-	uint num_index = 0;
-	uint* index = nullptr;
-
-	// Vertex
-	uint id_vertex = 0; // unique vertex in VRAM
-	uint num_vertex = 0;
-	float* vertex = nullptr;
-
-	// Texture
-	uint id_tex = 0;
-	uint num_tex = 0;
-	uint texture_id = 0;
-	float* tex = nullptr;
-
-	// Normals
-	uint id_normals = 0;
-	float* normals = nullptr;
-
-	bool renderVertexNorms;
-	void RenderVertexNorms() const;
-
-	bool  renderFaceNorms;
-	void RenderFaceNorms() const;
-
-	// Buffers
-	void GenerateBuffer();
-
-	// Draw Mesh 
-	void LoadMesh();
-};
 
 class ModuleLoader : public Module
 {
@@ -61,6 +28,8 @@ public:
 	void Load(char* FBXpath);
 
 	std::string GenerateNameFromPath(std::string path);
+	std::vector<Mesh*> meshes;
+
 
 	std::vector<Vertex*> vertex;
 };
