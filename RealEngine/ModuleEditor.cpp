@@ -189,14 +189,17 @@ update_status ModuleEditor::Update(float dt)
 			App->fbxLoader->Load("Assets/plane.fbx", App->renderer3D->vertex);
 		}
 
-		if (ImGui::MenuItem("Pyramid"))
-		{
-			App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
-		}
 		if (ImGui::MenuItem("Torus"))
 		{
 			App->fbxLoader->Load("Assets/torus.fbx", App->renderer3D->vertex);
 		}
+
+
+		if (ImGui::MenuItem("Pyramid"))
+		{
+			//App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
+		}
+
 		if (ImGui::MenuItem("Disc"))
 		{
 			App->fbxLoader->Load("Assets/disc.fbx", App->renderer3D->vertex);
