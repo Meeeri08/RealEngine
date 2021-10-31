@@ -29,7 +29,4 @@ public:
 
 	std::string GenerateNameFromPath(std::string path);
 	std::vector<Mesh*> meshes;
-
-
-	std::vector<Vertex*> vertex;
 };
