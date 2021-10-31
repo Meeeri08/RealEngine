@@ -19,7 +19,7 @@
 
 ModuleLoader::ModuleLoader(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-    name = "scene_loader";
+    name = "module_loader";
 }
 
 // Destructor
@@ -64,6 +64,8 @@ update_status ModuleLoader::PreUpdate(float dt)
     {
         vertex[i]->LoadMesh();
     }
+
+
 
     return UPDATE_CONTINUE;
 }

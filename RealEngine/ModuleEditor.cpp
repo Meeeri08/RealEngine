@@ -173,36 +173,36 @@ update_status ModuleEditor::Update(float dt)
 
 		if (ImGui::MenuItem("Cube"))
 		{
-			App->fbxLoader->Load("Assets/cube.fbx");
+			App->fbxLoader->Load("Assets/Cube.fbx");
 		}
 		if (ImGui::MenuItem("Sphere"))
 		{
-			App->fbxLoader->Load("Assets/sphere.fbx");
+			App->fbxLoader->Load("Assets/Sphere.fbx");
 
 		}
 		if (ImGui::MenuItem("Cylinder"))
 		{
-			App->fbxLoader->Load("Assets/cylinder.fbx");
+			App->fbxLoader->Load("Assets/Cylinder.fbx");
 		}
 		if (ImGui::MenuItem("Plane"))
 		{
-			App->fbxLoader->Load("Assets/plane.fbx");
+			App->fbxLoader->Load("Assets/Plane.fbx");
 		}
 
 		if (ImGui::MenuItem("Torus"))
 		{
-			App->fbxLoader->Load("Assets/torus.fbx");
+			App->fbxLoader->Load("Assets/Torus.fbx");
 		}
 
 
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			//App->fbxLoader->Load("Assets/pyramid.fbx");
+			//App->fbxLoader->Load("Assets/Pyramid.fbx");
 		}
 
 		if (ImGui::MenuItem("Disc"))
 		{
-			App->fbxLoader->Load("Assets/disc.fbx");
+			App->fbxLoader->Load("Assets/Disc.fbx");
 		}
 		ImGui::End();
 	}
@@ -485,7 +485,6 @@ update_status ModuleEditor::Update(float dt)
 				ImGui::Spacing();
 
 				ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe);
-
 
 			}
 		}

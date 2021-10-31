@@ -31,6 +31,16 @@ struct Vertex
 	uint texture_id = 0;
 	float* tex = nullptr;
 
+	// Normals
+	uint id_normals = 0;
+	float* normals = nullptr;
+
+	bool renderVertexNorms;
+	void RenderVertexNorms() const;
+
+	bool  renderFaceNorms;
+	void RenderFaceNorms() const;
+
 	// Buffers
 	void GenerateBuffer();
 
