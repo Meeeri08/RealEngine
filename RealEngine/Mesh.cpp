@@ -41,7 +41,7 @@ void Mesh::Render()
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
-void Mesh::Init()
+int Mesh::Init()
 {
     num_vex = mesh->mNumFaces * 3;
 
@@ -72,6 +72,6 @@ void Mesh::Init()
     tex_id -= mesh->mNumFaces * 3 * 2;
     normal_id -= mesh->mNumFaces * 3 * 3;
     vertex_id -= mesh->mNumFaces * 3 * 3;
-
+    return mesh->mNumVertices;
 }
 

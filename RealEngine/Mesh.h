@@ -26,7 +26,7 @@ public:
 
  
     void Render();
-    void Init();
+    int Init();
 
     Mesh(aiMesh* aiMesh);
     ~Mesh();
