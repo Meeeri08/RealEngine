@@ -79,31 +79,35 @@ HRESULT GetVideoMemoryViaDirectDraw(HMONITOR hMonitor, DWORD* pdwAvailableVidMem
 
 float vramBudget()
 {
-    GLint total_mem_kb = 0;
-    glGetIntegerv(0x9048, &total_mem_kb);
-    return total_mem_kb / (1024); // KB to MB
+    GLint total_memory = 0;
+    glGetIntegerv(0x9048, &total_memory);
+    // KB to MB
+    return total_memory / (1024); 
     
 }
 float vramUsage()
 {
-    GLint avaliable_mem_kb = 0;
-    glGetIntegerv(0x9047, &avaliable_mem_kb);
-    return avaliable_mem_kb / (1024); // KB to MB
+    GLint used_memory = 0;
+    glGetIntegerv(0x9047, &used_memory);
+    // KB to MB
+    return used_memory / (1024); 
 
 }
 float vramAvailable()
 {
-    GLint avaliable_mem_kb = 0;
-    glGetIntegerv(0x9049, &avaliable_mem_kb);
-    return avaliable_mem_kb / (1024); // KB to MB
+    GLint available_memory = 0;
+    glGetIntegerv(0x9049, &available_memory);
+    // KB to MB
+    return available_memory / (1024); 
   
 }
 
 float vramReserved()
 {
-    GLint reserved_mem_kb = 0;
-    glGetIntegerv(0x904B, &reserved_mem_kb);
-    return reserved_mem_kb / (1024); // KB to MB
+    GLint reserved_memory = 0;
+    glGetIntegerv(0x904B, &reserved_memory);
+    // KB to MB
+    return reserved_memory / (1024); 
    
 }
 
