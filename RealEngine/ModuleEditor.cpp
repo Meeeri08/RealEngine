@@ -173,36 +173,36 @@ update_status ModuleEditor::Update(float dt)
 
 		if (ImGui::MenuItem("Cube"))
 		{
-			App->fbxLoader->Load("Assets/cube.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/cube.fbx");
 		}
 		if (ImGui::MenuItem("Sphere"))
 		{
-			App->fbxLoader->Load("Assets/sphere.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/sphere.fbx");
 
 		}
 		if (ImGui::MenuItem("Cylinder"))
 		{
-			App->fbxLoader->Load("Assets/cylinder.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/cylinder.fbx");
 		}
 		if (ImGui::MenuItem("Plane"))
 		{
-			App->fbxLoader->Load("Assets/plane.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/plane.fbx");
 		}
 
 		if (ImGui::MenuItem("Torus"))
 		{
-			App->fbxLoader->Load("Assets/torus.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/torus.fbx");
 		}
 
 
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			//App->fbxLoader->Load("Assets/pyramid.fbx", App->renderer3D->vertex);
+			//App->fbxLoader->Load("Assets/pyramid.fbx");
 		}
 
 		if (ImGui::MenuItem("Disc"))
 		{
-			App->fbxLoader->Load("Assets/disc.fbx", App->renderer3D->vertex);
+			App->fbxLoader->Load("Assets/disc.fbx");
 		}
 		ImGui::End();
 	}

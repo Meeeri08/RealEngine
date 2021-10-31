@@ -51,10 +51,10 @@ public:
 	update_status PostUpdate(float dt) override;
 	bool CleanUp() override;
 
-	void Load(char* FBXpath, std::vector<Vertex>& vertex);
+	void Load(char* FBXpath);
 
 	std::string GenerateNameFromPath(std::string path);
-
+	std::vector<Vertex*> vertex;
 
 
 };

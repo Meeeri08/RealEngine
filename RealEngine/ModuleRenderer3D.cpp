@@ -68,7 +68,7 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 
-	App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
+	
 
 	if (ret == true)
 	{
@@ -161,11 +161,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
-
-	for (int i = 0; i < vertex.size(); ++i)
-	{
-		vertex[i].LoadMesh();
-	}
 
 	return UPDATE_CONTINUE;
 }

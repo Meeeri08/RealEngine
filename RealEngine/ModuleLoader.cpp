@@ -44,6 +44,9 @@ bool ModuleLoader::Init()
         }
     }
 
+    //Loading FBX
+    App->fbxLoader->Load("Assets/BakerHouse.fbx");
+
     return ret;
 }
 
@@ -55,6 +58,12 @@ update_status ModuleLoader::PreUpdate(float dt)
     struct aiLogStream stream;
     stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
     aiAttachLogStream(&stream);
+
+
+    for (int i = 0; i < vertex.size(); ++i)
+    {
+        vertex[i]->LoadMesh();
+    }
 
     return UPDATE_CONTINUE;
 }
@@ -82,8 +91,9 @@ bool ModuleLoader::CleanUp()
     return true;
 }
 
-void ModuleLoader::Load(char* FBXpath, std::vector<Vertex>& vertex)
+void ModuleLoader::Load(char* FBXpath)
 {
+    Vertex* ourMesh = new Vertex();
     std::string fullFBXPath = FBXpath;
     std::string modelName = GenerateNameFromPath(fullFBXPath);
 
@@ -99,23 +109,21 @@ void ModuleLoader::Load(char* FBXpath, std::vector<Vertex>& vertex)
 
         // Use scene->mNumMeshes to iterate on scene->mMeshes array
 
-        vertex.resize(scene->mNumMeshes);
         for (int i = 0; i < scene->mNumMeshes; ++i)
         {
             //
-            Vertex& ourMesh = vertex[i];
             aiMesh* sceneM = scene->mMeshes[i];
 
             // copy vertices
-            ourMesh.num_vertex = sceneM->mNumVertices;
-            ourMesh.vertex = new float[ourMesh.num_vertex * 3];
-            memcpy(ourMesh.vertex, sceneM->mVertices, sizeof(float) * ourMesh.num_vertex * 3);
-            App->console->AddLog("New mesh with %d vertices", ourMesh.num_vertex);
+            ourMesh->num_vertex = sceneM->mNumVertices;
+            ourMesh->vertex = new float[ourMesh->num_vertex * 3];
+            memcpy(ourMesh->vertex, sceneM->mVertices, sizeof(float) * ourMesh->num_vertex * 3);
+            App->console->AddLog("New mesh with %d vertices", ourMesh->num_vertex);
             // copy faces
             if (sceneM->HasFaces())
             {
-                ourMesh.num_index = sceneM->mNumFaces * 3;
-                ourMesh.index = new uint[ourMesh.num_index]; // assume each face is a triangle
+                ourMesh->num_index = sceneM->mNumFaces * 3;
+                ourMesh->index = new uint[ourMesh->num_index]; // assume each face is a triangle
                 for (uint i = 0; i < sceneM->mNumFaces; ++i)
                 {
                     if (sceneM->mFaces[i].mNumIndices != 3)
@@ -124,17 +132,17 @@ void ModuleLoader::Load(char* FBXpath, std::vector<Vertex>& vertex)
                     }
                     else
                     {
-                        memcpy(&ourMesh.index[i * 3], sceneM->mFaces[i].mIndices, 3 * sizeof(uint));
+                        memcpy(&ourMesh->index[i * 3], sceneM->mFaces[i].mIndices, 3 * sizeof(uint));
                     }
                 }
             }
 
 
-            ourMesh.GenerateBuffer();
+            ourMesh->GenerateBuffer();
         }
         aiReleaseImport(scene);
-        //scene->mNumMeshes++;
-    }
+        vertex.push_back(ourMesh);
+    }   
     else
         App->console->AddLog("Error loading scene %s", FBXpath);
 }
