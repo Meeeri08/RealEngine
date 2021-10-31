@@ -667,6 +667,9 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -1010,6 +1013,9 @@
       <Filter>Sources\Components</Filter>
     </ClCompile>
     <ClCompile Include="Transformation.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>

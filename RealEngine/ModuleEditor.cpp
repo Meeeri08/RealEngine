@@ -194,10 +194,9 @@ update_status ModuleEditor::Update(float dt)
 			App->fbxLoader->Load("Assets/Torus.fbx");
 		}
 
-
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			//App->fbxLoader->Load("Assets/Pyramid.fbx");
+			App->fbxLoader->Load("Assets/Pyramid.fbx");
 		}
 
 		if (ImGui::MenuItem("Disc"))
