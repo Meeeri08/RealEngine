@@ -18,19 +18,16 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	void AddChild(GameObject* child, GameObject* parent = nullptr);
-
-	void selectGameObject(GameObject* gameObject);
-
 	GameObject* CreateGameObject(std::string name, float3 position = { 0,0,0 }, Quat rotation = { 0,0,0,1 }, float3 scale = { 1,1,1 }, GameObject* parent = nullptr, char* mesh_path = nullptr, char* texture_path = nullptr);
-	void DrawGameObjects(GameObject* gameObject, GameObject* root);
+	void SelectGameObject(GameObject* gameObject);
 	void UpdateGameObject(GameObject* gameObject);
 	void DestroyGameObject(GameObject* selectedGameObject);
 
+	void AddChild(GameObject* child, GameObject* parent = nullptr);
+
 	GameObject* GetRoot();
 	GameObject* GetGameObjectByUUID(uint UUID) const;
-
-	GameObject* GetGameObjectUUIDRecursive(uint UUID, GameObject* go) const;
+	GameObject* GetGameObjectUUIDRecursive(uint UUID, GameObject* gameObject) const;
 
 public:
 

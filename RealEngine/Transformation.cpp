@@ -4,8 +4,20 @@ Transformation::Transformation(Component::ComponentType type, GameObject* owner)
 {
 	this->owner = owner;
 	position = { 0.0f,0.0f,0.0f };
-	rotationVector = { 0.0f,0.0f,0.0f }; // user-friendly
 	scale = { 1.0f,1.0f,1.0f };
+	rotationVector = { 0.0f,0.0f,0.0f }; // user-friendly
+	rotation = { 0.0f,0.0f,0.0f,1.0f }; // used for calculations
+
+	localMatrix = float4x4::identity;
+	globalMatrix = float4x4::identity;
+}
+
+Transformation::Transformation(Component::ComponentType type) :Component(type, owner)
+{
+	this->owner = owner;
+	position = { 0.0f,0.0f,0.0f };
+	scale = { 1.0f,1.0f,1.0f };
+	rotationVector = { 0.0f,0.0f,0.0f }; // user-friendly
 	rotation = { 0.0f,0.0f,0.0f,1.0f }; // used for calculations
 
 	localMatrix = float4x4::identity;
@@ -36,6 +48,12 @@ float3 Transformation::GetEulerRotation()
 	return rotationVector;
 }
 
+
+Quat Transformation::GetQuaternionRotation()
+{
+	return rotation;
+}
+
 void Transformation::SetPosition(float3 position)
 {
 	this->position = position;
@@ -60,11 +78,6 @@ void Transformation::SetQuaternionRotation(Quat quatRotation)
 	rotation = quatRotation;
 	rotationVector = rotation.ToEulerXYZ() * RADTODEG;
 	RecalculateMatrix();
-}
-
-Quat Transformation::GetQuaternionRotation()
-{
-	return rotation;
 }
 
 void Transformation::RecalculateMatrix()

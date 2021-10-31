@@ -7,11 +7,14 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	name = "SceneIntro";
+	name = "Scene Intro";
 	root = new GameObject();
 	root->name = "root";
+	//root->CreateComponent(Component::ComponentType::Transformation);
 	selectedGameObject = nullptr;
 	inGame = false;
+	guizmoOperation = ImGuizmo::NO_OPERATION;
+	
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -85,27 +88,18 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 bool ModuleSceneIntro::CleanUp()
 {
 	App->console->AddLog("Unloading Intro scene");
-
+	delete root;
 	return true;
 }
 
-void ModuleSceneIntro::AddChild(GameObject* child, GameObject* parent)
-{
-	if (parent == nullptr)
-		parent = root;
-
-	parent->children.push_back(child);
-	child->parent = parent;
-}
-
-void ModuleSceneIntro::selectGameObject(GameObject* gameObject)
+void ModuleSceneIntro::SelectGameObject(GameObject* gameObject)
 {
 	if (selectedGameObject != nullptr)
-		selectedGameObject->setSelected(false);
+		selectedGameObject->SetSelected(false);
 
 	selectedGameObject = gameObject;
 	if (gameObject != nullptr)
-		gameObject->setSelected(true);
+		gameObject->SetSelected(true);
 }
 
 GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position, Quat rotation, float3 scale, GameObject* parent, char* mesh_path, char* texture_path)
@@ -115,32 +109,14 @@ GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position
 	newGameObject->ChangeName(name);
 
 	if (newGameObject != nullptr)
-		AddChild(newGameObject, parent);
+		App->scene_intro->AddChild(newGameObject, parent);
+		//AddChild(newGameObject, parent);
 
 	newGameObject->transformation->SetPosition(position);
 	newGameObject->transformation->SetQuaternionRotation(rotation);
 	newGameObject->transformation->SetScale(scale);
-	newGameObject->transformation->isChanged = true;
 
 	return newGameObject;
-}
-
-void ModuleSceneIntro::DrawGameObjects(GameObject* gameObject, GameObject* root)
-{
-	bool drawAgain = true;
-
-	if (gameObject != root)
-		gameObject->Draw();
-	else
-		drawAgain = true;
-
-	if (drawAgain)
-	{
-		for (uint i = 0; i < gameObject->children.size(); i++)
-		{
-			DrawGameObjects(gameObject->children[i], root);
-		}
-	}
 }
 
 void ModuleSceneIntro::UpdateGameObject(GameObject* gameObject)
@@ -174,6 +150,14 @@ void ModuleSceneIntro::DestroyGameObject(GameObject* selectedGameObject)
 		this->selectedGameObject = nullptr;
 }
 
+void ModuleSceneIntro::AddChild(GameObject* child, GameObject* parent)
+{
+	if (parent == nullptr)
+		parent = root;
+
+	parent->children.push_back(child);
+	child->parent = parent;
+}
 
 GameObject* ModuleSceneIntro::GetRoot()
 {

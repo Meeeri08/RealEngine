@@ -20,7 +20,6 @@ ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, s
 
 	inspectorWindow = new InspectorWindow();
 	hierarchyWindow = new HierarchyWindow();
-
 }
 
 ModuleEditor::~ModuleEditor()
@@ -54,7 +53,6 @@ bool ModuleEditor::CleanUp()
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
 {
-
 	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
@@ -81,6 +79,7 @@ update_status ModuleEditor::Update(float dt)
 	{
 		if (ImGui::BeginMenu("File"))
 		{
+			ImGui::MenuItem("Save Engine", NULL, &save);
 			ImGui::EndMenu();
 		}
 

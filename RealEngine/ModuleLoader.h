@@ -11,7 +11,6 @@
 
 #include <vector>
 
-
 struct Vertex
 {
 	// Index
@@ -23,7 +22,6 @@ struct Vertex
 	uint id_vertex = 0; // unique vertex in VRAM
 	uint num_vertex = 0;
 	float* vertex = nullptr;
-
 
 	// Texture
 	uint id_tex = 0;
@@ -46,7 +44,6 @@ struct Vertex
 
 	// Draw Mesh 
 	void LoadMesh();
-
 };
 
 class ModuleLoader : public Module
@@ -64,7 +61,6 @@ public:
 	void Load(char* FBXpath);
 
 	std::string GenerateNameFromPath(std::string path);
+
 	std::vector<Vertex*> vertex;
-
-
 };

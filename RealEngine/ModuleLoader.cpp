@@ -4,18 +4,14 @@
 #include <gl/GLU.h>
 
 #include "ModuleLoader.h"
-
-
 #include "Globals.h"
 #include "Application.h"
 #include "GameObject.h"
 #include "ModuleSceneIntro.h"
 #include <cmath>
 
-
 #define CHECKERS_HEIGHT 64
 #define CHECKERS_WIDTH  64
-
 
 ModuleLoader::ModuleLoader(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -53,7 +49,6 @@ bool ModuleLoader::Init()
 // PreUpdate: clear buffer
 update_status ModuleLoader::PreUpdate(float dt)
 {
-
     // Stream log messages to Debug window
     struct aiLogStream stream;
     stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
@@ -75,13 +70,11 @@ update_status ModuleLoader::Update(float dt)
     return UPDATE_CONTINUE;
 }
 
-
 // PostUpdate present buffer to screen
 update_status ModuleLoader::PostUpdate(float dt)
 {
     return UPDATE_CONTINUE;
 }
-
 
 bool ModuleLoader::CleanUp()
 {
@@ -98,8 +91,6 @@ void ModuleLoader::Load(char* FBXpath)
     Vertex* ourMesh = new Vertex();
     std::string fullFBXPath = FBXpath;
     std::string modelName = GenerateNameFromPath(fullFBXPath);
-
-   
 
     const aiScene* scene = aiImportFile(fullFBXPath.c_str(), aiProcessPreset_TargetRealtime_MaxQuality);
     if (scene != nullptr && scene->HasMeshes())
@@ -138,8 +129,6 @@ void ModuleLoader::Load(char* FBXpath)
                     }
                 }
             }
-
-
             ourMesh->GenerateBuffer();
         }
         aiReleaseImport(scene);
@@ -167,7 +156,6 @@ std::string ModuleLoader::GenerateNameFromPath(std::string path)
     for (int i = posSlash + 1; i < posDot; i++) {
         name += normalizedPath[i];
     }
-
     return name;
 }
 
@@ -190,12 +178,10 @@ void Vertex::GenerateBuffer()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * num_index, tex, GL_STATIC_DRAW);
 }
 
-
 void Vertex::LoadMesh()
 {
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
 
     glBindBuffer(GL_ARRAY_BUFFER, id_vertex);
     glVertexPointer(3, GL_FLOAT, 0, NULL);
@@ -209,7 +195,6 @@ void Vertex::LoadMesh()
     //Draw Mesh
     glDrawElements(GL_TRIANGLES, num_index, GL_UNSIGNED_INT, NULL);
 
-
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
@@ -219,7 +204,6 @@ void Vertex::LoadMesh()
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
 }
 
 

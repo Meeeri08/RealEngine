@@ -55,7 +55,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##PositionX", &pos.x, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetPosition(pos);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -63,7 +62,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##PositionY", &pos.y, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetPosition(pos);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -71,7 +69,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##PositionZ", &pos.z, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetPosition(pos);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -83,7 +80,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##RotationX", &rotation.x, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetRotation(rotation);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -91,7 +87,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##RotationY", &rotation.y, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetRotation(rotation);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -99,7 +94,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##RotationZ", &rotation.z, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetRotation(rotation);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 		// Scale
@@ -109,7 +103,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##ScaleX", &scale.x, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetScale(scale);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -117,7 +110,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##ScaleY", &scale.y, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetScale(scale);
-			transformation->isChanged = true;
 		}
 		ImGui::NextColumn();
 
@@ -125,7 +117,6 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		if (ImGui::DragFloat("##ScaleZ", &scale.z, 0.05f, 0.f, 0.f, "%.2f"))
 		{
 			transformation->SetScale(scale);
-			transformation->isChanged = true;
 		}
 
 		ImGui::NextColumn();

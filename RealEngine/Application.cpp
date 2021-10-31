@@ -41,7 +41,6 @@ Application::~Application()
 	}
 
 	list_modules.clear();
-
 }
 
 bool Application::Init()
@@ -97,7 +96,6 @@ update_status Application::FinishUpdate()
 			ret = list_modules[i]->PostUpdate(dt);
 		}
 	}
-	
 	return ret;
 }
 

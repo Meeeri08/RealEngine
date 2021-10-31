@@ -1,7 +1,6 @@
 #pragma once
 #include "Globals.h"
 #include "JsonParser.h"
-//#include "GameObject.h"
 
 class GameObject;
 
@@ -20,13 +19,16 @@ public:
 	virtual void Enable();
 	virtual void Update();
 	virtual void Disable();
+
 	virtual Component::ComponentType GetComponentType();
 
 	virtual bool Save(JsonParser* data);
 	virtual bool Load(JsonParser* data);
 
 protected:
+
 	uint component_UUID = 0;
+
 public:
 
 	GameObject* owner;

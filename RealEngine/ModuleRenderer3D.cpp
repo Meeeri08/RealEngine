@@ -6,7 +6,6 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 
-
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
@@ -40,7 +39,6 @@ bool ModuleRenderer3D::Init()
 		ret = false;
 	}
 
-
 	//Init the GLEW library
 	GLenum err = glewInit();
 	// … check for errors
@@ -67,8 +65,6 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_LIGHTING);
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
-
-	
 
 	if (ret == true)
 	{
@@ -161,6 +157,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+	CalculateGlobalMatrix(App->scene_intro->root);
 
 	return UPDATE_CONTINUE;
 }
@@ -176,9 +173,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	App->console->AddLog("Destroying 3D Renderer");
-
 	SDL_GL_DeleteContext(context);
-
 	return true;
 }
 
@@ -206,7 +201,6 @@ bool ModuleRenderer3D::SaveSettings(JsonParser* data) const
 	return true;
 }
 
-
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -233,10 +227,30 @@ void ModuleRenderer3D::capFps()
 
 void ModuleRenderer3D::SetWireframeMode()
 {
-	if (!wireframe) 
+	if (!wireframe)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	else
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
 
+void ModuleRenderer3D::CalculateGlobalMatrix(GameObject* gameObject)
+{
+	Transformation* transformation = (Transformation*)gameObject->GetComponent(Component::ComponentType::Transformation);
 
+	if (transformation != nullptr)
+	{
+		if (gameObject->parent == nullptr)
+		{
+			transformation->globalMatrix = transformation->localMatrix;
+		}
+		else
+		{
+			transformation->globalMatrix = ((Transformation*)gameObject->parent->GetComponent(Component::ComponentType::Transformation))->globalMatrix * transformation->localMatrix;
+		}
+
+		for (std::vector<GameObject*>::iterator iterator = gameObject->children.begin(); iterator != gameObject->children.end(); iterator++)
+		{
+			CalculateGlobalMatrix((*iterator));
+		}
+	}
 }

@@ -3,6 +3,8 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "Light.h"
+#include "Component.h"
+#include "GameObject.h"
 
 #define MAX_LIGHTS 8
 
@@ -27,8 +29,9 @@ public:
 	bool vsync = false;
 
 	void capFps();
-
 	void SetWireframeMode();
+
+	void CalculateGlobalMatrix(GameObject* gameObject);
 
 public:
 

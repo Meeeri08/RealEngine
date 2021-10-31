@@ -37,6 +37,7 @@ public:
 	bool show_inspector = true;
 	bool show_hierarchy = true;
 	bool show_primitives = true;
+	bool save = true;
 	bool config = false;
 
 	std::vector<float> fps_log;
@@ -52,9 +53,6 @@ public:
 
 	bool configuration = true;
 
-
-
 	InspectorWindow* inspectorWindow;
 	HierarchyWindow* hierarchyWindow;
-
 };

@@ -42,7 +42,7 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 
 	if (ImGui::IsItemClicked(0))
 	{
-		App->scene_intro->selectGameObject(gameObject);
+		App->scene_intro->SelectGameObject(gameObject);
 	}
 
 	if (ImGui::BeginPopupContextItem((gameObject->name + "rightClick").c_str(), 1))
@@ -54,7 +54,6 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 		ImGui::EndPopup();
 	}
 
-	/*
 
 	if (App->scene_intro->selectedGameObject != nullptr)
 	{
@@ -64,8 +63,6 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 		}
 	}
 	
-	*/
-
 	if (ImGui::BeginDragDropSource())
 	{
 		uint gameObject_UUID = gameObject->GetUUID();

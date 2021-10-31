@@ -10,6 +10,7 @@ class Transformation : public Component
 public:
 
 	Transformation(Component::ComponentType type, GameObject* owner);
+	Transformation(Component::ComponentType type);
 	~Transformation();
 
 public:
@@ -21,7 +22,7 @@ public:
 	float3 GetEulerRotation();
 	Quat GetQuaternionRotation();
 
-	void SetPosition(float3 pos);
+	void SetPosition(float3 position);
 	void SetScale(float3 scl);
 	void SetRotation(float3 rot);
 	void SetQuaternionRotation(Quat quatRot);
@@ -32,14 +33,13 @@ public:
 	bool Load(JsonParser* data) override;
 
 public:
+
 	float3 position;
-	float3 rotationVector;
 	float3 scale;
+	float3 rotationVector;
 	Quat rotation;
 
 	float4x4 localMatrix;
 	float4x4 globalMatrix;
-
-	bool isChanged;
 };
 

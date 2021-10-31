@@ -2,6 +2,7 @@
 
 #include "Globals.h"
 #include "JSON/parson.h"
+#include "MathGeoLib/src/MathGeoLib.h"
 
 class JsonParser{
 
@@ -18,6 +19,7 @@ public:
 	float GetFloat(const char* name, float default = -1.0f);
 	bool GetBool(const char* name, bool default = false);
 	const char* GetString(const char* name, const char* default);
+	//float3 GetVector3(const char* name, const float3& default);
 	JSON_Array* GetArray(const char* name);
 	uint GetNumElementsInArray(const char* field) const;
 	uint GetUInt(const char* field, uint default = 0, int index = -1) const;
