@@ -60,8 +60,6 @@ update_status ModuleLoader::PreUpdate(float dt)
         meshes[i]->Render();
     }
 
-
-
     return UPDATE_CONTINUE;
 }
 
@@ -102,7 +100,7 @@ void ModuleLoader::Load(char* FBXpath)
         for (int i = 0; i < scene->mNumMeshes; ++i)
         {
             aiMesh* mesh = scene->mMeshes[i];
-            Mesh* mM = new Mesh(mesh);
+            Mesh* mM = new Mesh(Component::ComponentType::Mesh, mesh, GO);
             int vertex= mM->Init(); 
             App->console->AddLog("New mesh with %d vertices", vertex);
 
@@ -111,8 +109,6 @@ void ModuleLoader::Load(char* FBXpath)
     }
     else
         App->console->AddLog("Error loading scene %s", FBXpath);
-
-  
 }
 
 std::string ModuleLoader::GenerateNameFromPath(std::string path)
@@ -135,4 +131,3 @@ std::string ModuleLoader::GenerateNameFromPath(std::string path)
     }
     return name;
 }
-

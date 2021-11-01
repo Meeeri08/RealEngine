@@ -23,6 +23,7 @@ public:
 
 	void Draw(Application* App);
 	void DrawTransform(Transformation* transformation);
+	void DrawMesh(Mesh* mesh);
 
 public:
 

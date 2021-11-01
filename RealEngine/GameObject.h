@@ -3,6 +3,7 @@
 #include "JsonParser.h"
 #include "Application.h"
 #include "Transformation.h"
+#include "Mesh.h"
 
 #include <vector>
 #include <string>
@@ -51,6 +52,7 @@ public:
 
 	Application* App;
 	Transformation* transformation;
+	Mesh* mesh;
 
 	std::string name;
 	std::vector<Component*> components;

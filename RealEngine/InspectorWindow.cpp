@@ -28,6 +28,7 @@ void InspectorWindow::Draw(Application* App)
 		gameObject->name.assign(name);
 
 	if (gameObject->transformation != nullptr) DrawTransform(gameObject->transformation);
+	if (gameObject->mesh != nullptr) DrawMesh(gameObject->mesh);
 
 	ImGui::End();
 }
@@ -122,6 +123,18 @@ void InspectorWindow::DrawTransform(Transformation* transformation)
 		ImGui::NextColumn();
 		ImGui::Columns(1);
 	}
+
 }
 
+void InspectorWindow::DrawMesh(Mesh* mesh)
+{
+	if (ImGui::CollapsingHeader("Mesh"))
+	{
+		ImGui::Checkbox("Active", &mesh->isActive);
 
+		ImGui::Text("Index: %i", mesh->id_index); ImGui::NewLine();
+		ImGui::Text("Normals: %f", mesh->normals); ImGui::NewLine();
+		ImGui::Text("Vertices: %i", mesh->num_vertex); ImGui::NewLine();
+		
+	}
+}
