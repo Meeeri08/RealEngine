@@ -2,8 +2,6 @@
 #include "Module.h"
 #include "Globals.h"
 #include "Component.h"
-#include "glmath.h"
-#include "Light.h"
 
 #include "cimport.h"
 #include "scene.h"

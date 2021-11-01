@@ -9,8 +9,7 @@ class Transformation : public Component
 {
 public:
 
-	Transformation(Component::ComponentType type, GameObject* owner);
-	Transformation(Component::ComponentType type);
+	Transformation(Component::ComponentType type, GameObject* GO);
 	~Transformation();
 
 public:
@@ -20,24 +19,24 @@ public:
 	float3 GetPosition();
 	float3 GetScale();
 	float3 GetEulerRotation();
-	Quat GetQuaternionRotation();
+	Quat GetQuatRotation();
 
 	void SetPosition(float3 position);
 	void SetScale(float3 scl);
 	void SetRotation(float3 rot);
-	void SetQuaternionRotation(Quat quatRot);
+	void SetQuatRotation(Quat quatRot);
 
-	void RecalculateMatrix();
+	void CalculateMatrix();
 
-	bool Save(JsonParser* data) override;
-	bool Load(JsonParser* data) override;
+	//bool Save(JsonParser* data) override;
+	//bool Load(JsonParser* data) override;
 
 public:
 
 	float3 position;
 	float3 scale;
 	float3 rotationVector;
-	Quat rotation;
+	Quat quatRotation;
 
 	float4x4 localMatrix;
 	float4x4 globalMatrix;
