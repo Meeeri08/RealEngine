@@ -9,6 +9,7 @@ Repository Link: [github.com/Meeeri08/RealEngine](https://https://github.com/Mee
 - Mouse wheel: Zoom in and out.
 - Alt+Left click: Orbit the object.
 - SHIFT: duplicates movement speed.
+- F: Focus selected object.
 
 
 ## Team Members

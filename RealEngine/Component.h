@@ -14,7 +14,7 @@ public:
 	};
 
 public:
-	Component(ComponentType type, GameObject* owner);
+	Component(ComponentType type, GameObject* GO);
 	~Component();
 
 	virtual void Enable();
@@ -23,16 +23,13 @@ public:
 
 	virtual Component::ComponentType GetComponentType();
 
-	virtual bool Save(JsonParser* data);
-	virtual bool Load(JsonParser* data);
-
-protected:
-
-	uint component_UUID = 0;
+	//virtual bool Save(JsonParser* data);
+	//virtual bool Load(JsonParser* data);
 
 public:
 
-	GameObject* owner;
+	GameObject* GO;
 	bool isActive = true;
+	uint component_UUID = 0;
 };
 

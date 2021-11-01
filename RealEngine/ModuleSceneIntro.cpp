@@ -113,7 +113,7 @@ GameObject* ModuleSceneIntro::CreateGameObject(std::string name, float3 position
 		//AddChild(newGameObject, parent);
 
 	newGameObject->transformation->SetPosition(position);
-	newGameObject->transformation->SetQuaternionRotation(rotation);
+	newGameObject->transformation->SetQuatRotation(rotation);
 	newGameObject->transformation->SetScale(scale);
 
 	return newGameObject;

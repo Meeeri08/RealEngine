@@ -500,12 +500,12 @@ update_status ModuleEditor::Update(float dt)
 		if (ImGui::Begin("About us", &about_us))
 		{
 			ImGui::Text("RealEngine v0.1");
-			ImGui::Text("The next generation 3D Game Engine");
+			ImGui::Text("3D Game Engine done for educational purposes at CITM-UPC ");
 			ImGui::Text("Made by: ");
 			if (ImGui::SmallButton("Magdalena Ostrowska"))
-				ShellExecuteA(NULL, "open", "https://github.com/magdaostrowska", NULL, NULL, SW_SHOWNORMAL);
+				App->RequestBrowser("https://github.com/magdaostrowska");
 			if (ImGui::SmallButton("Maria Garrigolas Ledo"))
-				ShellExecuteA(NULL, "open", "https://github.com/Meeeri08", NULL, NULL, SW_SHOWNORMAL);
+				App->RequestBrowser("https://github.com/Meeeri08");
 
 			ImGui::Separator();
 
@@ -514,57 +514,63 @@ update_status ModuleEditor::Update(float dt)
 			}
 			ImGui::Separator();
 
-			ImGui::Text("3rd Party Libraries used:");
-			ImVec4 values_color(1.0f, 1.0f, 0.0f, 1.0f);
-			//SDL Version
-			SDL_version sdl_version;
-			SDL_GetVersion(&sdl_version);
-			ImGui::BulletText("SDL Version:");
-			ImGui::SameLine();
-			ImGui::TextColored(values_color, "%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch); ImGui::SameLine();
-			if (ImGui::SmallButton("Open SDL Website"))
-				ShellExecuteA(NULL, "open", "https://libsdl.org/", NULL, NULL, SW_SHOWNORMAL);
+			ImGui::Text("Used libraries: (In alphabetical order)");
 
-			//OpenGL
+			ImGui::BulletText("Assimp "); 
+			ImGui::SameLine();
+			ImGui::Text("3.1.1");
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to Assimp Website"))
+				App->RequestBrowser("http://openil.sourceforge.net/");
+
+			ImGui::BulletText("DevIL "); 
+			ImGui::SameLine();
+			ImGui::Text("1.8.0");
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to DevIL Website"))
+				App->RequestBrowser("http://openil.sourceforge.net/");
+
+			ImGui::BulletText("Glew "); 
+			ImGui::SameLine();
+			ImGui::Text("%d.%d.%d", GLEW_VERSION_MAJOR, GLEW_VERSION_MINOR, GLEW_VERSION_MICRO);
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to Glew Website"))
+				App->RequestBrowser("https://github.com/nigels-com/glew");
+
+			ImGui::BulletText("ImGui"); 
+			ImGui::SameLine();
+			ImGui::Text("%s", ImGui::GetVersion());
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to ImGui Website"))
+				App->RequestBrowser("https://github.com/ocornut/imgui");
+
+			ImGui::BulletText("MathGeoLib "); 
+			ImGui::SameLine();
+			ImGui::Text("1.5");
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to MathGeoLib Website"))
+				App->RequestBrowser("https://github.com/juj/MathGeoLib");
+
 			int major = 0;
 			int minor = 0;
 			glGetIntegerv(GL_MAJOR_VERSION, &major);
 			glGetIntegerv(GL_MINOR_VERSION, &minor);
+			SDL_version sdl_version;
+			SDL_GetVersion(&sdl_version);
 
-			ImGui::BulletText("OpenGL ", major, minor); ImGui::SameLine();
-			ImGui::TextColored(values_color, "%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch); ImGui::SameLine();
-			if (ImGui::SmallButton("Open OpenGL Website"))
-				ShellExecuteA(NULL, "open", "https://www.opengl.org/", NULL, NULL, SW_SHOWNORMAL);
-
-			//ImGui Version
-			ImGui::BulletText("ImGui "); ImGui::SameLine();
-			ImGui::TextColored(values_color, "%s", ImGui::GetVersion()); ImGui::SameLine();
-			if (ImGui::SmallButton("Open ImGui Website"))
-				ShellExecuteA(NULL, "open", "https://github.com/ocornut/imgui", NULL, NULL, SW_SHOWNORMAL);
-
-			////MathGeoLib
-			ImGui::BulletText("MathGeoLib "); ImGui::SameLine();
-			ImGui::TextColored(values_color, "1.5"); ImGui::SameLine();
-			if (ImGui::SmallButton("Open MathGeoLib Website"))
-				ShellExecuteA(NULL, "open", "https://github.com/juj/MathGeoLib", NULL, NULL, SW_SHOWNORMAL);
-
-			//Glew
-			ImGui::BulletText("Glew "); ImGui::SameLine();
-			ImGui::TextColored(values_color, "%d.%d.%d", GLEW_VERSION_MAJOR, GLEW_VERSION_MINOR, GLEW_VERSION_MICRO); ImGui::SameLine();
-			if (ImGui::SmallButton("Open Glew Website"))
-				ShellExecuteA(NULL, "open", "https://github.com/nigels-com/glew", NULL, NULL, SW_SHOWNORMAL);
-
-			//DevIL
-			ImGui::BulletText("DevIL "); ImGui::SameLine();
-			ImGui::TextColored(values_color, "1.8.0"); ImGui::SameLine();
-			if (ImGui::SmallButton("Open DevIL Website"))
-				ShellExecuteA(NULL, "open", "http://openil.sourceforge.net/", NULL, NULL, SW_SHOWNORMAL);
-
-			//Assimp
-			ImGui::BulletText("Assimp "); ImGui::SameLine();
-			ImGui::TextColored(values_color, "3.1.1"); ImGui::SameLine();
-			if (ImGui::SmallButton("Open Assimp Website"))
-				ShellExecuteA(NULL, "open", "http://openil.sourceforge.net/", NULL, NULL, SW_SHOWNORMAL);
+			ImGui::BulletText("OpenGL ", major, minor); 
+			ImGui::SameLine();
+			ImGui::Text("%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch);
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to OpenGL Website"))
+				App->RequestBrowser("https://www.opengl.org/");
+			
+			ImGui::BulletText("SDL Version:");
+			ImGui::SameLine();
+			ImGui::Text("%d.%d.%d", sdl_version.major, sdl_version.minor, sdl_version.patch);
+			ImGui::SameLine();
+			if (ImGui::SmallButton("Go to SDL Website"))
+				App->RequestBrowser("https://libsdl.org/");
 
 			ImGui::Separator();
 
@@ -596,12 +602,10 @@ update_status ModuleEditor::Update(float dt)
 		ImGui::End();
 	}
 
-
 	if (show_about_us)
 	{
 		ImGui::ShowAboutWindow();
 	}
-
 
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImGui::Render();
@@ -612,26 +616,20 @@ update_status ModuleEditor::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+/*
 bool ModuleEditor::LoadSettings(JsonParser* data)
 {
-	//showDemoWindow = data->GetBool("show_Demo_Window", false);
-	//showConsoleWindow = data->GetBool("show_Console_Window", false);
 	return true;
 }
 
 bool ModuleEditor::SaveSettings(JsonParser* data) const
 {
-	//data->AddBool("show_Demo_Window", showDemoWindow);
-	//data->AddBool("show_Console_Window", showConsoleWindow);
-
 	return true;
 }
+*/
 
 void ModuleEditor::resetWindow()
 {
 	App->window->SetSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	App->window->SetBrightness(1.0f);
-
 }
-
-

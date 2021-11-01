@@ -1,13 +1,8 @@
 #include "HierarchyWindow.h"
 
-HierarchyWindow::HierarchyWindow()
-{
-	openPopUp = false;
-}
+HierarchyWindow::HierarchyWindow(){}
 
-HierarchyWindow::~HierarchyWindow()
-{
-}
+HierarchyWindow::~HierarchyWindow() {}
 
 void HierarchyWindow::Draw(Application* App)
 {
@@ -34,16 +29,13 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 		flags |= ImGuiTreeNodeFlags_Selected;
 	}
 
-	if (gameObject != root)
-		drawAgain = ImGui::TreeNodeEx(gameObject, flags, gameObject->name.c_str());
-	else
+	if (gameObject == root)
 		drawAgain = true;
-
+	else
+		drawAgain = ImGui::TreeNodeEx(gameObject, flags, gameObject->name.c_str());
 
 	if (ImGui::IsItemClicked(0))
-	{
 		App->scene_intro->SelectGameObject(gameObject);
-	}
 
 	if (ImGui::BeginPopupContextItem((gameObject->name + "rightClick").c_str(), 1))
 	{
@@ -53,7 +45,6 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 		}
 		ImGui::EndPopup();
 	}
-
 
 	if (App->scene_intro->selectedGameObject != nullptr)
 	{
@@ -65,9 +56,11 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 	
 	if (ImGui::BeginDragDropSource())
 	{
+		const char* tmp_name = gameObject->name.c_str();
+
 		uint gameObject_UUID = gameObject->GetUUID();
 		ImGui::SetDragDropPayload("Reparenting", &gameObject_UUID, sizeof(uint));
-		ImGui::Text(gameObject->name.c_str());
+		ImGui::Text(tmp_name);
 		ImGui::EndDragDropSource();
 	}
 	if (ImGui::BeginDragDropTarget())
@@ -81,21 +74,11 @@ void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, I
 		ImGui::EndDragDropTarget();
 	}
 
-	if (drawAgain)
+	if (drawAgain == true)
 	{
 		for (uint i = 0; i < gameObject->children.size(); i++)
 		{
 			DrawGameObject(App, gameObject->children[i], flags, root);
 		}
 	}
-}
-
-void HierarchyWindow::SetShowWindow()
-{
-	showWindow = !showWindow;
-}
-
-bool HierarchyWindow::GetShowWindow()
-{
-	return showWindow;
 }

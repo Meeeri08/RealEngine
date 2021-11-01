@@ -121,6 +121,7 @@ bool GameObject::Update()
 	return ret;
 }
 
+/*
 bool GameObject::Save(JsonParser* data)
 {
 	bool ret = true;
@@ -147,7 +148,8 @@ bool GameObject::Save(JsonParser* data)
 		data->AddArrayChild(componentsData);
 	}
 }
-
+*/
+/*
 bool GameObject::Load(JsonParser* data)
 {
 	bool ret = true;
@@ -160,14 +162,14 @@ bool GameObject::Load(JsonParser* data)
 
 	JsonParser elem;
 
-	/*
 
-	GameObject* parent = App->scene->GetGameObjectByUUID(parentUUID);
-	if (parent != nullptr)
+	GameObject* parent = App->scene_intro->GetGameObjectByUUID(parentUUID);
+	if (parent != nullptr){
 		SetParent(parent);
-	else
-		SetParent(App->scene->GetRoot());
-		*/
+	}
+	else{
+		SetParent(App->scene_intro->GetRoot());
+	}
 
 		//Load components
 	int component_num = data->GetNumElementsInArray("Components");
@@ -203,6 +205,7 @@ bool GameObject::Load(JsonParser* data)
 
 	return ret;
 }
+*/
 
 void GameObject::ChangeName(std::string name)
 {
