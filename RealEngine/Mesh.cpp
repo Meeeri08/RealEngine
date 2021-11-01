@@ -21,10 +21,8 @@ Mesh::~Mesh()
     delete mesh;
 }
 
-
 void Mesh::Render()
 {
-
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -35,7 +33,7 @@ void Mesh::Render()
     glClientActiveTexture(GL_TEXTURE0_ARB);
     glTexCoordPointer(2, GL_FLOAT, 0, tex_id);
 
-    glDrawArrays(GL_TRIANGLES, 0, num_vex);
+    glDrawArrays(GL_TRIANGLES, 0, num_vertex);
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -43,7 +41,7 @@ void Mesh::Render()
 
 int Mesh::Init()
 {
-    num_vex = mesh->mNumFaces * 3;
+    num_vertex = mesh->mNumFaces * 3;
 
     vertex_id = new float[mesh->mNumFaces * 3 * 3];
     normal_id = new float[mesh->mNumFaces * 3 * 3];
@@ -74,4 +72,5 @@ int Mesh::Init()
     vertex_id -= mesh->mNumFaces * 3 * 3;
     return mesh->mNumVertices;
 }
+
 

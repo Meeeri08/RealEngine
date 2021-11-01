@@ -10,6 +10,7 @@ public:
 	enum ComponentType {
 		None = 0,
 		Transformation,
+		Mesh,
 	};
 
 public:

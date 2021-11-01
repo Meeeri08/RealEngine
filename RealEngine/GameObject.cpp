@@ -12,9 +12,9 @@ GameObject::GameObject()
 	parentUUID = 0;
 	UUID = GenerateUUID();
 
-	//transformation = new Transformation(Component::ComponentType::Transformation);
-	transformation = nullptr;
-	CreateComponent(Component::ComponentType::Transformation);
+	transformation = (Transformation*)CreateComponent(Component::ComponentType::Transformation);
+	mesh = (Mesh*)CreateComponent(Component::ComponentType::Mesh);
+	
 }
 
 GameObject::~GameObject()
@@ -32,6 +32,10 @@ Component* GameObject::CreateComponent(Component::ComponentType type)
 	case Component::ComponentType::Transformation:
 		component = new Transformation(Component::ComponentType::Transformation, this);
 		transformation = (Transformation*)component;
+		break;
+	case Component::ComponentType::Mesh:
+		component = new Transformation(Component::ComponentType::Mesh, this);
+		mesh = (Mesh*)component;
 		break;
 
 	default:

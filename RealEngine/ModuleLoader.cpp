@@ -41,7 +41,7 @@ bool ModuleLoader::Init()
     }
 
     //Loading FBX
-    App->fbxLoader->Load("Assets/BakerHouse.fbx");
+    App->fbxLoader->Load("Assets/Models/BakerHouse.fbx");
 
     return ret;
 }
@@ -59,8 +59,6 @@ update_status ModuleLoader::PreUpdate(float dt)
     {
         meshes[i]->Render();
     }
-
-
 
     return UPDATE_CONTINUE;
 }
@@ -111,8 +109,6 @@ void ModuleLoader::Load(char* FBXpath)
     }
     else
         App->console->AddLog("Error loading scene %s", FBXpath);
-
-  
 }
 
 std::string ModuleLoader::GenerateNameFromPath(std::string path)
@@ -135,4 +131,3 @@ std::string ModuleLoader::GenerateNameFromPath(std::string path)
     }
     return name;
 }
-
