@@ -1,5 +1,4 @@
-#ifndef __ModuleWindow_H__
-#define __ModuleWindow_H__
+#pragma once
 
 #include "Module.h"
 #include "SDL/include/SDL.h"
@@ -22,12 +21,10 @@ public:
 	bool SaveSettings(JsonParser* data)const override;
 
 	//Window functions
-	void SetTitle(const char* title);
 	void SetFullScreen(bool fullscreen);
 	void SetBrightness(float brightness);
 	void SetSize(int w, int h);
 	void SetFullscreenDesktop(bool fullscreenDesk);
-	bool IsFullscreenDesktop() const { return fullscreenDesktop; }
 	void SetName();
 	void SetBorder(bool borderless);
 	void SetResizable(bool resizable);
@@ -50,16 +47,13 @@ public:
 	int max_fps = 60;
 	float brightness = 1.0f;
 
-
 	//screen variables
 	bool fullscreenDesktop = false;
 	bool resizable = false;
 	bool borderless = false;
 	bool fullscreen = false;
 	bool active = false;
+
 private:
 	std::string name;
-
 };
-
-#endif // __ModuleWindow_H__

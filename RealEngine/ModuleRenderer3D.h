@@ -23,17 +23,14 @@ public:
 
 	void OnResize(int width, int height);
 
-	bool show_demo_window = true;
-	bool show_another_window = false;
-
-	bool vsync = false;
-
 	void capFps();
 	void SetWireframeMode();
 
 	void CalculateGlobalMatrix(GameObject* gameObject);
 
 public:
+
+	bool vsync = false;
 
 	Light lights[MAX_LIGHTS];
 	SDL_GLContext context;

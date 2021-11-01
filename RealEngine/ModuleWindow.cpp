@@ -104,10 +104,6 @@ bool ModuleWindow::SaveSettings(JsonParser* data) const
 	return true;
 }
 
-void ModuleWindow::SetTitle(const char* title)
-{
-	SDL_SetWindowTitle(window, title);
-}
 void ModuleWindow::SetFullScreen(bool fullScreen)
 {
 	SDL_SetWindowFullscreen(window, fullScreen ? SDL_WINDOW_FULLSCREEN : 0);
@@ -126,13 +122,11 @@ float ModuleWindow::GetBrightness()
 void ModuleWindow::SetSize(int w, int h)
 {
 	SDL_SetWindowSize(window, w, h);
-
 }
 
 void ModuleWindow::SetFullscreenDesktop(bool fullscreenDesk)
 {
 	SDL_SetWindowFullscreen(window, fullscreenDesk ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
-
 }
 
 void ModuleWindow::SetName()
@@ -149,6 +143,4 @@ void ModuleWindow::SetBorder(bool borderless)
 void ModuleWindow::SetResizable(bool resizable)
 {
 	SDL_SetWindowResizable(window, (SDL_bool)resizable);
-
 }
-

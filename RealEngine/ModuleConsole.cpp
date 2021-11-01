@@ -2,7 +2,6 @@
 
 
 ModuleConsole::ModuleConsole(){
-
 }
 
 ModuleConsole::~ModuleConsole()
@@ -24,9 +23,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
         return;
     }
 
-    // As a specific feature guaranteed by the library, after calling Begin() the last Item represent the title bar.
-    // So e.g. IsItemHovered() will return true when hovering the title bar.
-    // Here we create a context menu only available from the title bar.
     if (ImGui::BeginPopupContextItem())
     {
         if (ImGui::MenuItem("Close Console"))
@@ -36,8 +32,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
 
     ImGui::TextWrapped("Enter 'HELP' for help.");
 
-    // TODO: display items starting from the bottom
-
     if (ImGui::SmallButton("Add Debug Text")) { AddLog("%d some text", Items.Size); AddLog("some more text"); AddLog("display very important message here!"); }
     ImGui::SameLine();
     if (ImGui::SmallButton("Add Debug Error")) { AddLog("[error] something went wrong"); }
@@ -45,7 +39,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
     if (ImGui::SmallButton("Clear")) { ClearLog(); }
     ImGui::SameLine();
     bool copy_to_clipboard = ImGui::SmallButton("Copy");
-    //static float t = 0.0f; if (ImGui::GetTime() - t > 0.02f) { t = ImGui::GetTime(); AddLog("Spam %f", t); }
 
     ImGui::Separator();
 
@@ -72,30 +65,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
         ImGui::EndPopup();
     }
 
-    // Display every line as a separate entry so we can change their color or add custom widgets.
-    // If you only want raw text you can use ImGui::TextUnformatted(log.begin(), log.end());
-    // NB- if you have thousands of entries this approach may be too inefficient and may require user-side clipping
-    // to only process visible items. The clipper will automatically measure the height of your first item and then
-    // "seek" to display only items in the visible area.
-    // To use the clipper we can replace your standard loop:
-    //      for (int i = 0; i < Items.Size; i++)
-    //   With:
-    //      ImGuiListClipper clipper;
-    //      clipper.Begin(Items.Size);
-    //      while (clipper.Step())
-    //         for (int i = clipper.DisplayStart; i < clipper.DisplayEnd; i++)
-    // - That your items are evenly spaced (same height)
-    // - That you have cheap random access to your elements (you can access them given their index,
-    //   without processing all the ones before)
-    // You cannot this code as-is if a filter is active because it breaks the 'cheap random-access' property.
-    // We would need random-access on the post-filtered list.
-    // A typical application wanting coarse clipping and filtering may want to pre-compute an array of indices
-    // or offsets of items that passed the filtering test, recomputing this array when user changes the filter,
-    // and appending newly elements as they are inserted. This is left as a task to the user until we can manage
-    // to improve this example code!
-    // If your items are of variable height:
-    // - Split them into same height items would be simpler and facilitate random-seeking into your list.
-    // - Consider using manual call to IsRectVisible() and skipping extraneous decoration from your items.
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(4, 1)); // Tighten spacing
     if (copy_to_clipboard)
         ImGui::LogToClipboard();
@@ -128,8 +97,6 @@ void ModuleConsole::DrawConsole(const char* title, bool* p_open)
     ImGui::EndChild();
     ImGui::Separator();
 
-
-
     ImGui::End();
 }
 
@@ -137,8 +104,6 @@ void ModuleConsole::ExecCommand(const char* command_line)
 {
     AddLog("# %s\n", command_line);
 
-    // Insert into history. First find match and delete it so it can be pushed to the back.
-    // This isn't trying to be smart or optimal.
     HistoryPos = -1;
     for (int i = History.Size - 1; i >= 0; i--)
         if (Stricmp(History[i], command_line) == 0)
@@ -188,8 +153,6 @@ int ModuleConsole::TextEditCallback(ImGuiInputTextCallbackData* data)
     {
     case ImGuiInputTextFlags_CallbackCompletion:
     {
-        // Example of TEXT COMPLETION
-
         // Locate beginning of current word
         const char* word_end = data->Buf + data->CursorPos;
         const char* word_start = word_end;
@@ -221,8 +184,6 @@ int ModuleConsole::TextEditCallback(ImGuiInputTextCallbackData* data)
         }
         else
         {
-            // Multiple matches. Complete as much as we can..
-            // So inputing "C"+Tab will complete to "CL" then display "CLEAR" and "CLASSIFY" as matches.
             int match_len = (int)(word_end - word_start);
             for (;;)
             {

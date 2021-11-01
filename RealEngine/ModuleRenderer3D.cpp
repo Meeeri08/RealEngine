@@ -11,6 +11,7 @@
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	name = "Renderer";
 }
 
 // Destructor
@@ -239,14 +240,10 @@ void ModuleRenderer3D::CalculateGlobalMatrix(GameObject* gameObject)
 
 	if (transformation != nullptr)
 	{
-		if (gameObject->parent == nullptr)
-		{
-			transformation->globalMatrix = transformation->localMatrix;
-		}
-		else
-		{
+		if (gameObject->parent != nullptr)
 			transformation->globalMatrix = ((Transformation*)gameObject->parent->GetComponent(Component::ComponentType::Transformation))->globalMatrix * transformation->localMatrix;
-		}
+		else
+			transformation->globalMatrix = transformation->localMatrix;
 
 		for (std::vector<GameObject*>::iterator iterator = gameObject->children.begin(); iterator != gameObject->children.end(); iterator++)
 		{

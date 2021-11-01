@@ -15,6 +15,6 @@ public:
 	bool CleanUp()override;
 
 	bool DrawTexture();
-	void ManageDroppedTexture(char* droppedFile);
+	void ManageDroppedFile(char* droppedFile);
 };
 

@@ -39,7 +39,7 @@ enum update_status
 
 #define FBX_FORMAT ".fbx"
 #define FBX_FORMAT_CAP ".FBX"
-#define FBX_FORMAT ".dds"
-#define FBX_FORMAT_CAP ".DDS"
-#define FBX_FORMAT ".png"
-#define FBX_FORMAT_CAP ".PNG"
+#define DDS_FORMAT ".dds"
+#define DDS_FORMAT_CAP ".DDS"
+#define PNG_FORMAT ".png"
+#define PNG_FORMAT_CAP ".PNG"
