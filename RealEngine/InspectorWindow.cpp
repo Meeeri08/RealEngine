@@ -127,8 +127,8 @@ void InspectorWindow::DrawMesh(Mesh* mesh)
 {
 	if (ImGui::CollapsingHeader("Mesh"))
 	{
-		//ImGui::Text("Index: %i", mesh.); ImGui::NewLine();
-		ImGui::Text("Normals: %f", mesh->normal_id); ImGui::NewLine();
-		ImGui::Text("Vertices: %i", mesh->num_vertex); ImGui::NewLine();
+		//ImGui::Text("Index: %i", mesh->_index); ImGui::NewLine();
+		ImGui::Text("Faces: %i", mesh->_numFaces); 
+		ImGui::Text("Vertices: %i", mesh->_numVertices); ImGui::NewLine();
 	}
 }

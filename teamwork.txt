@@ -1,28 +1,23 @@
 Maria Garrigolas Ledo
 ----------------------
-Configuration:
-	-Application
-	-Window
-	-Renderer
-	-Input
-	-Audio (empty)
-	-Camera (empty)
-	-Hardware
-	-OpenGL
-All FbxLoader with mesh component
+Configuration: Application, Window, Renderer, Input, Audio (empty), Camera (empty), Hardware, OpenGL
+FbxLoader with mesh component
 Library of primitives
 All input controls 
 Window Layout
 About me
-WASD, Mouse wheel,Orbit,SHIFT inputs
+WASD, Mouse wheel, Orbit, SHIFT inputs
 
 Magda Ostrowska
 ----------------------
-Json Parser
-GameObject
-Inspector
+GameObject structure
+FBXLoader: Drag&Drop + method Load()
+Inspector: display transformation and mesh
 Hierarchy
 Console
-Component + Transform
+Component system + Transformation
 F focus input
-Texture Loader
+Uploading two extra fbx models
+About me 
+Json Parser
+Configuration: Application (FPS and MS graphs)
