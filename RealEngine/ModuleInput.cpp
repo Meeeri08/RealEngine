@@ -118,6 +118,14 @@ update_status ModuleInput::PreUpdate(float dt)
 					App->fbxLoader->Load(droppedFile);
 					break;
 				}
+				case FileType::DDS: {
+					App->textureLoader->ManageDroppedTexture(droppedFile);
+					break;
+				}
+				case FileType::PNG: {
+					App->textureLoader->ManageDroppedTexture(droppedFile);
+					break;
+				}
 				case FileType::UNDEFINED:
 					break;
 

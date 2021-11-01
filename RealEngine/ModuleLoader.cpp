@@ -41,7 +41,7 @@ bool ModuleLoader::Init()
     }
 
     //Loading FBX
-    App->fbxLoader->Load("Assets/BakerHouse.fbx");
+    App->fbxLoader->Load("Assets/Models/BakerHouse.fbx");
 
     return ret;
 }
@@ -100,7 +100,7 @@ void ModuleLoader::Load(char* FBXpath)
         for (int i = 0; i < scene->mNumMeshes; ++i)
         {
             aiMesh* mesh = scene->mMeshes[i];
-            Mesh* mM = new Mesh(Component::ComponentType::Mesh, mesh, GO);
+            Mesh* mM = new Mesh(mesh);
             int vertex= mM->Init(); 
             App->console->AddLog("New mesh with %d vertices", vertex);
 

@@ -11,15 +11,9 @@
 #include "ModuleSceneIntro.h"
 #include <cmath>
 
-Mesh::Mesh(Component::ComponentType type, aiMesh* aiMesh, GameObject* owner) : Component(type, owner)
+Mesh::Mesh(aiMesh* aiMesh)
 {
     mesh = aiMesh;
-    this->owner = owner;
-}
-
-Mesh::Mesh(Component::ComponentType type) : Component(type, owner)
-{
-    this->owner = owner;
 }
 
 Mesh::~Mesh()

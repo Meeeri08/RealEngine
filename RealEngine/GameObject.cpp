@@ -12,8 +12,9 @@ GameObject::GameObject()
 	parentUUID = 0;
 	UUID = GenerateUUID();
 
-	transformation = new Transformation(Component::ComponentType::Transformation);
-	mesh = new Mesh(Component::ComponentType::Mesh);
+	transformation = (Transformation*)CreateComponent(Component::ComponentType::Transformation);
+	mesh = (Mesh*)CreateComponent(Component::ComponentType::Mesh);
+	
 }
 
 GameObject::~GameObject()

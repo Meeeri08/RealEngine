@@ -28,7 +28,8 @@ void InspectorWindow::Draw(Application* App)
 		gameObject->name.assign(name);
 
 	if (gameObject->transformation != nullptr) DrawTransform(gameObject->transformation);
-	if (gameObject->mesh != nullptr) DrawMesh(gameObject->mesh);
+	if (gameObject->mesh != nullptr) 
+		DrawMesh(gameObject->mesh);
 
 	ImGui::End();
 }
@@ -130,10 +131,8 @@ void InspectorWindow::DrawMesh(Mesh* mesh)
 {
 	if (ImGui::CollapsingHeader("Mesh"))
 	{
-		ImGui::Checkbox("Active", &mesh->isActive);
-
-		ImGui::Text("Index: %i", mesh->id_index); ImGui::NewLine();
-		ImGui::Text("Normals: %f", mesh->normals); ImGui::NewLine();
+		//ImGui::Text("Index: %i", mesh.); ImGui::NewLine();
+		ImGui::Text("Normals: %f", mesh->normal_id); ImGui::NewLine();
 		ImGui::Text("Vertices: %i", mesh->num_vertex); ImGui::NewLine();
 		
 	}

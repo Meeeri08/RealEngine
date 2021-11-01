@@ -435,7 +435,6 @@
     <ClInclude Include="HierarchyWindow.h">
       <Filter>Sources\EditorWindows</Filter>
     </ClInclude>
-    <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="assimp\include\aabb.h">
       <Filter>Libraries\assimp</Filter>
     </ClInclude>
@@ -670,6 +669,13 @@
     <ClInclude Include="Mesh.h">
       <Filter>Sources\Components</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleTexture.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWindow.h">
+      <Filter>Sources\EditorWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -999,7 +1005,6 @@
     <ClCompile Include="HierarchyWindow.cpp">
       <Filter>Sources\EditorWindows</Filter>
     </ClCompile>
-    <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="ImGuizmo\ImGuizmo.cpp">
       <Filter>Libraries\ImGuizmo</Filter>
     </ClCompile>
@@ -1018,6 +1023,13 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Sources\Components</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleTexture.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWindow.cpp">
+      <Filter>Sources\EditorWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RealEngine.rc" />

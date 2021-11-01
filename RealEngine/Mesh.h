@@ -11,12 +11,11 @@
 
 #include <vector>
 
-class Mesh : public Component
+class Mesh
 {
 public:
 
-    Mesh(Component::ComponentType type, aiMesh* aiMesh, GameObject* owner);
-	Mesh(Component::ComponentType type);
+	Mesh(aiMesh* mesh);
     ~Mesh();
 
     void Render();
@@ -24,24 +23,9 @@ public:
 
 public:
 
-	aiMesh* mesh;
-	
-	uint id_index = 0; // index in VRAM
-	uint num_index = 0;
-	uint* index = nullptr;
-
-	// Vertex
-	float* vertex_id; // unique vertex in VRAM
-	int num_vertex;
-	float* vertex = nullptr;
-
-	// Texture
-	float* tex_id;
-	uint num_tex = 0;
-	uint texture_id = 0;
-	float* tex = nullptr;
-
-	// Normals
-	float* normal_id;
-	float* normals = nullptr;
+    aiMesh* mesh;
+    float* vertex_id;
+    float* normal_id;
+    float* tex_id;
+    int num_vertex;
 };

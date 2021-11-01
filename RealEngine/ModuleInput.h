@@ -1,6 +1,7 @@
 #pragma once
 #include "Module.h"
 #include "Globals.h"
+#include "ModuleTexture.h"
 
 #define MAX_MOUSE_BUTTONS 5
 
@@ -14,6 +15,8 @@ enum KEY_STATE
 
 enum class FileType {
 	FBX,
+	DDS,
+	PNG,
 	UNDEFINED
 };
 

@@ -13,8 +13,9 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleConsole.h"
+//#include "ModuleFile.h"
 
-class ModuleScene;
+class ModuleTexture;
 
 struct HardwareSpecs
 {
@@ -57,8 +58,8 @@ public:
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
 	ModuleConsole* console;
-	ModuleScene* scene;
 	ModuleLoader* fbxLoader;
+	ModuleTexture* textureLoader;
 
 private:
 
