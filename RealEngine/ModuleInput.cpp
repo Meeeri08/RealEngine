@@ -19,16 +19,15 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
-	App->console->AddLog("Init SDL input event system");
+	App->console->AddLog("Init SDL");
 	bool ret = true;
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
-		App->console->AddLog("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddLog("SDL_INIT_EVENTS couldn't be initialized! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
 	return ret;
 }
 
@@ -36,7 +35,6 @@ bool ModuleInput::Init()
 update_status ModuleInput::PreUpdate(float dt)
 {
 	SDL_PumpEvents();
-
 	const Uint8* keys = SDL_GetKeyboardState(NULL);
 	
 	for(int i = 0; i < MAX_KEYS; ++i)
@@ -119,11 +117,11 @@ update_status ModuleInput::PreUpdate(float dt)
 					break;
 				}
 				case FileType::DDS: {
-					App->textureLoader->ManageDroppedTexture(droppedFile);
+					App->textureLoader->ManageDroppedFile(droppedFile);
 					break;
 				}
 				case FileType::PNG: {
-					App->textureLoader->ManageDroppedTexture(droppedFile);
+					App->textureLoader->ManageDroppedFile(droppedFile);
 					break;
 				}
 				case FileType::UNDEFINED:

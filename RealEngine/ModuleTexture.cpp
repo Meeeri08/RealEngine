@@ -30,7 +30,7 @@ bool ModuleTexture::DrawTexture()
 	return false;
 }
 
-void ModuleTexture::ManageDroppedTexture(char* droppedFile)
+void ModuleTexture::ManageDroppedFile(char* droppedFile)
 {
 	bool exist = false;
 
@@ -40,38 +40,6 @@ void ModuleTexture::ManageDroppedTexture(char* droppedFile)
 		if (droppedFile[i] == '\\')
 			droppedFile[i] = '/';
 	}
-	/*
-	if (App->file->Exists(droppedFile)) {
-		App->console->AddLog("This texture already exists in Assets folder!")
-	}
 	
-	else {
-		std::string path = "Assets/Textures/";
-		std::string name;
-
-		if (droppedFile != nullptr)
-		{
-			std::string nwFullPath = droppedFile;
-			uint lenght = strlen(nwFullPath.c_str());
-			for (int i = 0; i < lenght; ++i)
-			{
-				if (nwFullPath[i] == '\\')
-					nwFullPath[i] = '/';
-			}
-
-			size_t posSlash = nwFullPath.find_last_of("\\/");
-			size_t posDot = nwFullPath.find_last_of(".");
-			
-			if (&name != nullptr) {
-				if (posSlash < nwFullPath.length()) {
-					*&name = nwFullPath.substr(posSlash + 1);
-				}
-				else
-					*&name = nwFullPath;
-			}
-		}
-		path += name;
-		//App->file->Copy(droppedFile, path.c_str());
-	}
-	*/
+	//// .....
 }
