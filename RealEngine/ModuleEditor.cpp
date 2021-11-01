@@ -367,25 +367,21 @@ update_status ModuleEditor::Update(float dt)
 				ImGui::Text("Mouse Wheel: "); ImGui::SameLine();
 				ImGui::TextColored(values_color, "%i", App->input->GetMouseZ());
 				ImGui::Separator();
-
 			}
 			if (ImGui::CollapsingHeader("Audio"))
 			{
-
 			}
 			if (ImGui::CollapsingHeader("Camera"))
 			{
-
 			}
 			if (ImGui::CollapsingHeader("Hardware"))
 			{
-				ImVec4 values_color(1.0f, 1.0f, 0.0f, 1.0f);
 				//SDL Version
 				SDL_version version;
 				SDL_GetVersion(&version);
 				ImGui::Text("SDL Version:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%d.%d.%d", version.major, version.minor, version.patch);
+				ImGui::Text("%d.%d.%d", version.major, version.minor, version.patch);
 
 				ImGui::Spacing();
 				ImGui::Separator();
@@ -397,17 +393,17 @@ update_status ModuleEditor::Update(float dt)
 				//CPU
 				ImGui::Text("CPUs:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%d (Cache: %dkb)", specs.cpuCount, specs.cpuCache);
+				ImGui::Text("%d (Cache: %dkb)", specs.cpuCount, specs.cpuCache);
 
 				//RAM
 				ImGui::Text("System RAM:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%.1f Gb", specs.ram);
+				ImGui::Text("%.1f Gb", specs.ram);
 
 				//CAPS
 				ImGui::Text("Caps:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%s", specs.caps.c_str());
+				ImGui::Text("%s", specs.caps.c_str());
 
 				ImGui::Spacing();
 				ImGui::Separator();
@@ -416,38 +412,32 @@ update_status ModuleEditor::Update(float dt)
 				//GPU
 				ImGui::Text("GPU:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%s", specs.gpu);
+				ImGui::Text("%s", specs.gpu);
 
 				ImGui::Text("Brand:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%s", specs.gpuBrand);
+				ImGui::Text("%s", specs.gpuBrand);
 
 				//VRAM
 
 				ImGui::Text("VRAM Budget:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%.1f Mb", vramBudget());
+				ImGui::Text("%.1f Mb", vramBudget());
 
 				ImGui::Text("VRAM Usage:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%.1f Mb", vramBudget() - vramAvailable());
+				ImGui::Text("%.1f Mb", vramBudget() - vramAvailable());
 
 				ImGui::Text("VRAM Available:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%.1f Mb", vramAvailable());
+				ImGui::Text("%.1f Mb", vramAvailable());
 
 				ImGui::Text("VRAM Reserved:");
 				ImGui::SameLine();
-				ImGui::TextColored(values_color, "%.1f Mb", vramReserved());
-
-
-
+				ImGui::Text("%.1f Mb", vramReserved());
 			}
 			if (ImGui::CollapsingHeader("OpenGL"))
-
-				//TODO: ADD 2 MORE GL_
 			{
-
 				if (ImGui::Checkbox("Depth Test", &App->renderer3D->depth_test))
 				{
 					if (App->renderer3D->depth_test) glEnable(GL_DEPTH_TEST);
@@ -474,7 +464,6 @@ update_status ModuleEditor::Update(float dt)
 					else glDisable(GL_LIGHTING);
 				}
 
-
 				if (ImGui::Checkbox("Color Material", &App->renderer3D->color_material))
 				{
 					if (App->renderer3D->color_material) glEnable(GL_COLOR_MATERIAL);
@@ -484,16 +473,11 @@ update_status ModuleEditor::Update(float dt)
 				ImGui::Spacing();
 				ImGui::Separator();
 				ImGui::Spacing();
-
 				ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe);
-
 			}
 		}
 		ImGui::End();
 	}
-
-	// 3. Show another simple window.
-
 
 	if (about_us)
 	{
@@ -616,6 +600,11 @@ update_status ModuleEditor::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
+void ModuleEditor::resetWindow()
+{
+	App->window->SetSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	App->window->SetBrightness(1.0f);
+}
 /*
 bool ModuleEditor::LoadSettings(JsonParser* data)
 {
@@ -627,9 +616,3 @@ bool ModuleEditor::SaveSettings(JsonParser* data) const
 	return true;
 }
 */
-
-void ModuleEditor::resetWindow()
-{
-	App->window->SetSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-	App->window->SetBrightness(1.0f);
-}
