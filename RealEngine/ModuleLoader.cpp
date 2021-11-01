@@ -102,7 +102,10 @@ void ModuleLoader::Load(char* FBXpath)
             aiMesh* mesh = scene->mMeshes[i];
             Mesh* mM = new Mesh(mesh);
             int vertex= mM->Init(); 
+            GO->mesh->_numVertices = vertex;
+            GO->mesh->_numFaces = mM->mesh->mNumFaces;
             App->console->AddLog("New mesh with %d vertices", vertex);
+            //GO->mesh->_index = i;
 
             meshes.push_back(mM);
         }

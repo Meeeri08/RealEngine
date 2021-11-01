@@ -25,5 +25,12 @@ public:
     float* vertex_id;
     float* normal_id;
     float* tex_id;
+    
     int num_vertex;
+
+    //TODO: Improve system
+    int _numVertices;
+    int _numFaces;
+    //int _index;
+
 };
