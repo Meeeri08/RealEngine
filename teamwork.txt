@@ -1,0 +1,28 @@
+Maria Garrigolas Ledo
+----------------------
+Configuration:
+	-Application
+	-Window
+	-Renderer
+	-Input
+	-Audio (empty)
+	-Camera (empty)
+	-Hardware
+	-OpenGL
+All FbxLoader with mesh component
+Library of primitives
+All input controls 
+Window Layout
+About me
+WASD, Mouse wheel,Orbit,SHIFT inputs
+
+Magda Ostrowska
+----------------------
+Json Parser
+GameObject
+Inspector
+Hierarchy
+Console
+Component + Transform
+F focus input
+Texture Loader
