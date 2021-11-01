@@ -19,13 +19,13 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
-	LOG("Init SDL input event system");
+	App->console->AddLog("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
-		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddLog("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
@@ -115,8 +115,7 @@ update_status ModuleInput::PreUpdate(float dt)
 				switch (fileType)
 				{
 				case FileType::FBX: {
-					std::vector<Vertex> vertex;
-					App->fbxLoader->Load(droppedFile, vertex);
+					App->fbxLoader->Load(droppedFile);
 					break;
 				}
 				case FileType::UNDEFINED:
@@ -146,7 +145,7 @@ update_status ModuleInput::PreUpdate(float dt)
 // Called before quitting
 bool ModuleInput::CleanUp()
 {
-	LOG("Quitting SDL input event subsystem");
+	App->console->AddLog("Quitting SDL input event subsystem");
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	return true;
 }

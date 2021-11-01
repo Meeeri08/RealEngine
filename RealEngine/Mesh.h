@@ -1,73 +1,33 @@
-#include "assimp/include/scene.h"
-#include "assimp/include/postprocess.h"
-#include "glew/include/glew.h"
-#include "assimp/include/cimport.h"
+#pragma once
+#include "Module.h"
+#include "Globals.h"
+#include "glmath.h"
+#include "Light.h"
 
-#include <Importer.hpp>  
+
+#include "cimport.h"
+#include "scene.h"
+#include "postprocess.h"
 
 #include <vector>
-#include "glmath.h"
-
-struct Vertex
-{
-    vec3 meshPos;
-    vec2 meshTexCoords;
-    vec3 meshNorm;
-
-    Vertex (){}
-
-    Vertex(const vec3& pos, const vec2& tex, const vec3& normal)
-    {
-        meshPos = pos;
-        meshTexCoords = tex;
-        meshNorm = normal;
-
-    }
-
-    Vertex(const vec3& pos, const vec2& tex)
-    {
-        meshPos = pos;
-        meshTexCoords = tex;
-        meshNorm = vec3(0.0f, 0.0f, 0.0f);
-
-    }
 
 
-};
 
-class Mesh
+class Mesh 
 {
 public:
-	Mesh() {};
-	~Mesh();
+	
+    aiMesh* mesh;
+    float* vertex_id;
+    float* normal_id;
+    float* tex_id;
 
-	bool LoadMesh(const std::string& Filename);
+    int num_vex;
 
-	void Render();
+ 
+    void Render();
+    int Init();
 
-private:
-    bool InitFromScene(const aiScene* pScene, const std::string& Filename);
-    void InitMesh(unsigned int Index, const aiMesh* paiMesh);
-    //bool InitMaterials(const aiScene* pScene, const std::string& Filename);
-    void Clear();
-
-    #define INVALID_MATERIAL 0xFFFFFFFF
-
-
-    struct MeshEntry {
-        MeshEntry();
-
-        ~MeshEntry();
-
-        bool Init(const std::vector<Vertex>& Vertices,
-            const std::vector<unsigned int>& Indices);
-
-        GLuint VB;
-        GLuint IB;
-        unsigned int NumIndices;
-        unsigned int MaterialIndex;
-    };
-
-    std::vector<MeshEntry> m_Entries;
-   // std::vector<Texture*> m_Textures;
+    Mesh(aiMesh* aiMesh);
+    ~Mesh();
 };

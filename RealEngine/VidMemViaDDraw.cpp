@@ -77,36 +77,6 @@ HRESULT GetVideoMemoryViaDirectDraw(HMONITOR hMonitor, DWORD* pdwAvailableVidMem
         return E_FAIL;
 }
 
-float vramBudget()
-{
-    GLint total_mem_kb = 0;
-    glGetIntegerv(0x9048, &total_mem_kb);
-    return total_mem_kb / (1024); // KB to MB
-    
-}
-float vramUsage()
-{
-    GLint avaliable_mem_kb = 0;
-    glGetIntegerv(0x9047, &avaliable_mem_kb);
-    return avaliable_mem_kb / (1024); // KB to MB
-
-}
-float vramAvailable()
-{
-    GLint avaliable_mem_kb = 0;
-    glGetIntegerv(0x9049, &avaliable_mem_kb);
-    return avaliable_mem_kb / (1024); // KB to MB
-  
-}
-
-float vramReserved()
-{
-    GLint reserved_mem_kb = 0;
-    glGetIntegerv(0x904B, &reserved_mem_kb);
-    return reserved_mem_kb / (1024); // KB to MB
-   
-}
-
 
 HRESULT GetDeviceIDFromHMonitor(HMONITOR hm, WCHAR* strDeviceID, int cchDeviceID)
 {

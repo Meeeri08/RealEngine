@@ -13,7 +13,7 @@ public:
 	~HierarchyWindow();
 
 	void Draw(Application* App);
-	void DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags default_flags, GameObject* root);
+	void DrawGameObject(Application* App, GameObject* gameObject, ImGuiTreeNodeFlags default_flags, GameObject* root);
 	void SetShowWindow() override;
 	bool GetShowWindow() override;
 

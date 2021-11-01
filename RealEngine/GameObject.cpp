@@ -8,8 +8,13 @@ GameObject::GameObject()
 	wantToDelete = false;
 	selectedChild = false;
 
+	parent = nullptr;
 	parentUUID = 0;
 	UUID = GenerateUUID();
+
+	//transformation = new Transformation(Component::ComponentType::Transformation);
+	transformation = nullptr;
+	CreateComponent(Component::ComponentType::Transformation);
 }
 
 GameObject::~GameObject()
@@ -24,15 +29,11 @@ Component* GameObject::CreateComponent(Component::ComponentType type)
 	{
 	case Component::ComponentType::None:
 		break;
-	case Component::ComponentType::Mesh:
-
+	case Component::ComponentType::Transformation:
+		component = new Transformation(Component::ComponentType::Transformation, this);
+		transformation = (Transformation*)component;
 		break;
-	case Component::ComponentType::Material:
 
-		break;
-	case Component::ComponentType::Camera:
-
-		break;
 	default:
 		break;
 	}
@@ -53,10 +54,6 @@ void GameObject::DestroyComponent(Component::ComponentType type)
 	}
 }
 
-void GameObject::Draw()
-{
-}
-
 Component* GameObject::GetComponent(Component::ComponentType type)
 {
 	for (int i = 0; i < components.size(); i++)
@@ -70,29 +67,37 @@ Component* GameObject::GetComponent(Component::ComponentType type)
 	return nullptr;
 }
 
-void GameObject::GetComponents(Component::ComponentType type, std::vector<Component*>& comp)
-{
-}
-
 void GameObject::SetParent(GameObject* parent)
 {
 }
 
-void GameObject::setSelected(bool selected)
+void GameObject::SetSelected(bool selected)
 {
 }
 
-void GameObject::setChildSelected(bool selected)
+void GameObject::SetChildSelected(bool selectedChild)
 {
 }
 
 void GameObject::AddChildren(GameObject* child)
 {
-	children.push_back(child);
+	for (int i = 0; i < children.size(); i++) {
+		if (children[i] == child) {
+			return;
+		}
+	}
+	this->children.push_back(child);
+	child->SetParent(this);
 }
 
 void GameObject::DestroyChildren(GameObject* toDestroy)
 {
+	for (int i = 0; i < children.size(); i++) {
+		if (children[i] == toDestroy) {
+			children.erase(children.begin() + i);
+			return;
+		}
+	}
 }
 
 bool GameObject::Update()
@@ -217,15 +222,15 @@ void GameObject::Unselect()
 
 uint GameObject::GenerateUUID()
 {
-	return uint();
+	return LCG().Int();
 }
 
 uint GameObject::GetUUID()
 {
-	return uint();
+	return UUID;
 }
 
 uint GameObject::GetParentUUID()
 {
-	return uint();
+	return parent->GetUUID();
 }

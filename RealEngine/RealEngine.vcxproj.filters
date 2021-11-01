@@ -7,14 +7,8 @@
     <Filter Include="Sources\Modules">
       <UniqueIdentifier>{7b418be2-1631-4a31-9ef2-8a8b234a7339}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Containers">
-      <UniqueIdentifier>{afc36133-f401-499a-aa33-0da1e500fb52}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\Tools">
       <UniqueIdentifier>{7e4dfaf7-022c-4f7d-92aa-f3b3fa9d6248}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Helpers">
-      <UniqueIdentifier>{121f8e6b-df36-4ab0-be0d-601ddfc9e503}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sources\Modules\Game">
       <UniqueIdentifier>{83f46af7-e02f-40c0-9e56-41d76082527b}</UniqueIdentifier>
@@ -55,17 +49,8 @@
     <Filter Include="Libraries\MathGeoLib\src\Time">
       <UniqueIdentifier>{3ee2e7d1-a9e8-4d24-a78f-0d1ab9089b96}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Windows">
-      <UniqueIdentifier>{b68ba407-61f1-4ff3-be78-9060b4cf3a7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\FileManager">
-      <UniqueIdentifier>{205e29bb-2089-4a5f-a4d4-a72f04eca55a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sources\GameObjects">
       <UniqueIdentifier>{7c93c637-a901-4183-9f43-0f2afec1bc9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Resources">
-      <UniqueIdentifier>{58f779f1-92d9-499e-a545-808680e099ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\JSON">
       <UniqueIdentifier>{8dbf9895-1f96-42c9-bd48-5f7e52907082}</UniqueIdentifier>
@@ -75,6 +60,24 @@
     </Filter>
     <Filter Include="Libraries\ImGuizmo">
       <UniqueIdentifier>{26e88d7b-a1da-44bb-a5a2-9f52820d0002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Components">
+      <UniqueIdentifier>{49c903e8-c683-4640-bff3-03e864de4f39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Helpers">
+      <UniqueIdentifier>{121f8e6b-df36-4ab0-be0d-601ddfc9e503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Containers">
+      <UniqueIdentifier>{afc36133-f401-499a-aa33-0da1e500fb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\Resources">
+      <UniqueIdentifier>{58f779f1-92d9-499e-a545-808680e099ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Tools\FileManager">
+      <UniqueIdentifier>{205e29bb-2089-4a5f-a4d4-a72f04eca55a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\EditorWindows">
+      <UniqueIdentifier>{b68ba407-61f1-4ff3-be78-9060b4cf3a7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +100,7 @@
       <Filter>Sources\Modules</Filter>
     </ClInclude>
     <ClInclude Include="glmath.h">
-      <Filter>Sources\Containers</Filter>
+      <Filter>Sources\Tools\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
       <Filter>Sources</Filter>
@@ -106,13 +109,13 @@
       <Filter>Sources</Filter>
     </ClInclude>
     <ClInclude Include="Primitive.h">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Tools\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Sources\Containers</Filter>
+      <Filter>Sources\Tools\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Light.h">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Tools\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="ModuleSceneIntro.h">
       <Filter>Sources\Modules\Game</Filter>
@@ -409,16 +412,16 @@
       <Filter>Sources\Modules</Filter>
     </ClInclude>
     <ClInclude Include="InspectorWindow.h">
-      <Filter>Sources\Windows</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClInclude>
     <ClInclude Include="WindowConfiguration.h">
-      <Filter>Sources\Windows</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClInclude>
     <ClInclude Include="JsonParser.h">
-      <Filter>Sources\FileManager</Filter>
+      <Filter>Sources\Tools\FileManager</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Sources\Resources</Filter>
+      <Filter>Sources\Tools\Resources</Filter>
     </ClInclude>
     <ClInclude Include="JSON\parson.h">
       <Filter>Libraries\JSON</Filter>
@@ -430,10 +433,7 @@
       <Filter>Sources\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="HierarchyWindow.h">
-      <Filter>Sources\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScene.h">
-      <Filter>Sources\Modules</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClInclude>
     <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="assimp\include\aabb.h">
@@ -661,6 +661,15 @@
     <ClInclude Include="ModuleLoader.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Transformation.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Sources\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -691,16 +700,16 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="glmath.cpp">
-      <Filter>Sources\Containers</Filter>
+      <Filter>Sources\Tools\Containers</Filter>
     </ClCompile>
     <ClCompile Include="Primitive.cpp">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Tools\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
-      <Filter>Sources\Containers</Filter>
+      <Filter>Sources\Tools\Containers</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Sources\Helpers</Filter>
+      <Filter>Sources\Tools\Helpers</Filter>
     </ClCompile>
     <ClCompile Include="ModuleSceneIntro.cpp">
       <Filter>Sources\Modules\Game</Filter>
@@ -970,13 +979,13 @@
       <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="InspectorWindow.cpp">
-      <Filter>Sources\Windows</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClCompile>
     <ClCompile Include="WindowConfiguration.cpp">
-      <Filter>Sources\Windows</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClCompile>
     <ClCompile Include="JsonParser.cpp">
-      <Filter>Sources\FileManager</Filter>
+      <Filter>Sources\Tools\FileManager</Filter>
     </ClCompile>
     <ClCompile Include="JSON\parson.c">
       <Filter>Libraries\JSON</Filter>
@@ -988,10 +997,7 @@
       <Filter>Sources\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="HierarchyWindow.cpp">
-      <Filter>Sources\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScene.cpp">
-      <Filter>Sources\Modules</Filter>
+      <Filter>Sources\EditorWindows</Filter>
     </ClCompile>
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="ImGuizmo\ImGuizmo.cpp">
@@ -1002,6 +1008,15 @@
     </ClCompile>
     <ClCompile Include="ModuleLoader.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Transformation.cpp">
+      <Filter>Sources\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Sources\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

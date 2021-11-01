@@ -6,7 +6,6 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 
-
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
@@ -21,7 +20,7 @@ ModuleRenderer3D::~ModuleRenderer3D()
 // Called before render is available
 bool ModuleRenderer3D::Init()
 {
-	LOG("Creating 3D Renderer context");
+	App->console->AddLog("Creating 3D Renderer context");
 	bool ret = true;
 
 	//OpenGL initialitzation
@@ -36,22 +35,21 @@ bool ModuleRenderer3D::Init()
 	context = SDL_GL_CreateContext(App->window->window);
 	if (context == NULL)
 	{
-		LOG("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddLog("OpenGL context could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
-
 
 	//Init the GLEW library
 	GLenum err = glewInit();
 	// … check for errors
-	LOG("Using Glew %s", glewGetString(GLEW_VERSION));
+	App->console->AddLog("Using Glew %s", glewGetString(GLEW_VERSION));
 	// Should be 2.0
 
 	//detect our current hardware and driver
-	LOG("Vendor: %s", glGetString(GL_VENDOR));
-	LOG("Renderer: %s", glGetString(GL_RENDERER));
-	LOG("OpenGL version supported %s", glGetString(GL_VERSION));
-	LOG("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	App->console->AddLog("Vendor: %s", glGetString(GL_VENDOR));
+	App->console->AddLog("Renderer: %s", glGetString(GL_RENDERER));
+	App->console->AddLog("OpenGL version supported %s", glGetString(GL_VERSION));
+	App->console->AddLog("GLSL: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 	//Reset projection and modelview matrices
 	glMatrixMode(GL_PROJECTION);
@@ -68,13 +66,11 @@ bool ModuleRenderer3D::Init()
 	glEnable(GL_COLOR_MATERIAL);
 	glEnable(GL_TEXTURE_2D);
 
-	App->fbxLoader->Load("Assets/BakerHouse.fbx", vertex);
-
 	if (ret == true)
 	{
 		//Use Vsync
 		if (VSYNC && SDL_GL_SetSwapInterval(1) < 0)
-			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+			App->console->AddLog("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
 
@@ -85,7 +81,7 @@ bool ModuleRenderer3D::Init()
 		GLenum error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -97,7 +93,7 @@ bool ModuleRenderer3D::Init()
 		error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -111,7 +107,7 @@ bool ModuleRenderer3D::Init()
 		error = glGetError();
 		if (error != GL_NO_ERROR)
 		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			App->console->AddLog("Error initializing OpenGL! %s\n", gluErrorString(error));
 			ret = false;
 		}
 
@@ -147,6 +143,8 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 	capFps();
+	glClearColor(0, 0, 0, 0);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -159,11 +157,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
-
-	for (int i = 0; i < vertex.size(); ++i)
-	{
-		vertex[i].LoadMesh();
-	}
+	CalculateGlobalMatrix(App->scene_intro->root);
 
 	return UPDATE_CONTINUE;
 }
@@ -178,10 +172,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 // Called before quitting
 bool ModuleRenderer3D::CleanUp()
 {
-	LOG("Destroying 3D Renderer");
-
+	App->console->AddLog("Destroying 3D Renderer");
 	SDL_GL_DeleteContext(context);
-
 	return true;
 }
 
@@ -209,7 +201,6 @@ bool ModuleRenderer3D::SaveSettings(JsonParser* data) const
 	return true;
 }
 
-
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -234,10 +225,32 @@ void ModuleRenderer3D::capFps()
 		SDL_Delay(frameDelay - frameTime);
 }
 
-void ModuleRenderer3D::SetWireframeMode(bool active)
+void ModuleRenderer3D::SetWireframeMode()
 {
-	if (active)glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	if (!wireframe)
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	else
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
 
+void ModuleRenderer3D::CalculateGlobalMatrix(GameObject* gameObject)
+{
+	Transformation* transformation = (Transformation*)gameObject->GetComponent(Component::ComponentType::Transformation);
 
+	if (transformation != nullptr)
+	{
+		if (gameObject->parent == nullptr)
+		{
+			transformation->globalMatrix = transformation->localMatrix;
+		}
+		else
+		{
+			transformation->globalMatrix = ((Transformation*)gameObject->parent->GetComponent(Component::ComponentType::Transformation))->globalMatrix * transformation->localMatrix;
+		}
+
+		for (std::vector<GameObject*>::iterator iterator = gameObject->children.begin(); iterator != gameObject->children.end(); iterator++)
+		{
+			CalculateGlobalMatrix((*iterator));
+		}
+	}
 }

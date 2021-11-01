@@ -20,7 +20,7 @@ ModuleCamera3D::~ModuleCamera3D()
 // -----------------------------------------------------------------
 bool ModuleCamera3D::Start()
 {
-	LOG("Setting up the camera");
+	App->console->AddLog("Setting up the camera");
 	bool ret = true;
 
 	return ret;
@@ -29,7 +29,7 @@ bool ModuleCamera3D::Start()
 // -----------------------------------------------------------------
 bool ModuleCamera3D::CleanUp()
 {
-	LOG("Cleaning camera");
+	App->console->AddLog("Cleaning camera");
 
 	return true;
 }
@@ -65,8 +65,7 @@ update_status ModuleCamera3D::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed;
 	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed;
 
-	Position += newPos;
-	Reference += newPos;
+
 
 	// Mouse motion ----------------
 
@@ -77,6 +76,16 @@ update_status ModuleCamera3D::Update(float dt)
 			Orbit();
 		}
 	}
+
+	// Mouse Wheel
+	if (App->input->GetMouseZ() > 0)
+		newPos -= Z * speed * 5;
+
+	if (App->input->GetMouseZ() < 0)
+		newPos += Z * speed * 5;
+
+	Position += newPos;
+	Reference += newPos;
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

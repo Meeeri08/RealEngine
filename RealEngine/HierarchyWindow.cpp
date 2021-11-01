@@ -14,12 +14,12 @@ void HierarchyWindow::Draw(Application* App)
 	ImGui::Begin("Hierarchy");
 
 	ImGuiTreeNodeFlags default_flags = ImGuiTreeNodeFlags_NoTreePushOnOpen;
-	DrawGameObject(App->scene_intro->GetRoot(), default_flags, App->scene_intro->GetRoot());
+	DrawGameObject(App, App->scene_intro->GetRoot(), default_flags, App->scene_intro->GetRoot());
 
 	ImGui::End();
 }
 
-void HierarchyWindow::DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags default_flags, GameObject* root)
+void HierarchyWindow::DrawGameObject(Application* App, GameObject* gameObject, ImGuiTreeNodeFlags default_flags, GameObject* root)
 {
 	bool drawAgain = true;
 
@@ -42,7 +42,7 @@ void HierarchyWindow::DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags 
 
 	if (ImGui::IsItemClicked(0))
 	{
-		//App->scene->selectGameObject(gameObject);
+		App->scene_intro->SelectGameObject(gameObject);
 	}
 
 	if (ImGui::BeginPopupContextItem((gameObject->name + "rightClick").c_str(), 1))
@@ -54,17 +54,15 @@ void HierarchyWindow::DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags 
 		ImGui::EndPopup();
 	}
 
-	/*
 
-	if (App->scene->selected_GO != nullptr)
+	if (App->scene_intro->selectedGameObject != nullptr)
 	{
-		if (App->scene->selected_GO->to_delete == true)
+		if (App->scene_intro->selectedGameObject->wantToDelete == true)
 		{
-			App->scene->DestroyGameObject(gameObject);
+			App->scene_intro->DestroyGameObject(gameObject);
 		}
 	}
-	*/
-
+	
 	if (ImGui::BeginDragDropSource())
 	{
 		uint gameObject_UUID = gameObject->GetUUID();
@@ -76,9 +74,9 @@ void HierarchyWindow::DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags 
 	{
 		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("Reparenting", ImGuiDragDropFlags_SourceAllowNullID))
 		{
-			//GameObject* draggedGameobject = App->scene->GetGameObjectByUUID(*(uint*)payload->Data);
-			//if (draggedGameobject != nullptr)
-				//draggedGameobject->SetParent(gameObject);
+			GameObject* draggedGameobject = App->scene_intro->GetGameObjectByUUID(*(uint*)payload->Data);
+			if (draggedGameobject != nullptr)
+				draggedGameobject->SetParent(gameObject);
 		}
 		ImGui::EndDragDropTarget();
 	}
@@ -87,7 +85,7 @@ void HierarchyWindow::DrawGameObject(GameObject* gameObject, ImGuiTreeNodeFlags 
 	{
 		for (uint i = 0; i < gameObject->children.size(); i++)
 		{
-			DrawGameObject(gameObject->children[i], flags, root);
+			DrawGameObject(App, gameObject->children[i], flags, root);
 		}
 	}
 }

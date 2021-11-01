@@ -28,7 +28,6 @@ ModuleEditor::~ModuleEditor()
 // Load assets
 bool ModuleEditor::Start()
 {
-	LOG("Loading Intro assets");
 	App->console->AddLog("Loading Intro assets");
 	bool ret = true;
 
@@ -46,7 +45,6 @@ bool ModuleEditor::Start()
 // Load assets
 bool ModuleEditor::CleanUp()
 {
-	LOG("Unloading Intro scene");
 	App->console->AddLog("Unloading Intro scene");
 
 	return true;
@@ -55,8 +53,7 @@ bool ModuleEditor::CleanUp()
 // Update: draw background
 update_status ModuleEditor::Update(float dt)
 {
-
-	Plane p(0, 1, 0, 0);
+	PrimitivePlane p(0, 1, 0, 0);
 	p.axis = true;
 	p.Render();
 
@@ -82,6 +79,7 @@ update_status ModuleEditor::Update(float dt)
 	{
 		if (ImGui::BeginMenu("File"))
 		{
+			ImGui::MenuItem("Save Engine", NULL, &save);
 			ImGui::EndMenu();
 		}
 
@@ -93,22 +91,9 @@ update_status ModuleEditor::Update(float dt)
 			ImGui::MenuItem("Hierarchy", NULL, &show_hierarchy);
 			ImGui::EndMenu();
 		}
-
-		
-
 		if (ImGui::BeginMenu("GameObject"))
 		{
-			if (ImGui::MenuItem("Create"))
-			{
-				if (ImGui::MenuItem("Cube"))
-				{
-					if (ImGui::MenuItem("Cube"))
-					{
-						
-						
-					}
-				}
-			}
+			ImGui::MenuItem("Primitives", NULL, &show_primitives);
 			ImGui::EndMenu();
 		}
 
@@ -126,26 +111,109 @@ update_status ModuleEditor::Update(float dt)
 				exit(0);
 			}
 			ImGui::EndMenu();
+
 		}
 
 
 		ImGui::EndMainMenuBar();
 	}
-	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-	
-	if (show_console)
-		App->console->DrawConsole("Console", &show_console);
-	if (show_inspector)
-		inspectorWindow->Draw();
-	if (show_hierarchy)
-		hierarchyWindow->Draw(App);
 
-	// 2. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
+	const ImGuiIO& guiIO = ImGui::GetIO();
+	float screenX = guiIO.DisplaySize.x;
+	float screenY = guiIO.DisplaySize.y;
+
+	float small_col_size = (screenX * 20) / 100;
+	float big_col_size = (screenX * 60) / 100;
+
+	float big_row_size = (screenY * 60) / 100;
+	float small_row_size = (screenY * 40) / 100;
+
+
+	if (show_console)
+	{
+		const static char* consoleWindowTitle = "Console";
+		ImVec2 textSize = ImGui::CalcTextSize(consoleWindowTitle);
+		ImVec2 windowSize = ImVec2(big_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x) * 0.5f, (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
+
+		App->console->DrawConsole(consoleWindowTitle, &show_console);
+	}
+	if (show_inspector)
+	{
+		const static char* inspectorWindowTitle = "Inspector";
+		ImVec2 textSize = ImGui::CalcTextSize(inspectorWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, big_row_size);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x), 20));
+		ImGui::SetNextWindowSize(windowSize);
+
+		inspectorWindow->Draw(App);
+	}
+
+	if (show_hierarchy)
+	{
+		const static char* hierarchyWindowTitle = "Hierarchy";
+		ImVec2 textSize = ImGui::CalcTextSize(hierarchyWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, big_row_size);
+		ImGui::SetNextWindowPos(ImVec2(0, 20));
+		ImGui::SetNextWindowSize(windowSize);
+		hierarchyWindow->Draw(App);
+	}
+
+	if (show_primitives)
+	{
+		const static char* primitivesWindowTitle = "Primitives";
+		ImVec2 textSize = ImGui::CalcTextSize(primitivesWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2(0, (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
+
+		ImGui::Begin(primitivesWindowTitle, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+
+		if (ImGui::MenuItem("Cube"))
+		{
+			App->fbxLoader->Load("Assets/Cube.fbx");
+		}
+		if (ImGui::MenuItem("Sphere"))
+		{
+			App->fbxLoader->Load("Assets/Sphere.fbx");
+
+		}
+		if (ImGui::MenuItem("Cylinder"))
+		{
+			App->fbxLoader->Load("Assets/Cylinder.fbx");
+		}
+		if (ImGui::MenuItem("Plane"))
+		{
+			App->fbxLoader->Load("Assets/Plane.fbx");
+		}
+
+		if (ImGui::MenuItem("Torus"))
+		{
+			App->fbxLoader->Load("Assets/Torus.fbx");
+		}
+
+		if (ImGui::MenuItem("Pyramid"))
+		{
+			App->fbxLoader->Load("Assets/Pyramid.fbx");
+		}
+
+		if (ImGui::MenuItem("Disc"))
+		{
+			App->fbxLoader->Load("Assets/Disc.fbx");
+		}
+		ImGui::End();
+	}
 
 	if (show_configuration)
 	{
+		const static char* configWindowTitle = "Configuration";
+		ImVec2 textSize = ImGui::CalcTextSize(configWindowTitle);
+		ImVec2 windowSize = ImVec2(small_col_size, small_row_size - 20);
+		ImGui::SetNextWindowPos(ImVec2((guiIO.DisplaySize.x - windowSize.x), (guiIO.DisplaySize.y - windowSize.y)));
+		ImGui::SetNextWindowSize(windowSize);
 
-		if (ImGui::Begin("Configuration", &show_configuration))
+		if (ImGui::Begin(configWindowTitle, NULL, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse))
 		{
 			ImGui::Text("Options");
 			if (ImGui::CollapsingHeader("Application"))
@@ -210,6 +278,11 @@ update_status ModuleEditor::Update(float dt)
 
 					if (ImGui::SliderInt("Height", &App->window->height, 480, 2048))
 						App->window->SetSize(App->window->width, App->window->height);
+				}
+
+				 if (ImGui::Button("Reset changes", ImVec2(100, 25)))
+				{
+					resetWindow();
 				}
 
 				//Refresh Rate
@@ -316,7 +389,6 @@ update_status ModuleEditor::Update(float dt)
 				ImGui::SameLine();
 				ImGui::TextColored(values_color, "%d.%d.%d", version.major, version.minor, version.patch);
 
-
 				ImGui::Spacing();
 				ImGui::Separator();
 				ImGui::Spacing();
@@ -411,12 +483,11 @@ update_status ModuleEditor::Update(float dt)
 					else glDisable(GL_COLOR_MATERIAL);
 				}
 
+				ImGui::Spacing();
+				ImGui::Separator();
+				ImGui::Spacing();
 
-				if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe))
-				{
-					App->renderer3D->SetWireframeMode(App->renderer3D->wireframe);
-				}
-
+				ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe);
 
 			}
 		}
@@ -558,5 +629,11 @@ bool ModuleEditor::SaveSettings(JsonParser* data) const
 	return true;
 }
 
+void ModuleEditor::resetWindow()
+{
+	App->window->SetSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+	App->window->SetBrightness(1.0f);
+
+}
 
 

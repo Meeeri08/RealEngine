@@ -2,25 +2,28 @@
 #include "Component.h"
 #include "JsonParser.h"
 #include "Application.h"
+#include "Transformation.h"
 
 #include <vector>
 #include <string>
 
 class GameObject
 {
+
 public:
+
 	GameObject();
 	~GameObject();
 
 	Component* CreateComponent(Component::ComponentType type);
 	void DestroyComponent(Component::ComponentType type);
-	void Draw();
+
 	Component* GetComponent(Component::ComponentType type);
-	void GetComponents(Component::ComponentType type, std::vector<Component*>& comp);
 
 	void SetParent(GameObject* parent);
-	void setSelected(bool selected);
-	void setChildSelected(bool selected);
+	void SetSelected(bool selected);
+	void SetChildSelected(bool selectedChild);
+
 	void AddChildren(GameObject* child);
 	void DestroyChildren(GameObject* toDestroy);
 
@@ -45,7 +48,9 @@ public:
 	bool isStatic;
 	bool wantToDelete;
 	bool selectedChild;
+
 	Application* App;
+	Transformation* transformation;
 
 	std::string name;
 	std::vector<Component*> components;

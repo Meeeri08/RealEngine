@@ -24,6 +24,8 @@ public:
 	bool LoadSettings(JsonParser* data)override;
 	bool SaveSettings(JsonParser* data)const override;
 
+	void resetWindow();
+
 public:
 
 	bool show_demo_window = false;
@@ -34,6 +36,8 @@ public:
 	bool show_console = true;
 	bool show_inspector = true;
 	bool show_hierarchy = true;
+	bool show_primitives = true;
+	bool save = true;
 	bool config = false;
 
 	std::vector<float> fps_log;
@@ -49,10 +53,6 @@ public:
 
 	bool configuration = true;
 
-
-
-
 	InspectorWindow* inspectorWindow;
 	HierarchyWindow* hierarchyWindow;
-
 };

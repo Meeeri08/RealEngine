@@ -3,6 +3,8 @@
 #include "Globals.h"
 #include "glmath.h"
 #include "Light.h"
+#include "Component.h"
+#include "GameObject.h"
 
 #define MAX_LIGHTS 8
 
@@ -27,8 +29,9 @@ public:
 	bool vsync = false;
 
 	void capFps();
+	void SetWireframeMode();
 
-	void SetWireframeMode(bool active);
+	void CalculateGlobalMatrix(GameObject* gameObject);
 
 public:
 
@@ -36,7 +39,6 @@ public:
 	SDL_GLContext context;
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
-	std::vector<Vertex> vertex;
 
 	//OpenGL Options
 	bool depth_test = true;

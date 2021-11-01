@@ -43,6 +43,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>..\Output</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>..\Output</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -71,6 +74,8 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)assimp\include;$(ProjectDir)glew\lib;$(ProjectDir)SDL\include;$(ProjectDir)imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WINDOWS_IGNORE_PACKING_MISMATCH</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -78,6 +83,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <AdditionalDependencies>assimp-vc142-mt.lib;opengl32.lib;glu32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)assimp\lib;$(ProjectDir)glew\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -155,6 +162,7 @@
     <ClInclude Include="assimp\include\XMLTools.h" />
     <ClInclude Include="assimp\include\ZipArchiveIOSystem.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="glew\include\eglew.h" />
     <ClInclude Include="glew\include\glew.h" />
@@ -258,6 +266,7 @@
     <ClInclude Include="MathGeoLib\tests\SystemInfo.h" />
     <ClInclude Include="MathGeoLib\tests\TestData.h" />
     <ClInclude Include="MathGeoLib\tests\TestRunner.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleConsole.h" />
     <ClInclude Include="ModuleEditor.h" />
@@ -267,19 +276,20 @@
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleScene.h" />
     <ClInclude Include="ModuleSceneIntro.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SceneWindow.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Transformation.h" />
     <ClInclude Include="VidMemViaDDraw.h" />
     <ClInclude Include="WindowConfiguration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="HierarchyWindow.cpp" />
@@ -376,6 +386,7 @@
     <ClCompile Include="MathGeoLib\tests\TriangleMeshTests.cpp" />
     <ClCompile Include="MathGeoLib\tests\TriangleTests.cpp" />
     <ClCompile Include="MathGeoLib\tests\VectorTests.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleConsole.cpp" />
@@ -384,12 +395,12 @@
     <ClCompile Include="ModuleLoader.cpp" />
     <ClCompile Include="ModulePhysics3D.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
-    <ClCompile Include="ModuleScene.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="SceneWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transformation.cpp" />
     <ClCompile Include="VidMemViaDDraw.cpp" />
     <ClCompile Include="WindowConfiguration.cpp" />
   </ItemGroup>

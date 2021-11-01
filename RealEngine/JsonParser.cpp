@@ -78,6 +78,8 @@ const char* JsonParser::GetString(const char* name, const char* default)
 	}
 }
 
+
+
 JSON_Array* JsonParser::GetArray(const char* name)
 {
 	if (json_object_has_value(root, name) == 1) {
